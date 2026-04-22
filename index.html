@@ -50,7 +50,7 @@
         margin-bottom: 40px;
         line-height: 1.4;
         word-break: keep-all;
-        white-space: pre-wrap; /* 줄바꿈 적용 */
+        white-space: pre-wrap;
     }
 
     .options-grid {
@@ -85,6 +85,7 @@
         border-radius: 8px;
         outline: none;
         transition: border-color 0.2s;
+        margin-bottom: 10px;
     }
 
     .input-field:focus {
@@ -105,7 +106,6 @@
         color: var(--primary-color);
     }
 
-    /* 페이드 인 애니메이션 */
     .fade-in {
         animation: fadeIn 0.4s ease-in-out;
     }
@@ -121,8 +121,7 @@
 <div class="auditor-container fade-in" id="quiz-box">
     <h1>SPACE AUDITOR</h1>
     <div id="question-text">질문을 불러오는 중입니다...</div>
-    <div class="options-grid" id="options-container">
-        </div>
+    <div class="options-grid" id="options-container"></div>
     <button class="restart-btn" id="restart-btn" style="display: none;" onclick="startAuditor()">처음부터 다시하기</button>
 </div>
 
@@ -131,15 +130,21 @@
         "start": {
             question: "어떤 건축물을 검토하고 계신가요?",
             options: [
-                { text: "주택", next: "house_type" },
-                { text: "비주택", next: "non_house" },
+                { text: "주택", next: "reject_general" },
+                { text: "비주택", next: "reject_general" },
                 { text: "위반건축물", next: "violation_type" }
+            ]
+        },
+        "reject_general": {
+            question: "현재 스페이스 오디터는 위반건축물 양성화 대상을 우선적으로 지원하고 있습니다.\n일반 건축물 상담은 별도 문의 부탁드립니다.",
+            options: [
+                { text: "이름, 연락처 남기고 문의하기", next: "input_form" }
             ]
         },
         "violation_type": {
             question: "위반건축물의 유형을 선택해주세요.",
             options: [
-                { text: "특정건축물 특례법에 의한 소규모주택", next: "house_type" }, // 주택 흐름으로 합류
+                { text: "특정건축물 정리에 관한 특별조치법 (특정법)", next: "house_category" },
                 { text: "그 외 (일반)", next: "violation_other" }
             ]
         },
@@ -150,8 +155,8 @@
                 { text: "비주택", next: "reject" }
             ]
         },
-        "house_type": {
-            question: "주택의 종류를 선택해주세요.",
+        "house_category": {
+            question: "대상 주택의 종류를 선택해주세요.",
             options: [
                 { text: "공동주택 (다세대, 연립, 아파트 등)", next: "multi_family" },
                 { text: "단독주택 (단독, 다가구)", next: "single_family_type" },
@@ -186,19 +191,12 @@
                 { text: "660㎡ 이하", next: "cta_report" }
             ]
         },
-        "non_house": {
-            question: "비주택 관련 서비스는 준비 중이거나 별도 문의가 필요합니다.",
-            options: [
-                { text: "이름, 연락처 남기기", next: "input_form" }
-            ]
-        },
         "reject": {
-            question: "안타깝지만 스페이스 오디터 서비스 대상에 해당되지 않습니다.",
-            options: [] 
+            question: "안타깝지만 해당 조건은 스페이스 오디터 서비스 대상에 해당되지 않습니다.",
+            options: []
         },
-        // --- 여기서부터 CTA (마무리 결제 및 연락처 유도) 흐름입니다 ---
         "cta_report": {
-            question: "해당 조건은 서비스 진행이 가능합니다!\n이 내용의 유료 리포트를 사용하시겠습니까?",
+            question: "진단 결과, 서비스 진행이 가능합니다!\n이 내용의 유료 리포트를 사용하시겠습니까?",
             options: [
                 { text: "네", next: "cta_pay" },
                 { text: "아니오", next: "cta_contact_ask" }
@@ -212,7 +210,7 @@
             ]
         },
         "cta_contact_ask": {
-            question: "이름, 연락처를 남기시겠습니까?",
+            question: "전문가 검토를 위해 이름과 연락처를 남기시겠습니까?",
             options: [
                 { text: "네", next: "input_form" },
                 { text: "아니오", next: "end_bye" }
@@ -220,7 +218,7 @@
         },
         "end_bye": {
             question: "감사합니다. 스페이스 오디터였습니다.",
-            options: [] 
+            options: []
         }
     };
 
@@ -231,18 +229,15 @@
 
     function renderNode(nodeId) {
         quizBox.classList.remove('fade-in');
-        void quizBox.offsetWidth; 
+        void quizBox.offsetWidth;
         quizBox.classList.add('fade-in');
 
-        // 입력 폼 화면 렌더링
         if (nodeId === "input_form") {
-            questionEl.innerText = "이름과 연락처를 남겨주시면 확인 후 연락드리겠습니다.";
+            questionEl.innerText = "연락처를 남겨주시면 빠르게 검토 후 연락드리겠습니다.";
             optionsContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;">
-                    <input type="text" id="user-name" class="input-field" placeholder="이름을 입력해주세요">
-                    <input type="tel" id="user-phone" class="input-field" placeholder="연락처 (예: 010-1234-5678)">
-                </div>
-                <button class="option-btn" style="background-color: var(--primary-color); color: #ffffff;" onclick="submitForm()">제출하기</button>
+                <input type="text" id="user-name" class="input-field" placeholder="성함을 입력해주세요">
+                <input type="tel" id="user-phone" class="input-field" placeholder="연락처 (010-0000-0000)">
+                <button class="option-btn" style="background-color: var(--primary-color); color: #ffffff;" onclick="submitForm()">신청 완료하기</button>
             `;
             restartBtn.style.display = 'inline-block';
             return;
@@ -266,30 +261,19 @@
         }
     }
 
-    // 제출 버튼 클릭 시 실행될 함수
     function submitForm() {
         const name = document.getElementById('user-name').value;
         const phone = document.getElementById('user-phone').value;
-
         if (!name || !phone) {
             alert("이름과 연락처를 모두 입력해주세요.");
             return;
         }
-
-        // 이곳에 실제 데이터 전송 로직이 들어갑니다. (DB 저장 또는 이메일 전송)
-        alert(`제출되었습니다!\n이름: ${name}\n연락처: ${phone}`);
-        
-        // 제출 완료 후 마지막 인사 화면으로 이동
+        alert(`${name}님, 접수가 완료되었습니다.`);
         renderNode('end_bye');
     }
 
-    function startAuditor() {
-        renderNode('start');
-    }
-
-    // 첫 시작
+    function startAuditor() { renderNode('start'); }
     startAuditor();
 </script>
-
 </body>
 </html>
