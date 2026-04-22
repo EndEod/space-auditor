@@ -79,13 +79,15 @@
     }
 
     .input-field {
+        width: 100%;
         padding: 15px;
         font-size: 1rem;
         border: 2px solid #e0e0e0;
         border-radius: 8px;
         outline: none;
         transition: border-color 0.2s;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
     }
 
     .input-field:focus {
@@ -126,30 +128,41 @@
 </div>
 
 <script>
+    // 구글 앱스 스크립트 배포 후 받은 URL을 아래 큰따옴표 안에 넣으세요.
+    const SCRIPT_URL = "여기에_구글_웹_앱_URL을_붙여넣으세요"; 
+
+    // 수집할 데이터를 담을 임시 객체
+    let surveyData = {
+        name: "",
+        phone: "",
+        report_opt: "아니오",
+        pay_opt: "아니오"
+    };
+
     const treeData = {
         "start": {
             question: "어떤 건축물을 검토하고 계신가요?",
             options: [
                 { text: "주택", next: "reject_general" },
                 { text: "비주택", next: "reject_general" },
-                { text: "위반건축물", next: "violation_type" }
+                { text: "위반건축물", next: "violation_main" }
             ]
         },
         "reject_general": {
-            question: "현재 스페이스 오디터는 위반건축물 양성화 대상을 우선적으로 지원하고 있습니다.\n일반 건축물 상담은 별도 문의 부탁드립니다.",
+            question: "현재 스페이스 오디터는 위반건축물 양성화 대상을 우선 지원합니다.\n일반 건축물은 별도 문의를 남겨주세요.",
             options: [
                 { text: "이름, 연락처 남기고 문의하기", next: "input_form" }
             ]
         },
-        "violation_type": {
-            question: "위반건축물의 유형을 선택해주세요.",
+        "violation_main": {
+            question: "위반건축물 중 어디에 해당하시나요?",
             options: [
-                { text: "특정건축물 정리에 관한 특별조치법 (특정법)", next: "house_category" },
-                { text: "그 외 (일반)", next: "violation_other" }
+                { text: "특정건축물 정리에 관한 특별조치법 (소규모주택)", next: "house_category" },
+                { text: "그 외 (일반 위반건축물)", next: "violation_other" }
             ]
         },
         "violation_other": {
-            question: "건축물의 용도를 선택해주세요.",
+            question: "해당 건축물의 용도를 선택해주세요.",
             options: [
                 { text: "주택", next: "reject" },
                 { text: "비주택", next: "reject" }
@@ -166,7 +179,7 @@
         "multi_family": {
             question: "다세대 주택의 면적은 어떻게 되나요?",
             options: [
-                { text: "85㎡ 미만", next: "cta_report" },
+                { text: "85㎡ 미만", next: "cta_report_ask" },
                 { text: "85㎡ 이상", next: "reject" }
             ]
         },
@@ -180,37 +193,37 @@
         "single_size": {
             question: "단독주택의 면적은 어떻게 되나요?",
             options: [
-                { text: "165㎡ 이하", next: "cta_report" },
+                { text: "165㎡ 이하", next: "cta_report_ask" },
                 { text: "165㎡ 이상", next: "reject" }
             ]
         },
         "dagagu_size": {
             question: "다가구주택의 면적은 어떻게 되나요?",
             options: [
-                { text: "330㎡ 이하", next: "cta_report" },
-                { text: "660㎡ 이하", next: "cta_report" }
+                { text: "330㎡ 이하", next: "cta_report_ask" },
+                { text: "660㎡ 이하", next: "cta_report_ask" }
             ]
         },
         "reject": {
-            question: "안타깝지만 해당 조건은 스페이스 오디터 서비스 대상에 해당되지 않습니다.",
+            question: "안타깝지만 해당 조건은 현재 서비스 대상이 아닙니다.",
             options: []
         },
-        "cta_report": {
-            question: "진단 결과, 서비스 진행이 가능합니다!\n이 내용의 유료 리포트를 사용하시겠습니까?",
+        "cta_report_ask": {
+            question: "진단이 완료되었습니다!\n이 내용의 유료 리포트를 사용하시겠습니까?",
             options: [
-                { text: "네", next: "cta_pay" },
-                { text: "아니오", next: "cta_contact_ask" }
+                { text: "네", next: "cta_pay_ask", action: () => { surveyData.report_opt = "예"; } },
+                { text: "아니오", next: "cta_contact_ask", action: () => { surveyData.report_opt = "아니오"; } }
             ]
         },
-        "cta_pay": {
-            question: "결제를 진행하시겠습니까?",
+        "cta_pay_ask": {
+            question: "리포트 생성을 위한 결제를 진행하시겠습니까?",
             options: [
-                { text: "네", next: "cta_contact_ask" },
-                { text: "아니오", next: "cta_contact_ask" }
+                { text: "네", next: "cta_contact_ask", action: () => { surveyData.pay_opt = "예"; } },
+                { text: "아니오", next: "cta_contact_ask", action: () => { surveyData.pay_opt = "아니오"; } }
             ]
         },
         "cta_contact_ask": {
-            question: "전문가 검토를 위해 이름과 연락처를 남기시겠습니까?",
+            question: "상세 검토를 위해 이름과 연락처를 남기시겠습니까?",
             options: [
                 { text: "네", next: "input_form" },
                 { text: "아니오", next: "end_bye" }
@@ -233,11 +246,11 @@
         quizBox.classList.add('fade-in');
 
         if (nodeId === "input_form") {
-            questionEl.innerText = "연락처를 남겨주시면 빠르게 검토 후 연락드리겠습니다.";
+            questionEl.innerText = "연락처를 남겨주시면 확인 후 빠르게 연락드리겠습니다.";
             optionsContainer.innerHTML = `
                 <input type="text" id="user-name" class="input-field" placeholder="성함을 입력해주세요">
                 <input type="tel" id="user-phone" class="input-field" placeholder="연락처 (010-0000-0000)">
-                <button class="option-btn" style="background-color: var(--primary-color); color: #ffffff;" onclick="submitForm()">신청 완료하기</button>
+                <button class="option-btn" style="background-color: var(--primary-color); color: #ffffff;" id="submit-btn" onclick="submitForm()">신청 완료하기</button>
             `;
             restartBtn.style.display = 'inline-block';
             return;
@@ -252,7 +265,10 @@
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
                 btn.innerText = opt.text;
-                btn.onclick = () => renderNode(opt.next);
+                btn.onclick = () => {
+                    if (opt.action) opt.action();
+                    renderNode(opt.next);
+                };
                 optionsContainer.appendChild(btn);
             });
             restartBtn.style.display = (nodeId === 'start') ? 'none' : 'inline-block';
@@ -261,15 +277,37 @@
         }
     }
 
-    function submitForm() {
+    async function submitForm() {
         const name = document.getElementById('user-name').value;
         const phone = document.getElementById('user-phone').value;
+        const btn = document.getElementById('submit-btn');
+
         if (!name || !phone) {
             alert("이름과 연락처를 모두 입력해주세요.");
             return;
         }
-        alert(`${name}님, 접수가 완료되었습니다.`);
-        renderNode('end_bye');
+
+        btn.innerText = "전송 중...";
+        btn.disabled = true;
+
+        try {
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // 구글 앱스 스크립트 특성상 no-cors 필요
+                body: JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    report_opt: surveyData.report_opt,
+                    pay_opt: surveyData.pay_opt
+                })
+            });
+            alert(`${name}님, 정상적으로 접수되었습니다.`);
+            renderNode('end_bye');
+        } catch (e) {
+            alert("접수 중 오류가 발생했습니다. 다시 시도해주세요.");
+            btn.innerText = "신청 완료하기";
+            btn.disabled = false;
+        }
     }
 
     function startAuditor() { renderNode('start'); }
