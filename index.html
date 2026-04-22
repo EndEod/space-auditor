@@ -1,828 +1,295 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Space Auditor | 토너먼트 진단</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Auditor - 프로젝트 진단</title>
+<style>
     :root {
-      --bg: #f5f7fb;
-      --panel: rgba(255,255,255,0.88);
-      --text: #18202a;
-      --muted: #64748b;
-      --line: #d9e1ec;
-      --primary: #0f172a;
-      --primary-2: #334155;
-      --accent: #2563eb;
-      --accent-soft: #dbeafe;
-      --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
+        --primary-color: #2c3e50;
+        --hover-color: #34495e;
+        --bg-color: #f8f9fa;
+        --box-bg: #ffffff;
+        --text-color: #333333;
     }
 
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
     body {
-      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(37,99,235,0.10), transparent 28%),
-        radial-gradient(circle at top right, rgba(15,23,42,0.06), transparent 20%),
-        var(--bg);
-      min-height: 100vh;
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
     }
 
-    .wrap {
-      width: min(1100px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 28px 0 72px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-
-    .brand-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      display: grid;
-      place-items: center;
-      font-size: 14px;
-      box-shadow: var(--shadow);
-    }
-
-    .top-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      border: 1px solid var(--line);
-      background: white;
-      color: var(--text);
-      border-radius: 999px;
-      padding: 12px 18px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-    .btn.primary {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-    .btn.soft {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border-color: transparent;
-    }
-    .btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .panel {
-      background: var(--panel);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.75);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
-      padding: 26px;
-      margin-bottom: 18px;
-    }
-
-    .hero-card, .guide-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: rgba(255,255,255,0.85);
-      padding: 24px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 14px;
+    .auditor-container {
+        background-color: var(--box-bg);
+        width: 100%;
+        max-width: 600px;
+        padding: 50px 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        text-align: center;
     }
 
     h1 {
-      margin: 0 0 10px;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+        font-weight: 500;
+        letter-spacing: 2px;
     }
 
-    .hero p, .guide-card p {
-      margin: 0;
-      line-height: 1.7;
-      color: var(--primary-2);
-      word-break: keep-all;
+    #question-text {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+        line-height: 1.4;
+        word-break: keep-all;
+        white-space: pre-wrap; /* 줄바꿈 적용 */
     }
 
-    .guide-list {
-      list-style: none;
-      margin: 18px 0 0;
-      padding: 0;
-      display: grid;
-      gap: 10px;
+    .options-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
-    .guide-list li {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: var(--primary-2);
-      line-height: 1.55;
-      font-size: 14px;
+    .option-btn {
+        background-color: var(--box-bg);
+        border: 2px solid #e0e0e0;
+        color: var(--text-color);
+        padding: 18px 20px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        word-break: keep-all;
     }
 
-    .guide-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-top: 8px;
-      flex: 0 0 auto;
+    .option-btn:hover {
+        border-color: var(--primary-color);
+        background-color: var(--primary-color);
+        color: #ffffff;
     }
 
-    .content {
-      padding: 0 26px 26px;
+    .input-field {
+        padding: 15px;
+        font-size: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.2s;
     }
 
-    .path-box {
-      border: 1px dashed var(--line);
-      border-radius: var(--radius-lg);
-      background: rgba(255,255,255,0.72);
-      padding: 16px;
-      margin-bottom: 16px;
+    .input-field:focus {
+        border-color: var(--primary-color);
     }
 
-    .path-title {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 10px;
-      font-weight: 700;
+    .restart-btn {
+        margin-top: 30px;
+        background-color: transparent;
+        border: none;
+        color: #95a5a6;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 0.9rem;
     }
 
-    .path-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .restart-btn:hover {
+        color: var(--primary-color);
     }
 
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      background: white;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      font-size: 13px;
-      font-weight: 700;
+    /* 페이드 인 애니메이션 */
+    .fade-in {
+        animation: fadeIn 0.4s ease-in-out;
     }
 
-    .chip.current {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
-
-    .question-box {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: rgba(255,255,255,0.92);
-      padding: 24px;
-    }
-
-    .step-count {
-      color: var(--accent);
-      font-weight: 800;
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-
-    .question-title {
-      margin: 0 0 8px;
-      font-size: clamp(22px, 3vw, 34px);
-      line-height: 1.15;
-      letter-spacing: -0.04em;
-    }
-
-    .question-desc {
-      margin: 0 0 22px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .options {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .option-card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #ffffff, #f8fbff);
-      border-radius: 22px;
-      padding: 20px;
-      cursor: pointer;
-      transition: 0.18s ease;
-      text-align: left;
-      min-height: 150px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .option-card:hover {
-      transform: translateY(-3px);
-      border-color: #b7cdfb;
-      box-shadow: 0 18px 30px rgba(37, 99, 235, 0.10);
-    }
-
-    .option-label {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-
-    .option-desc {
-      color: var(--primary-2);
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .option-meta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--accent);
-    }
-
-    .result-box {
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      background: linear-gradient(135deg, #0f172a, #1e3a8a);
-      color: white;
-    }
-
-    .result-box h2 {
-      margin: 0 0 10px;
-      font-size: clamp(24px, 3vw, 36px);
-      line-height: 1.15;
-      letter-spacing: -0.04em;
-    }
-
-    .result-box p {
-      margin: 0;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.88);
-    }
-
-    .result-summary {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .result-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 18px;
-      padding: 18px;
-    }
-
-    .result-card strong {
-      display: block;
-      font-size: 13px;
-      color: rgba(255,255,255,0.72);
-      margin-bottom: 8px;
-    }
-
-    .result-card span {
-      font-size: 18px;
-      font-weight: 800;
-      line-height: 1.4;
-    }
-
-    .cta-row {
-      margin-top: 22px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .footer-note {
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .hidden { display: none !important; }
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-      .options, .result-summary {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .wrap { width: min(100% - 20px, 1100px); padding-top: 18px; }
-      .topbar { align-items: flex-start; flex-direction: column; }
-      .hero, .content { padding-left: 16px; padding-right: 16px; }
-      .hero-card, .guide-card, .question-box, .result-box { padding: 18px; }
-      .option-card { min-height: 132px; }
-    }
-  </style>
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div class="brand-badge">SA</div>
-        <div>
-          <div style="font-size:18px;">Space Auditor</div>
-          <div style="font-size:12px;color:var(--muted);font-weight:700;">내 건물 토너먼트 진단</div>
+
+<div class="auditor-container fade-in" id="quiz-box">
+    <h1>SPACE AUDITOR</h1>
+    <div id="question-text">질문을 불러오는 중입니다...</div>
+    <div class="options-grid" id="options-container">
         </div>
-      </div>
-      <div class="top-actions">
-        <button class="btn" id="backBtn">이전</button>
-        <button class="btn soft" id="restartBtn">처음으로</button>
-      </div>
-    </div>
+    <button class="restart-btn" id="restart-btn" style="display: none;" onclick="startAuditor()">처음부터 다시하기</button>
+</div>
 
-    <section class="panel">
-      <div class="hero">
-        <div class="hero-card">
-          <span class="eyebrow">건축사 뚱뚜루식 분기 진단</span>
-          <h1>복잡한 건물 이야기,<br>질문 몇 번으로 가지를 탑니다.</h1>
-          <p>
-            주택, 비주택, 위반건축물 중에서 지금 내 상황에 가까운 입구를 고르고,
-            2~4개의 선택지 중 하나씩 따라 들어가 보세요.
-            중간에 멈춰도 되고 끝까지 가도 됩니다. 진단은 토너먼트처럼, 결정은 본인 마음대로.
-          </p>
-        </div>
-        <div class="guide-card">
-          <p><strong>시작 구조</strong>는 3꼭지입니다. 이후 단계는 지금 스케치한 흐름을 그대로 넣어두었고, 문구는 언제든 수정할 수 있게 데이터형으로 짜 두었습니다.</p>
-          <ul class="guide-list">
-            <li><span class="guide-dot"></span><span>첫 단계는 <strong>주택 / 비주택 / 위반건축물</strong></span></li>
-            <li><span class="guide-dot"></span><span>각 단계는 <strong>2~4개 선택지</strong>만 보이게 설계</span></li>
-            <li><span class="guide-dot"></span><span>중간 이탈도 자연스럽게 허용. 강제로 끝까지 끌고 가지 않음</span></li>
-            <li><span class="guide-dot"></span><span>결과 화면에서 상담, 톡톡, 다음 단계 이동 버튼 연결 가능</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="content">
-        <div class="path-box">
-          <div class="path-title">현재 경로</div>
-          <div class="path-chips" id="pathChips"></div>
-        </div>
-
-        <div id="questionView" class="question-box">
-          <div class="step-count" id="stepCount"></div>
-          <h2 class="question-title" id="questionTitle"></h2>
-          <p class="question-desc" id="questionDesc"></p>
-          <div class="options" id="options"></div>
-        </div>
-
-        <div id="resultView" class="result-box hidden">
-          <h2 id="resultTitle"></h2>
-          <p id="resultDesc"></p>
-          <div class="result-summary">
-            <div class="result-card">
-              <strong>선택한 경로</strong>
-              <span id="resultPath"></span>
-            </div>
-            <div class="result-card">
-              <strong>다음 액션</strong>
-              <span id="resultAction"></span>
-            </div>
-          </div>
-          <div class="cta-row">
-            <a class="btn primary" id="ctaLink" href="https://talk.naver.com/W4HB1I" target="_blank" rel="noopener">상담으로 이어가기</a>
-            <button class="btn" id="restartBtnBottom">다시 진단하기</button>
-          </div>
-        </div>
-
-        <div class="footer-note">
-          ※ 아래 분기 데이터는 지금 스케치를 바탕으로 잡은 1차 버전입니다. 항목명, 순서, 조건, 결과문은 스크립트 상단의 <strong>FLOW_DATA</strong>만 바꾸면 됩니다.
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    /*
-      ==========================================================
-      Space Auditor Tournament Flow
-      - 질문 문구 / 선택지 / 결과문 수정은 FLOW_DATA만 바꾸면 됩니다.
-      - option.next: 다음 질문 id
-      - option.result: 결과 id
-      ==========================================================
-    */
-
-    const FLOW_DATA = {
-      start: {
-        title: "어디에서 시작할까요?",
-        description: "가장 먼저, 내 건물의 큰 분류를 골라 주세요.",
-        options: [
-          {
-            label: "주택",
-            description: "아파트, 연립, 다세대, 다가구, 단독주택, 근생주택 등 주거 성격이 있는 경우",
-            meta: "3초기 분기",
-            next: "houseType"
-          },
-          {
-            label: "비주택",
-            description: "상가, 사무실, 공장, 창고, 근린생활시설, 업무시설 등 비주거 중심인 경우",
-            meta: "3초기 분기",
-            result: "nonHouseEntry"
-          },
-          {
-            label: "위반건축물",
-            description: "이미 위반건축물 표기, 불법 증축, 무단 용도변경, 불법 대수선 등이 의심되거나 확인된 경우",
-            meta: "3초기 분기",
-            result: "illegalEntry"
-          }
-        ]
-      },
-
-      houseType: {
-        title: "주택이라면, 어떤 주택에 더 가깝나요?",
-        description: "지금은 스케치 기준으로 세 갈래를 먼저 넣었습니다.",
-        options: [
-          {
-            label: "공동주택",
-            description: "아파트, 연립주택, 다세대주택처럼 세대가 나뉘어 있는 형태",
-            meta: "주택 분기",
-            next: "multiHousing"
-          },
-          {
-            label: "단독주택류",
-            description: "단독주택, 다가구주택, 다중주택처럼 한 건물 안에 성격이 갈리는 경우",
-            meta: "주택 분기",
-            next: "singleFamilySeries"
-          },
-          {
-            label: "근생주택",
-            description: "주택인데 일부가 근린생활시설과 섞여 있는 경우",
-            meta: "주택 분기",
-            result: "mixedUseHousing"
-          }
-        ]
-      },
-
-      multiHousing: {
-        title: "공동주택 중 어디에 가까운가요?",
-        description: "공동주택은 세대 구분과 면적, 공용부, 행위 유형에 따라 판단 포인트가 갈립니다.",
-        options: [
-          {
-            label: "아파트",
-            description: "일반 아파트 또는 주상복합 내 주거부",
-            meta: "공동주택",
-            result: "aptResult"
-          },
-          {
-            label: "연립주택",
-            description: "연립주택, 소규모 공동주택",
-            meta: "공동주택",
-            result: "rowHouseResult"
-          },
-          {
-            label: "다세대주택",
-            description: "한 건물 안에 여러 세대가 구획된 다세대주택",
-            meta: "공동주택",
-            next: "multiFamilyArea"
-          }
-        ]
-      },
-
-      multiFamilyArea: {
-        title: "다세대주택이라면 전용면적이 어느 쪽인가요?",
-        description: "스케치에 적어둔 85㎡ 기준부터 먼저 시작합니다. 이 기준은 이후 문구를 자유롭게 바꿀 수 있습니다.",
-        options: [
-          {
-            label: "85㎡ 미만",
-            description: "소형 세대 중심으로 보는 분기",
-            meta: "면적 기준",
-            result: "under85"
-          },
-          {
-            label: "85㎡ 이상",
-            description: "중대형 세대로 보는 분기",
-            meta: "면적 기준",
-            result: "over85"
-          }
-        ]
-      },
-
-      singleFamilySeries: {
-        title: "단독주택류 안에서는 어떤 유형인가요?",
-        description: "스케치에 보인 다가구, 다중, 기타 단독 계열을 먼저 넣었습니다.",
-        options: [
-          {
-            label: "다가구주택",
-            description: "한 건축물 안에 여러 가구가 살 수 있으나 법적으로는 단독주택 계열",
-            meta: "단독주택류",
-            next: "multiHouseArea"
-          },
-          {
-            label: "다중주택",
-            description: "학생이나 직장인 등이 개별 방을 사용하는 형태 등",
-            meta: "단독주택류",
-            next: "multiRoomArea"
-          },
-          {
-            label: "단독주택 / 기타",
-            description: "일반 단독주택 또는 아직 유형이 헷갈리는 경우",
-            meta: "단독주택류",
-            result: "singleHouseGeneral"
-          }
-        ]
-      },
-
-      multiHouseArea: {
-        title: "다가구주택의 연면적은 어느 쪽인가요?",
-        description: "스케치 메모의 660㎡, 330㎡ 기준을 우선 배치했습니다.",
-        options: [
-          {
-            label: "330㎡ 이하",
-            description: "비교적 작은 규모의 다가구주택",
-            meta: "연면적 기준",
-            result: "under330"
-          },
-          {
-            label: "330㎡ 초과 ~ 660㎡ 이하",
-            description: "중간 규모의 다가구주택",
-            meta: "연면적 기준",
-            result: "under660"
-          },
-          {
-            label: "660㎡ 초과",
-            description: "규모가 커서 다른 검토 포인트가 더 중요해질 수 있는 경우",
-            meta: "연면적 기준",
-            result: "over660"
-          }
-        ]
-      },
-
-      multiRoomArea: {
-        title: "다중주택의 연면적은 어느 쪽인가요?",
-        description: "스케치의 165㎡ 기준을 먼저 넣었습니다.",
-        options: [
-          {
-            label: "165㎡ 이하",
-            description: "작은 규모의 다중주택",
-            meta: "연면적 기준",
-            result: "under165"
-          },
-          {
-            label: "165㎡ 초과",
-            description: "규모가 더 큰 다중주택",
-            meta: "연면적 기준",
-            result: "over165"
-          }
-        ]
-      }
+<script>
+    const treeData = {
+        "start": {
+            question: "어떤 건축물을 검토하고 계신가요?",
+            options: [
+                { text: "주택", next: "house_type" },
+                { text: "비주택", next: "non_house" },
+                { text: "위반건축물", next: "violation_type" }
+            ]
+        },
+        "violation_type": {
+            question: "위반건축물의 유형을 선택해주세요.",
+            options: [
+                { text: "특정건축물 특례법에 의한 소규모주택", next: "house_type" }, // 주택 흐름으로 합류
+                { text: "그 외 (일반)", next: "violation_other" }
+            ]
+        },
+        "violation_other": {
+            question: "건축물의 용도를 선택해주세요.",
+            options: [
+                { text: "주택", next: "reject" },
+                { text: "비주택", next: "reject" }
+            ]
+        },
+        "house_type": {
+            question: "주택의 종류를 선택해주세요.",
+            options: [
+                { text: "공동주택 (다세대, 연립, 아파트 등)", next: "multi_family" },
+                { text: "단독주택 (단독, 다가구)", next: "single_family_type" },
+                { text: "근생주택", next: "reject" }
+            ]
+        },
+        "multi_family": {
+            question: "다세대 주택의 면적은 어떻게 되나요?",
+            options: [
+                { text: "85㎡ 미만", next: "cta_report" },
+                { text: "85㎡ 이상", next: "reject" }
+            ]
+        },
+        "single_family_type": {
+            question: "단독주택의 세부 유형을 선택해주세요.",
+            options: [
+                { text: "단독주택", next: "single_size" },
+                { text: "다가구주택", next: "dagagu_size" }
+            ]
+        },
+        "single_size": {
+            question: "단독주택의 면적은 어떻게 되나요?",
+            options: [
+                { text: "165㎡ 이하", next: "cta_report" },
+                { text: "165㎡ 이상", next: "reject" }
+            ]
+        },
+        "dagagu_size": {
+            question: "다가구주택의 면적은 어떻게 되나요?",
+            options: [
+                { text: "330㎡ 이하", next: "cta_report" },
+                { text: "660㎡ 이하", next: "cta_report" }
+            ]
+        },
+        "non_house": {
+            question: "비주택 관련 서비스는 준비 중이거나 별도 문의가 필요합니다.",
+            options: [
+                { text: "이름, 연락처 남기기", next: "input_form" }
+            ]
+        },
+        "reject": {
+            question: "안타깝지만 스페이스 오디터 서비스 대상에 해당되지 않습니다.",
+            options: [] 
+        },
+        // --- 여기서부터 CTA (마무리 결제 및 연락처 유도) 흐름입니다 ---
+        "cta_report": {
+            question: "해당 조건은 서비스 진행이 가능합니다!\n이 내용의 유료 리포트를 사용하시겠습니까?",
+            options: [
+                { text: "네", next: "cta_pay" },
+                { text: "아니오", next: "cta_contact_ask" }
+            ]
+        },
+        "cta_pay": {
+            question: "결제를 진행하시겠습니까?",
+            options: [
+                { text: "네", next: "cta_contact_ask" },
+                { text: "아니오", next: "cta_contact_ask" }
+            ]
+        },
+        "cta_contact_ask": {
+            question: "이름, 연락처를 남기시겠습니까?",
+            options: [
+                { text: "네", next: "input_form" },
+                { text: "아니오", next: "end_bye" }
+            ]
+        },
+        "end_bye": {
+            question: "감사합니다. 스페이스 오디터였습니다.",
+            options: [] 
+        }
     };
 
-    const RESULT_DATA = {
-      nonHouseEntry: {
-        title: "비주택 입구에 도착했습니다.",
-        description: "좋아요. 비주택은 용도군, 면적, 층수, 피난, 주차, 증축 여부에 따라 가지가 더 갈라집니다. 다음 버전에서는 상가, 사무실, 공장, 창고, 근생을 세부 분기로 바로 태울 수 있게 확장하면 됩니다.",
-        action: "비주택 세부 토너먼트 추가하기"
-      },
-      illegalEntry: {
-        title: "위반건축물 입구에 도착했습니다.",
-        description: "이 갈래는 따로 빼는 게 아주 좋습니다. 시작부터 문제 해결 모드로 들어가므로, 일반 문의보다도 불안이 큰 사용자를 빠르게 걸러내고 실제 상담 의지가 있는 사람만 남기기 쉽습니다.",
-        action: "위반유형별 세부 토너먼트 추가하기"
-      },
-      mixedUseHousing: {
-        title: "근생주택 분기입니다.",
-        description: "주택과 근생이 섞인 경우는 용도비율, 층별 구성, 불법 증축 여부, 피난과 주차 조건을 함께 봐야 합니다. 이 분기에서는 ‘주거가 주인지, 근생이 주인지’ 질문을 하나 더 넣으면 아주 좋아집니다.",
-        action: "근생 비율과 층별 용도부터 확인하기"
-      },
-      aptResult: {
-        title: "아파트 분기입니다.",
-        description: "아파트는 구조와 공용부, 관리규약, 확장 여부, 인테리어 범위를 중심으로 진단 흐름을 만들기 좋습니다. 재건축/리모델링/부분수선 쪽으로도 확장 가능합니다.",
-        action: "공용부 침범 여부와 공사 범위 확인하기"
-      },
-      rowHouseResult: {
-        title: "연립주택 분기입니다.",
-        description: "연립은 대지지분, 구조, 공용부, 각 세대 수선 범위가 중요합니다. 이후 단계에서 증축 희망 여부나 용도변경 희망 여부를 넣으면 상담 전 필터링이 훨씬 선명해집니다.",
-        action: "증축/리모델링 목적 추가 질문 만들기"
-      },
-      under85: {
-        title: "다세대주택 85㎡ 미만 분기입니다.",
-        description: "작은 세대는 실사용 문제, 불법 확장, 발코니, 창호, 주차, 세대 분리 이슈가 자주 나타납니다. 여기서 ‘매수 전인지 / 공사 전인지 / 위반 의심인지’를 붙이면 상담 전환이 잘 됩니다.",
-        action: "매수 전·공사 전·위반 의심으로 한 번 더 나누기"
-      },
-      over85: {
-        title: "다세대주택 85㎡ 이상 분기입니다.",
-        description: "규모가 커질수록 단순 공사보다 구조, 합법성, 비용 오차 범위를 함께 설명해야 신뢰가 올라갑니다. 중대형 세대는 예산과 구조 판단의 깊이를 더 보여줄 수 있습니다.",
-        action: "예산 구조와 합법성 질문 추가하기"
-      },
-      singleHouseGeneral: {
-        title: "단독주택 / 기타 분기입니다.",
-        description: "유형이 모호한 사용자는 이쪽으로 보내면 됩니다. 사진, 주소, 건축물대장 유무 같은 자료질문으로 넘기면 상담 품질이 살아납니다.",
-        action: "자료 보유 여부 질문 추가하기"
-      },
-      under330: {
-        title: "다가구주택 330㎡ 이하 분기입니다.",
-        description: "소규모 다가구는 리모델링, 일부 용도조정, 임대운영, 단열 보강, 불법 여부 확인 쪽으로 연결되기 좋습니다. 여기서 ‘대수선인지 / 단순수선인지’ 질문이 매우 유용합니다.",
-        action: "대수선 여부 질문 붙이기"
-      },
-      under660: {
-        title: "다가구주택 660㎡ 이하 분기입니다.",
-        description: "중간 규모 다가구는 주차, 피난, 층별 용도, 임대 운영, 구조 변경 가능성이 함께 엮입니다. 상담 가치가 높아지는 갈래입니다.",
-        action: "층수·주차·용도변경 질문 추가하기"
-      },
-      over660: {
-        title: "다가구주택 660㎡ 초과 분기입니다.",
-        description: "규모가 커지면 단순 안내보다 기획설계·법규 검토·공사비 구조화 쪽으로 자연스럽게 넘어가게 설계하는 편이 좋습니다. 이 가지는 유료 사전판단 상품과 연결하기 좋습니다.",
-        action: "유료 사전판단 제안으로 연결하기"
-      },
-      under165: {
-        title: "다중주택 165㎡ 이하 분기입니다.",
-        description: "작은 다중주택은 운영 방식, 실별 구획, 안전, 피난, 불법 개조 여부가 핵심입니다. 간단한 질문 몇 개만으로도 위험도 분류가 가능합니다.",
-        action: "실 개수와 구조 변경 여부 질문 추가하기"
-      },
-      over165: {
-        title: "다중주택 165㎡ 초과 분기입니다.",
-        description: "면적이 커질수록 피난, 운영, 구조, 위생, 법규 검토의 밀도가 올라갑니다. 상담 유입 전 필터로 아주 쓸 만한 갈래입니다.",
-        action: "운영 목적과 위반 여부 질문 추가하기"
-      }
-    };
+    const questionEl = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const restartBtn = document.getElementById('restart-btn');
+    const quizBox = document.getElementById('quiz-box');
 
-    const questionView = document.getElementById("questionView");
-    const resultView = document.getElementById("resultView");
-    const questionTitle = document.getElementById("questionTitle");
-    const questionDesc = document.getElementById("questionDesc");
-    const optionsEl = document.getElementById("options");
-    const pathChips = document.getElementById("pathChips");
-    const stepCount = document.getElementById("stepCount");
-    const resultTitle = document.getElementById("resultTitle");
-    const resultDesc = document.getElementById("resultDesc");
-    const resultPath = document.getElementById("resultPath");
-    const resultAction = document.getElementById("resultAction");
-    const backBtn = document.getElementById("backBtn");
-    const restartBtn = document.getElementById("restartBtn");
-    const restartBtnBottom = document.getElementById("restartBtnBottom");
+    function renderNode(nodeId) {
+        quizBox.classList.remove('fade-in');
+        void quizBox.offsetWidth; 
+        quizBox.classList.add('fade-in');
 
-    let currentQuestionId = "start";
-    let selectedPath = [];
-    let resultId = null;
+        // 입력 폼 화면 렌더링
+        if (nodeId === "input_form") {
+            questionEl.innerText = "이름과 연락처를 남겨주시면 확인 후 연락드리겠습니다.";
+            optionsContainer.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="user-name" class="input-field" placeholder="이름을 입력해주세요">
+                    <input type="tel" id="user-phone" class="input-field" placeholder="연락처 (예: 010-1234-5678)">
+                </div>
+                <button class="option-btn" style="background-color: var(--primary-color); color: #ffffff;" onclick="submitForm()">제출하기</button>
+            `;
+            restartBtn.style.display = 'inline-block';
+            return;
+        }
 
-    function renderPath() {
-      pathChips.innerHTML = "";
+        const node = treeData[nodeId];
+        questionEl.innerText = node.question;
+        optionsContainer.innerHTML = '';
 
-      const homeChip = document.createElement("div");
-      homeChip.className = selectedPath.length === 0 ? "chip current" : "chip";
-      homeChip.textContent = "시작";
-      pathChips.appendChild(homeChip);
-
-      selectedPath.forEach((item) => {
-        const chip = document.createElement("div");
-        chip.className = "chip";
-        chip.textContent = item.label;
-        pathChips.appendChild(chip);
-      });
-
-      if (!resultId && selectedPath.length > 0) {
-        const current = document.createElement("div");
-        current.className = "chip current";
-        current.textContent = "선택 중";
-        pathChips.appendChild(current);
-      }
+        if (node.options.length > 0) {
+            node.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt.text;
+                btn.onclick = () => renderNode(opt.next);
+                optionsContainer.appendChild(btn);
+            });
+            restartBtn.style.display = (nodeId === 'start') ? 'none' : 'inline-block';
+        } else {
+            restartBtn.style.display = 'inline-block';
+        }
     }
 
-    function renderQuestion(questionId) {
-      currentQuestionId = questionId;
-      resultId = null;
-      const question = FLOW_DATA[questionId];
+    // 제출 버튼 클릭 시 실행될 함수
+    function submitForm() {
+        const name = document.getElementById('user-name').value;
+        const phone = document.getElementById('user-phone').value;
 
-      questionView.classList.remove("hidden");
-      resultView.classList.add("hidden");
+        if (!name || !phone) {
+            alert("이름과 연락처를 모두 입력해주세요.");
+            return;
+        }
 
-      stepCount.textContent = `STEP ${selectedPath.length + 1}`;
-      questionTitle.textContent = question.title;
-      questionDesc.textContent = question.description;
-      optionsEl.innerHTML = "";
-
-      question.options.forEach((option) => {
-        const button = document.createElement("button");
-        button.className = "option-card";
-        button.type = "button";
-        button.innerHTML = `
-          <div>
-            <div class="option-label">${option.label}</div>
-            <div class="option-desc">${option.description}</div>
-          </div>
-          <div class="option-meta">${option.meta} → 선택하기</div>
-        `;
-
-        button.addEventListener("click", () => handleOptionSelect(option));
-        optionsEl.appendChild(button);
-      });
-
-      backBtn.disabled = selectedPath.length === 0;
-      renderPath();
+        // 이곳에 실제 데이터 전송 로직이 들어갑니다. (DB 저장 또는 이메일 전송)
+        alert(`제출되었습니다!\n이름: ${name}\n연락처: ${phone}`);
+        
+        // 제출 완료 후 마지막 인사 화면으로 이동
+        renderNode('end_bye');
     }
 
-    function renderResult(id) {
-      resultId = id;
-      const result = RESULT_DATA[id];
-
-      questionView.classList.add("hidden");
-      resultView.classList.remove("hidden");
-
-      resultTitle.textContent = result.title;
-      resultDesc.textContent = result.description;
-      resultPath.textContent = selectedPath.map(item => item.label).join(" → ");
-      resultAction.textContent = result.action;
-      backBtn.disabled = selectedPath.length === 0;
-      renderPath();
+    function startAuditor() {
+        renderNode('start');
     }
 
-    function handleOptionSelect(option) {
-      selectedPath.push({
-        from: currentQuestionId,
-        label: option.label,
-        next: option.next || null,
-        result: option.result || null
-      });
+    // 첫 시작
+    startAuditor();
+</script>
 
-      if (option.next) {
-        renderQuestion(option.next);
-        return;
-      }
-
-      if (option.result) {
-        renderResult(option.result);
-      }
-    }
-
-    function goBack() {
-      if (selectedPath.length === 0) return;
-
-      const popped = selectedPath.pop();
-      resultId = null;
-      renderQuestion(popped.from);
-    }
-
-    function restartFlow() {
-      selectedPath = [];
-      resultId = null;
-      renderQuestion("start");
-    }
-
-    backBtn.addEventListener("click", goBack);
-    restartBtn.addEventListener("click", restartFlow);
-    restartBtnBottom.addEventListener("click", restartFlow);
-
-    renderQuestion("start");
-  </script>
 </body>
 </html>
