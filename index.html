@@ -456,8 +456,7 @@
 </div>
 
 <script>
-  // 구글 앱스 스크립트 웹앱 URL 입력
-  const SCRIPT_URL = "여기에_구글_웹_앱_URL을_붙여넣으세요";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwg_3HeNO0xrLGq3PybKPGzg1soCf6IsnDUxcUN4_h8kzcJfcmULynLZfWwQvBLdGR_og/exec";
   const TOTAL_STEPS = 6;
 
   let surveyData = {};
@@ -1260,7 +1259,7 @@
         </label>
 
         <button class="option-btn primary" id="submit-btn" onclick="submitForm()">신청 완료하기</button>
-        <div class="mini-note">구글 앱스 스크립트 URL을 넣은 뒤 사용하세요.</div>
+        <div class="mini-note">접수 후 스프레드시트에 자동 저장됩니다.</div>
       </div>
     `;
 
@@ -1320,11 +1319,6 @@
 
     if (!consentCheck) {
       alert("개인정보 수집·이용 동의가 필요합니다.");
-      return;
-    }
-
-    if (!SCRIPT_URL || SCRIPT_URL.includes("여기에_구글_웹_앱_URL")) {
-      alert("상단의 SCRIPT_URL에 구글 앱스 스크립트 웹앱 URL을 먼저 넣어주세요.");
       return;
     }
 
