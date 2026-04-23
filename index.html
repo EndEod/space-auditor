@@ -6,39 +6,52 @@
 <title>건축사 뚱뚜루 | Space Auditor</title>
 <style>
   :root {
-    --primary-color: #1f3c88;
-    --primary-soft: #eef4ff;
-    --primary-dark: #162d66;
-    --accent-color: #0f766e;
-    --accent-soft: #ecfeff;
-    --border-color: #e5e7eb;
-    --bg-color: #f7f8fb;
+    /* 전문적이고 신뢰감을 주는 딥 네이비 */
+    --primary-color: #233142;
+    --primary-soft: #f4f6f8;
+    --primary-dark: #16212e;
+    
+    /* 섬세하고 고급스러운 뮤트 톤의 웜 베이지/골드 포인트 */
+    --accent-color: #a48c71;
+    --accent-soft: #fdfcfaf;
+    
+    --border-color: #e2e4e8;
+    --bg-color: #f8f9fa;
     --card-bg: #ffffff;
-    --text-color: #111827;
-    --sub-text: #6b7280;
-    --success-bg: #eefbf3;
-    --success-border: #b7ebc6;
-    --warn-bg: #fff8eb;
-    --warn-border: #f3d48a;
-    --shadow: 0 12px 30px rgba(17, 24, 39, 0.08);
+    
+    /* 텍스트 대비를 부드럽게 조정 */
+    --text-color: #222222;
+    --sub-text: #666666;
+    
+    /* 알림 박스 색상도 차분하고 우아하게 */
+    --success-bg: #f4f7f5;
+    --success-border: #d0ded4;
+    --warn-bg: #fdfaee;
+    --warn-border: #ebe0c0;
+    
+    /* 은은하고 섬세한 그림자 */
+    --shadow: 0 8px 24px rgba(35, 49, 66, 0.06);
+    --shadow-sm: 0 2px 8px rgba(35, 49, 66, 0.04);
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
-    padding: 24px;
+    padding: 32px 24px;
     background: var(--bg-color);
     color: var(--text-color);
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-    line-height: 1.6;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
   }
 
   .page {
-    max-width: 880px;
+    max-width: 860px;
     margin: 0 auto;
   }
 
+  /* 카드의 모서리를 조금 더 단정하게(18px -> 12px) 변경하여 건축적인 구조감 부여 */
   .hero-card,
   .info-card,
   .auditor-card,
@@ -46,74 +59,82 @@
   .cta-strip {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 18px;
+    border-radius: 12px;
     box-shadow: var(--shadow);
   }
 
   .hero-card {
-    padding: 30px 24px;
-    margin-bottom: 18px;
-    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    padding: 40px 32px;
+    margin-bottom: 24px;
+    background: linear-gradient(180deg, #ffffff 0%, #fcfdfd 100%);
   }
 
   .eyebrow {
     display: inline-block;
-    font-size: 0.84rem;
-    font-weight: 700;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
     color: var(--primary-color);
     background: var(--primary-soft);
-    padding: 6px 10px;
-    border-radius: 999px;
-    margin-bottom: 12px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #e9ecef;
   }
 
   .hero-title {
-    font-size: 2rem;
-    font-weight: 800;
+    font-size: 2.1rem;
+    font-weight: 700;
     line-height: 1.35;
-    margin: 0 0 10px;
+    margin: 0 0 16px;
     word-break: keep-all;
+    letter-spacing: -0.03em;
+    color: #111;
   }
 
   .hero-desc {
     margin: 0;
     color: var(--sub-text);
-    font-size: 1rem;
+    font-size: 1.05rem;
     word-break: keep-all;
+    font-weight: 400;
   }
 
   .hero-note {
-    margin-top: 14px;
-    padding: 14px;
-    border-radius: 14px;
-    background: #ffffff;
-    border: 1px solid #dbe7ff;
-    color: #334155;
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    background: #fdfcfb;
+    border: 1px solid #f0e9df;
+    color: #4a453f;
     font-size: 0.95rem;
+    font-weight: 500;
   }
 
   .hero-points {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 16px;
+    gap: 12px;
+    margin-top: 24px;
   }
 
   .hero-point {
-    padding: 12px;
-    border-radius: 14px;
+    padding: 14px;
+    border-radius: 8px;
     background: #fff;
-    border: 1px solid #e6eefb;
+    border: 1px solid var(--border-color);
     font-size: 0.92rem;
-    color: #334155;
-    font-weight: 700;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
   }
 
   .grid-2,
   .grid-3 {
     display: grid;
-    gap: 14px;
-    margin-bottom: 18px;
+    gap: 16px;
+    margin-bottom: 24px;
   }
 
   .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -121,133 +142,146 @@
 
   .info-card,
   .service-card {
-    padding: 18px;
+    padding: 24px;
   }
 
   .info-card h3,
   .service-card h3 {
-    margin: 0 0 10px;
-    font-size: 1rem;
-    font-weight: 800;
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: -0.02em;
   }
 
   .info-card ul,
   .service-card ul {
     margin: 0;
-    padding-left: 18px;
-    color: #374151;
+    padding-left: 20px;
+    color: #444;
     font-size: 0.94rem;
   }
 
   .info-card li + li,
   .service-card li + li {
-    margin-top: 6px;
+    margin-top: 8px;
   }
 
   .badge-line {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 12px;
+    margin-top: 16px;
   }
 
   .badge {
     display: inline-flex;
     align-items: center;
-    border-radius: 999px;
-    padding: 7px 10px;
-    font-size: 0.84rem;
-    font-weight: 700;
-    color: var(--primary-dark);
-    background: #fff;
-    border: 1px solid #dbe7ff;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--sub-text);
+    background: var(--primary-soft);
+    border: 1px solid var(--border-color);
   }
 
   .trust-card {
-    background: #f9fafb;
-    border: 1px dashed #cfd7e3;
-    border-radius: 14px;
-    padding: 16px 18px;
-    margin-bottom: 18px;
-    color: #374151;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    color: #444;
     font-size: 0.95rem;
+    text-align: center;
+    font-weight: 500;
   }
 
   .cta-strip {
-    padding: 18px;
-    margin-bottom: 18px;
-    background: linear-gradient(180deg, #ffffff 0%, #f8fffe 100%);
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    background: var(--primary-color);
+    color: rgba(255, 255, 255, 0.9);
+    border: none;
   }
 
   .cta-strip strong {
-    color: var(--accent-color);
+    color: #ffffff;
+    font-weight: 600;
   }
 
   .auditor-card {
-    padding: 28px 22px 24px;
+    padding: 40px 32px 32px;
+    border-top: 4px solid var(--primary-color); /* 진단 영역 강조 */
   }
 
   .auditor-head {
     text-align: center;
-    margin-bottom: 18px;
+    margin-bottom: 24px;
   }
 
   .auditor-label {
-    font-size: 0.88rem;
-    color: var(--sub-text);
-    letter-spacing: 1.6px;
-    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    letter-spacing: 0.15em;
+    font-weight: 600;
     margin-bottom: 8px;
   }
 
   .auditor-main-title {
-    font-size: 1.15rem;
-    font-weight: 800;
+    font-size: 1.25rem;
+    font-weight: 700;
     margin: 0;
+    color: var(--primary-color);
+    letter-spacing: -0.02em;
   }
 
   .progress-wrap {
-    margin-bottom: 18px;
+    margin-bottom: 32px;
   }
 
   .progress-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--sub-text);
-    margin-bottom: 8px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
   }
 
   .progress-bar {
-    height: 10px;
-    background: #edf1f7;
-    border-radius: 999px;
+    height: 6px; /* 두께를 얇게 하여 섬세함 강조 */
+    background: #e9ecef;
+    border-radius: 4px;
     overflow: hidden;
   }
 
   .progress-fill {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #5b8cff, #1f3c88);
-    border-radius: 999px;
-    transition: width 0.25s ease;
+    background: var(--primary-color);
+    border-radius: 4px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .summary-box {
     display: none;
-    background: #f8fbff;
-    border: 1px solid #d7e7ff;
-    border-radius: 14px;
-    padding: 14px;
-    margin-bottom: 16px;
+    background: var(--primary-soft);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
   }
 
   .summary-title {
-    font-size: 0.92rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-    color: var(--primary-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    letter-spacing: -0.01em;
   }
 
   .summary-list {
@@ -259,46 +293,54 @@
   .summary-chip {
     display: inline-flex;
     align-items: center;
-    padding: 8px 10px;
-    border-radius: 999px;
+    padding: 6px 12px;
+    border-radius: 4px;
     background: #ffffff;
-    border: 1px solid #dbe7ff;
-    font-size: 0.88rem;
-    color: #344054;
+    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    color: #444;
+    font-weight: 500;
   }
 
   .result-box {
     display: none;
-    border-radius: 14px;
-    padding: 16px;
-    margin-bottom: 16px;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
     white-space: pre-wrap;
+    font-size: 0.98rem;
+    line-height: 1.7;
   }
 
   .result-box.success {
     background: var(--success-bg);
     border: 1px solid var(--success-border);
+    color: #2b4535;
   }
 
   .result-box.warn {
     background: var(--warn-bg);
     border: 1px solid var(--warn-border);
+    color: #5c4e2b;
   }
 
   .result-title {
-    font-size: 1rem;
-    font-weight: 800;
-    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
   }
 
   #question-text {
-    font-size: 1.45rem;
-    font-weight: 800;
+    font-size: 1.4rem;
+    font-weight: 700;
     line-height: 1.45;
     text-align: center;
-    margin: 0 0 22px;
+    margin: 0 0 28px;
     word-break: keep-all;
     white-space: pre-wrap;
+    color: #111;
+    letter-spacing: -0.02em;
   }
 
   .options-grid {
@@ -311,36 +353,42 @@
     width: 100%;
     text-align: left;
     background: #ffffff;
-    border: 1.5px solid var(--border-color);
+    border: 1px solid var(--border-color);
     color: var(--text-color);
-    padding: 16px 18px;
-    font-size: 1rem;
-    font-weight: 700;
-    border-radius: 14px;
+    padding: 18px 20px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.18s ease;
+    transition: all 0.2s ease;
     word-break: keep-all;
+    box-shadow: var(--shadow-sm);
   }
 
   .option-btn:hover {
     border-color: var(--primary-color);
-    background: var(--primary-soft);
-    transform: translateY(-1px);
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(35, 49, 66, 0.08);
+    transform: translateY(-2px);
   }
 
   .option-btn.primary {
     background: var(--primary-color);
     color: #ffffff;
     border-color: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+    justify-content: center;
   }
 
   .option-btn.primary:hover {
     background: var(--primary-dark);
     border-color: var(--primary-dark);
+    transform: translateY(-2px);
   }
 
   .sub-guide {
-    margin-top: 16px;
+    margin-top: 24px;
     text-align: center;
     color: var(--sub-text);
     font-size: 0.9rem;
@@ -349,81 +397,92 @@
   .input-wrap {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
   }
 
   .input-field,
   .textarea-field,
   .select-field {
     width: 100%;
-    padding: 14px 15px;
+    padding: 16px;
     font-size: 1rem;
-    border: 1.5px solid var(--border-color);
-    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
     font-family: inherit;
-    background: #fff;
+    background: #fafafa;
   }
 
   .input-field:focus,
   .textarea-field:focus,
   .select-field:focus {
+    background: #fff;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(31, 60, 136, 0.08);
+    box-shadow: 0 0 0 3px rgba(35, 49, 66, 0.1);
   }
 
   .form-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 16px;
   }
 
   .consent-box {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    padding: 14px;
-    border-radius: 12px;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 8px;
     background: #f9fafb;
     border: 1px solid var(--border-color);
-    font-size: 0.93rem;
-    color: #374151;
+    font-size: 0.9rem;
+    color: var(--sub-text);
+    line-height: 1.5;
   }
 
-  .consent-box input { margin-top: 3px; }
+  .consent-box input { 
+    margin-top: 2px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-color);
+  }
 
   .mini-note {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--sub-text);
-    margin-top: 4px;
+    margin-top: 8px;
+    text-align: center;
   }
 
   .restart-btn {
-    margin-top: 18px;
+    margin-top: 24px;
     background: transparent;
     border: none;
     color: var(--sub-text);
     text-decoration: underline;
+    text-underline-offset: 4px;
     cursor: pointer;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
   }
 
   .restart-btn:hover { color: var(--primary-color); }
 
-  .fade-in { animation: fadeIn 0.32s ease; }
+  .fade-in { animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   @media (max-width: 720px) {
     body { padding: 16px; }
     .grid-2, .grid-3, .form-grid, .hero-points { grid-template-columns: 1fr; }
-    .hero-title { font-size: 1.68rem; }
-    #question-text { font-size: 1.24rem; }
-    .auditor-card { padding: 22px 16px 20px; }
+    .hero-title { font-size: 1.7rem; }
+    #question-text { font-size: 1.25rem; margin-bottom: 20px; }
+    .auditor-card { padding: 32px 20px 24px; }
+    .hero-card { padding: 32px 20px; }
   }
 </style>
 </head>
@@ -506,7 +565,7 @@
   </section>
 
   <div class="trust-card">
-    공사비는 대개 <strong>공사가 시작된 뒤 문제가 터졌을 때</strong> 가장 크게 샙니다.
+    공사비는 대개 <strong>공사가 시작된 뒤 문제가 터졌을 때</strong> 가장 크게 샙니다.<br>
     스페이스 오디터는 그 전에 도면, 견적, 위반 상태, 자료 수준을 먼저 정리해 주는 <strong>건축 전 사전판단용 입구</strong>입니다.
   </div>
 
