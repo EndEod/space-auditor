@@ -476,13 +476,208 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+
+
+  /* 고객 소통창구 */
+  .board-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 32px;
+    margin: 32px 0 48px;
+    border-top: 4px solid var(--accent-color);
+  }
+
+  .board-head {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .board-label {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .board-title {
+    margin: 0 0 8px;
+    font-size: 1.35rem;
+    color: var(--primary-color);
+    letter-spacing: -0.03em;
+  }
+
+  .board-desc {
+    margin: 0;
+    color: var(--sub-text);
+    font-size: 0.95rem;
+    word-break: keep-all;
+  }
+
+  .board-notice {
+    background: #fdfcfb;
+    border: 1px solid #f0e9df;
+    color: #4a453f;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.88rem;
+    margin-bottom: 18px;
+  }
+
+  .board-form {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+
+  .board-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .board-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .board-btn {
+    border: 1px solid var(--primary-color);
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .board-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+  }
+
+  .board-btn.ghost {
+    background: #fff;
+    color: var(--primary-color);
+  }
+
+  .board-btn.ghost:hover {
+    background: var(--primary-soft);
+  }
+
+  .board-status {
+    font-size: 0.86rem;
+    color: var(--sub-text);
+  }
+
+  .board-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .board-empty {
+    text-align: center;
+    color: var(--sub-text);
+    background: #fafafa;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 24px 16px;
+    font-size: 0.95rem;
+  }
+
+  .board-item {
+    border: 1px solid var(--border-color);
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .board-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+    color: var(--sub-text);
+    font-size: 0.84rem;
+  }
+
+  .board-nickname {
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 0.95rem;
+  }
+
+  .board-area {
+    background: var(--primary-soft);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 3px 8px;
+  }
+
+  .board-message {
+    white-space: pre-wrap;
+    word-break: keep-all;
+    color: #333;
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .board-reply {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 8px;
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    color: #2b4535;
+    font-size: 0.92rem;
+    white-space: pre-wrap;
+  }
+
+  .board-reply strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--primary-color);
+  }
+
+  .board-tools {
+    margin-top: 14px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .board-mini-btn {
+    border: 1px solid var(--border-color);
+    background: #fafafa;
+    color: var(--sub-text);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+  }
+
+  .board-mini-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+
   @media (max-width: 720px) {
     body { padding: 16px; }
-    .grid-2, .grid-3, .form-grid, .hero-points { grid-template-columns: 1fr; }
+    .grid-2, .grid-3, .form-grid, .hero-points, .board-form-row { grid-template-columns: 1fr; }
     .hero-title { font-size: 1.7rem; }
     #question-text { font-size: 1.25rem; margin-bottom: 20px; }
     .auditor-card { padding: 32px 20px 24px; }
     .hero-card { padding: 32px 20px; }
+    .board-card { padding: 28px 20px; }
   }
 </style>
 </head>
@@ -606,6 +801,46 @@
 
     <button class="restart-btn" id="restart-btn" style="display:none;" onclick="startAuditor()">처음부터 다시하기</button>
   </section>
+
+  <section class="board-card" id="community-board">
+    <div class="board-head">
+      <div class="board-label">SPACE AUDITOR TALK</div>
+      <h2 class="board-title">뚱뚜루에게 남기는 사전 질문</h2>
+      <p class="board-desc">
+        회원가입 없이 닉네임으로 질문을 남길 수 있습니다. 정확한 주소, 연락처, 세대 호수 등은 공개 글에 쓰지 마세요.
+      </p>
+    </div>
+
+    <div class="board-notice">
+      공개 소통창구입니다. 주소는 <strong>구/동 정도</strong>만 적어주세요. 상담이 필요한 이름·전화번호·정확한 주소는 위 진단 접수 폼으로 남겨주세요.
+      글을 지우려면 작성할 때 입력한 <strong>삭제비밀번호</strong>가 필요합니다.
+    </div>
+
+    <div class="board-form">
+      <div class="board-form-row">
+        <input type="text" id="board-nickname" class="input-field" maxlength="20" placeholder="닉네임 예: 홍제동건물주" />
+        <input type="text" id="board-area" class="input-field" maxlength="40" placeholder="선택: 지역 예: 서대문구 홍제동" />
+      </div>
+      <textarea id="board-message" class="textarea-field" rows="5" maxlength="900" placeholder="질문을 남겨주세요. 예: 오래된 다가구를 매수하려는데 위반건축물 여부가 걱정됩니다. 어떤 자료부터 봐야 할까요?"></textarea>
+      <input type="password" id="board-delete-code" class="input-field" maxlength="30" placeholder="삭제비밀번호: 나중에 본인 글 삭제할 때 사용" />
+      <label class="consent-box">
+        <input type="checkbox" id="board-consent" />
+        <span>
+          이 글이 공개 소통창구에 노출되는 것에 동의합니다. 정확한 주소, 연락처, 이름 등 민감한 내용은 적지 않겠습니다.
+        </span>
+      </label>
+      <div class="board-actions">
+        <button class="board-btn" type="button" onclick="submitBoardMessage()">질문 남기기</button>
+        <button class="board-btn ghost" type="button" onclick="loadBoardMessages()">새로고침</button>
+        <span class="board-status" id="board-status">소통창구를 불러오는 중입니다.</span>
+      </div>
+    </div>
+
+    <div class="board-list" id="board-list">
+      <div class="board-empty">아직 글을 불러오지 못했습니다.</div>
+    </div>
+  </section>
+
 </div>
 
 <script>
@@ -1604,7 +1839,227 @@
     renderNode("start");
   }
 
+
+
+  /* 고객 소통창구: GitHub Pages + Google Apps Script + Google Sheet 방식 */
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function formatBoardDate(value) {
+    if (!value) return "";
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return value;
+    return d.toLocaleString("ko-KR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  }
+
+  function jsonpRequest(action, params = {}) {
+    return new Promise((resolve, reject) => {
+      const callbackName = "spaceAuditorBoard_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+      const query = new URLSearchParams({
+        action,
+        callback: callbackName,
+        t: Date.now().toString(),
+        ...params
+      });
+
+      const script = document.createElement("script");
+      script.src = SCRIPT_URL + "?" + query.toString();
+      script.async = true;
+
+      const cleanUp = () => {
+        delete window[callbackName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      };
+
+      window[callbackName] = data => {
+        cleanUp();
+        resolve(data);
+      };
+
+      script.onerror = () => {
+        cleanUp();
+        reject(new Error("소통창구 데이터를 불러오지 못했습니다."));
+      };
+
+      document.body.appendChild(script);
+    });
+  }
+
+  async function postBoardAction(payload) {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(payload)
+    });
+  }
+
+  async function loadBoardMessages() {
+    const boardList = document.getElementById("board-list");
+    const boardStatus = document.getElementById("board-status");
+    if (!boardList || !boardStatus) return;
+
+    boardStatus.innerText = "글을 불러오는 중입니다...";
+
+    try {
+      const data = await jsonpRequest("listBoard");
+      const messages = Array.isArray(data.messages) ? data.messages : [];
+
+      if (!messages.length) {
+        boardList.innerHTML = '<div class="board-empty">아직 남겨진 질문이 없습니다. 첫 질문을 남겨보세요.</div>';
+        boardStatus.innerText = "준비 완료";
+        return;
+      }
+
+      boardList.innerHTML = messages.map(item => {
+        const id = escapeHtml(item.id);
+        const nickname = escapeHtml(item.nickname || "익명");
+        const area = escapeHtml(item.area || "");
+        const message = escapeHtml(item.message || "");
+        const createdAt = escapeHtml(formatBoardDate(item.createdAt));
+        const reply = escapeHtml(item.adminReply || "");
+        const replyAt = escapeHtml(formatBoardDate(item.replyAt));
+
+        return `
+          <article class="board-item">
+            <div class="board-meta">
+              <span class="board-nickname">${nickname}</span>
+              ${area ? `<span class="board-area">${area}</span>` : ""}
+              <span>${createdAt}</span>
+            </div>
+            <div class="board-message">${message}</div>
+            ${reply ? `
+              <div class="board-reply">
+                <strong>뚱뚜루 답변 ${replyAt ? `· ${replyAt}` : ""}</strong>
+                ${reply}
+              </div>
+            ` : ""}
+            <div class="board-tools">
+              <button class="board-mini-btn" type="button" onclick="deleteBoardMessage('${id}')">내 글 삭제</button>
+              <button class="board-mini-btn" type="button" onclick="replyBoardMessage('${id}')">뚱뚜루 답변</button>
+              <button class="board-mini-btn" type="button" onclick="adminDeleteBoardMessage('${id}')">관리자 삭제</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      boardStatus.innerText = `총 ${messages.length}개의 공개 질문`;
+    } catch (error) {
+      boardList.innerHTML = '<div class="board-empty">소통창구를 불러오지 못했습니다. Apps Script 게시판 코드가 반영되었는지 확인해주세요.</div>';
+      boardStatus.innerText = "불러오기 실패";
+    }
+  }
+
+  async function submitBoardMessage() {
+    const nicknameEl = document.getElementById("board-nickname");
+    const areaEl = document.getElementById("board-area");
+    const messageEl = document.getElementById("board-message");
+    const deleteCodeEl = document.getElementById("board-delete-code");
+    const consentEl = document.getElementById("board-consent");
+    const boardStatus = document.getElementById("board-status");
+
+    const nickname = nicknameEl.value.trim();
+    const area = areaEl.value.trim();
+    const message = messageEl.value.trim();
+    const deleteCode = deleteCodeEl.value.trim();
+
+    if (!nickname) {
+      alert("닉네임을 입력해주세요.");
+      return;
+    }
+
+    if (!message) {
+      alert("질문 내용을 입력해주세요.");
+      return;
+    }
+
+    if (!deleteCode) {
+      alert("나중에 본인 글을 지울 수 있도록 삭제비밀번호를 입력해주세요.");
+      return;
+    }
+
+    if (!consentEl.checked) {
+      alert("공개 글 노출 동의가 필요합니다.");
+      return;
+    }
+
+    boardStatus.innerText = "질문을 저장하는 중입니다...";
+
+    await postBoardAction({
+      action: "addBoardMessage",
+      nickname,
+      area,
+      message,
+      delete_code: deleteCode,
+      submitted_at: new Date().toISOString()
+    });
+
+    messageEl.value = "";
+    deleteCodeEl.value = "";
+    consentEl.checked = false;
+    boardStatus.innerText = "저장되었습니다. 잠시 후 목록을 새로고침합니다.";
+    setTimeout(loadBoardMessages, 900);
+  }
+
+  async function deleteBoardMessage(id) {
+    const deleteCode = prompt("작성할 때 입력한 삭제비밀번호를 입력해주세요.");
+    if (!deleteCode) return;
+
+    await postBoardAction({
+      action: "deleteBoardMessage",
+      id,
+      delete_code: deleteCode
+    });
+
+    setTimeout(loadBoardMessages, 900);
+  }
+
+  async function replyBoardMessage(id) {
+    const adminCode = prompt("관리자 코드를 입력해주세요.");
+    if (!adminCode) return;
+
+    const reply = prompt("뚱뚜루 답변을 입력해주세요.");
+    if (!reply) return;
+
+    await postBoardAction({
+      action: "replyBoardMessage",
+      id,
+      admin_code: adminCode,
+      reply
+    });
+
+    setTimeout(loadBoardMessages, 900);
+  }
+
+  async function adminDeleteBoardMessage(id) {
+    const adminCode = prompt("관리자 코드를 입력해주세요.");
+    if (!adminCode) return;
+
+    if (!confirm("이 글을 관리자 권한으로 삭제할까요?")) return;
+
+    await postBoardAction({
+      action: "adminDeleteBoardMessage",
+      id,
+      admin_code: adminCode
+    });
+
+    setTimeout(loadBoardMessages, 900);
+  }
+
+
   startAuditor();
+  loadBoardMessages();
 </script>
 </body>
 </html>
