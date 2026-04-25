@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Google tag (gtag.js) / Space Auditor -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D8GREDF8L7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-D8GREDF8L7");
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>건축사 뚱뚜루 | Space Auditor</title>
@@ -847,6 +856,15 @@
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwg_3HeNO0xrLGq3PybKPGzg1soCf6IsnDUxcUN4_h8kzcJfcmULynLZfWwQvBLdGR_og/exec";
   const TOTAL_STEPS = 6;
 
+  function trackAuditor(eventName, params = {}) {
+    if (typeof gtag === "function") {
+      gtag("event", eventName, {
+        product: "space_auditor",
+        ...params
+      });
+    }
+  }
+
   let surveyData = {};
 
   const treeData = {
@@ -1676,14 +1694,35 @@
   function handleOptionClick(option) {
     if (option.record) {
       upsertAnswer(option.record.key, option.record.value);
+      trackAuditor("auditor_route_select", {
+        answer_key: option.record.key,
+        answer_value: option.record.value
+      });
     }
     if (option.action) {
       option.action();
     }
+
+    trackAuditor("auditor_option_click", {
+      option_text: option.text || "",
+      next_node: option.next || "",
+      route_text: surveyData.route_text || "",
+      result_status: surveyData.result_status || "",
+      service_type: surveyData.service_type || ""
+    });
+
     renderNode(option.next);
   }
 
   function renderInputForm() {
+    trackAuditor("auditor_form_view", {
+      route_text: surveyData.route_text || "",
+      result_status: surveyData.result_status || "",
+      service_type: surveyData.service_type || "",
+      report_opt: surveyData.report_opt || "아니오",
+      pay_opt: surveyData.pay_opt || "아니오"
+    });
+
     questionEl.innerText = "연락처를 남겨주시면 선택 경로와 함께 접수됩니다.";
     resultBox.style.display = "block";
     resultBox.className = "result-box success";
@@ -1823,6 +1862,17 @@
         })
       });
 
+      trackAuditor("auditor_lead_submit", {
+        service_type: surveyData.service_type || "",
+        result_status: surveyData.result_status || "",
+        report_opt: surveyData.report_opt || "아니오",
+        pay_opt: surveyData.pay_opt || "아니오",
+        fear: fear || "",
+        has_address: address ? "예" : "아니오",
+        has_budget: budget ? "예" : "아니오",
+        route_text: surveyData.route_text || ""
+      });
+
       alert(`${name}님, 정상적으로 접수되었습니다.`);
       renderNode("end_bye");
     } catch (error) {
@@ -1833,6 +1883,7 @@
   }
 
   function startAuditor() {
+    trackAuditor("auditor_start");
     resetSurveyData();
     renderSummary();
     showResultBox({});
@@ -2008,6 +2059,10 @@
     messageEl.value = "";
     deleteCodeEl.value = "";
     consentEl.checked = false;
+    trackAuditor("auditor_board_submit", {
+      has_area: area ? "예" : "아니오"
+    });
+
     boardStatus.innerText = "저장되었습니다. 잠시 후 목록을 새로고침합니다.";
     setTimeout(loadBoardMessages, 900);
   }
