@@ -464,6 +464,109 @@
   .board-mini-btn { border: 1px solid var(--border-color); background: #fafafa; color: var(--sub-text); border-radius: 7px; padding: 7px 10px; font-size: 0.82rem; cursor: pointer; }
   .board-mini-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
 
+
+
+  .contact-footer {
+    margin: 28px 0 10px;
+    padding: 26px 24px;
+    border-radius: 14px;
+    background:
+      radial-gradient(circle at top right, rgba(164, 140, 113, 0.12), transparent 34%),
+      #ffffff;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+  }
+
+  .contact-footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .contact-kicker {
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+    color: var(--accent-color);
+    margin-bottom: 6px;
+  }
+
+  .contact-footer h3 {
+    margin: 0 0 8px;
+    color: var(--primary-color);
+    font-size: 1.18rem;
+    letter-spacing: -0.03em;
+  }
+
+  .contact-footer p {
+    margin: 0;
+    color: var(--sub-text);
+    font-size: 0.94rem;
+    word-break: keep-all;
+  }
+
+  .contact-info {
+    margin-top: 12px !important;
+    color: #333 !important;
+    font-weight: 750;
+  }
+
+  .contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  .contact-info a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 190px;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 9px;
+    border: 1px solid var(--primary-color);
+    background: #fff;
+    color: var(--primary-color);
+    font-weight: 850;
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .contact-btn:hover {
+    background: var(--primary-soft);
+    transform: translateY(-1px);
+  }
+
+  .contact-btn.primary {
+    background: var(--primary-color);
+    color: #fff;
+  }
+
+  .contact-btn.primary:hover {
+    background: var(--primary-dark);
+  }
+
+  .contact-small {
+    margin-top: 18px !important;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-color);
+    font-size: 0.84rem !important;
+    color: var(--sub-text) !important;
+  }
+
   .fade-in { animation: fadeIn 0.35s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -476,6 +579,9 @@
     .menu-card { min-height: auto; }
     #question-text { font-size: 1.22rem; }
     .checklist-toolbar { grid-template-columns: 1fr; position: static; }
+    .contact-footer { padding: 24px 20px; }
+    .contact-footer-inner { grid-template-columns: 1fr; }
+    .contact-actions { min-width: 0; }
   }
 </style>
 </head>
@@ -647,6 +753,39 @@
       <div class="board-empty">아직 글을 불러오지 못했습니다.</div>
     </div>
   </section>
+
+
+  <footer class="contact-footer" aria-label="여기건축사사무소 연락처">
+    <div class="contact-footer-inner">
+      <div>
+        <div class="contact-kicker">HERE ARCHITECT OFFICE</div>
+        <h3>(주)여기건축사사무소</h3>
+        <p>
+          건축 시작 전, 도면·견적·위반 가능성·예산 리스크를 먼저 봅니다.
+        </p>
+        <p class="contact-info">
+          이메일 <a href="mailto:grenarch@naver.com" onclick="trackAuditor('auditor_email_click')">grenarch@naver.com</a><br>
+          전화 <a href="tel:02-313-4581" onclick="trackAuditor('auditor_phone_click')">02-313-4581</a>
+        </p>
+      </div>
+
+      <div class="contact-actions">
+        <a class="contact-btn primary" href="tel:02-313-4581" onclick="trackAuditor('auditor_phone_click', { location: 'footer' })">바로 전화하기</a>
+        <a class="contact-btn" href="mailto:grenarch@naver.com" onclick="trackAuditor('auditor_email_click', { location: 'footer' })">자료 이메일 보내기</a>
+        <a class="contact-btn"
+           href="https://docs.google.com/spreadsheets/d/1El7s03aLI-Dhkl8oMsKlAIDOeEMfnOft/export?format=xlsx"
+           target="_blank"
+           rel="noopener"
+           onclick="trackAuditor('auditor_checklist_download', { location: 'footer' })">
+          체크리스트 다운로드
+        </a>
+      </div>
+    </div>
+
+    <p class="contact-small">
+      무료 체크리스트는 자가점검용입니다. 정확한 가능 여부와 비용 리스크는 도면, 현황, 건축물대장 등 자료 검토 후 판단됩니다.
+    </p>
+  </footer>
 </div>
 
 <script>
