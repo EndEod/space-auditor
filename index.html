@@ -1644,8 +1644,12 @@
         method: "POST",
         mode: "no-cors",
         body: JSON.stringify({
+          source: "토너먼트",
           name: surveyData.name,
           phone: surveyData.phone,
+          address,
+          fear,
+          budget,
           memo: surveyData.memo,
           consent: surveyData.consent,
           report_opt: surveyData.report_opt,
@@ -2114,6 +2118,12 @@
           name,
           email,
           phone,
+          address,
+          fear,
+          budget: "",
+          check_total: String(state.total),
+          risk_count: String(state.risk),
+          risk_level: resultStatus,
           memo: memoText,
           consent: "예",
           report_opt: "예",
@@ -2125,6 +2135,7 @@
           answers_json: JSON.stringify({
             total_checked: state.total,
             risk_count: state.risk,
+            risk_level: resultStatus,
             checked_items: state.labels,
             risk_items: state.riskLabels
           }),
