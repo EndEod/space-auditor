@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag("js", new Date());
-
   gtag("config", "G-D8GREDF8L7");
 </script>
 <meta charset="UTF-8" />
@@ -15,35 +14,29 @@
 <title>건축사 뚱뚜루 | Space Auditor</title>
 <style>
   :root {
-    /* 전문적이고 신뢰감을 주는 딥 네이비 */
     --primary-color: #233142;
     --primary-soft: #f4f6f8;
     --primary-dark: #16212e;
-    
-    /* 섬세하고 고급스러운 뮤트 톤의 웜 베이지/골드 포인트 */
     --accent-color: #a48c71;
-    --accent-soft: #fdfcfaf;
-    
+    --accent-soft: #fdfaf6;
     --border-color: #e2e4e8;
     --bg-color: #f8f9fa;
     --card-bg: #ffffff;
-    
-    /* 텍스트 대비를 부드럽게 조정 */
     --text-color: #222222;
     --sub-text: #666666;
-    
-    /* 알림 박스 색상도 차분하고 우아하게 */
     --success-bg: #f4f7f5;
     --success-border: #d0ded4;
     --warn-bg: #fdfaee;
     --warn-border: #ebe0c0;
-    
-    /* 은은하고 섬세한 그림자 */
+    --danger-bg: #fff6f4;
+    --danger-border: #efd0c8;
     --shadow: 0 8px 24px rgba(35, 49, 66, 0.06);
     --shadow-sm: 0 2px 8px rgba(35, 49, 66, 0.04);
   }
 
   * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
 
   body {
     margin: 0;
@@ -55,49 +48,71 @@
     letter-spacing: -0.01em;
   }
 
-  .page {
-    max-width: 860px;
-    margin: 0 auto;
+  button, input, textarea, select { font-family: inherit; }
+
+  .page { max-width: 920px; margin: 0 auto; }
+
+  .top-mini {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+    color: var(--sub-text);
+    font-size: 0.86rem;
   }
 
-  /* 카드의 모서리를 조금 더 단정하게(18px -> 12px) 변경하여 건축적인 구조감 부여 */
+  .home-link {
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: var(--primary-color);
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+  }
+
   .hero-card,
-  .info-card,
+  .menu-card,
+  .checklist-card,
   .auditor-card,
-  .service-card,
-  .cta-strip {
+  .board-card,
+  .info-strip {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 14px;
     box-shadow: var(--shadow);
   }
 
   .hero-card {
-    padding: 40px 32px;
-    margin-bottom: 24px;
-    background: linear-gradient(180deg, #ffffff 0%, #fcfdfd 100%);
+    padding: 42px 34px;
+    margin-bottom: 20px;
+    background:
+      radial-gradient(circle at top left, rgba(164, 140, 113, 0.12), transparent 34%),
+      linear-gradient(180deg, #ffffff 0%, #fcfdfd 100%);
   }
 
   .eyebrow {
     display: inline-block;
     font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    font-weight: 800;
+    letter-spacing: 0.08em;
     color: var(--primary-color);
     background: var(--primary-soft);
     padding: 6px 12px;
-    border-radius: 4px;
+    border-radius: 999px;
     margin-bottom: 16px;
     border: 1px solid #e9ecef;
   }
 
   .hero-title {
-    font-size: 2.1rem;
-    font-weight: 700;
-    line-height: 1.35;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 850;
+    line-height: 1.22;
     margin: 0 0 16px;
     word-break: keep-all;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.045em;
     color: #111;
   }
 
@@ -106,322 +121,248 @@
     color: var(--sub-text);
     font-size: 1.05rem;
     word-break: keep-all;
-    font-weight: 400;
   }
 
   .hero-note {
     margin-top: 20px;
-    padding: 16px 20px;
-    border-radius: 8px;
+    padding: 16px 18px;
+    border-radius: 10px;
     background: #fdfcfb;
     border: 1px solid #f0e9df;
     color: #4a453f;
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 650;
   }
 
-  .hero-points {
+  .menu-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 24px;
-  }
-
-  .hero-point {
-    padding: 14px;
-    border-radius: 8px;
-    background: #fff;
-    border: 1px solid var(--border-color);
-    font-size: 0.92rem;
-    color: var(--primary-color);
-    font-weight: 600;
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .grid-2,
-  .grid-3 {
-    display: grid;
     gap: 16px;
-    margin-bottom: 24px;
+    margin: 20px 0 24px;
   }
 
-  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-  .info-card,
-  .service-card {
+  .menu-card {
     padding: 24px;
-  }
-
-  .info-card h3,
-  .service-card h3 {
-    margin: 0 0 12px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    letter-spacing: -0.02em;
-  }
-
-  .info-card ul,
-  .service-card ul {
-    margin: 0;
-    padding-left: 20px;
-    color: #444;
-    font-size: 0.94rem;
-  }
-
-  .info-card li + li,
-  .service-card li + li {
-    margin-top: 8px;
-  }
-
-  .badge-line {
+    cursor: pointer;
+    transition: all 0.22s ease;
+    min-height: 215px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  .badge {
+  .menu-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-color);
+    box-shadow: 0 12px 28px rgba(35, 49, 66, 0.1);
+  }
+
+  .menu-number {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
     display: inline-flex;
     align-items: center;
-    border-radius: 4px;
-    padding: 5px 10px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--sub-text);
+    justify-content: center;
     background: var(--primary-soft);
-    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 850;
+    margin-bottom: 14px;
   }
 
-  .trust-card {
-    background: #fafafa;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin-bottom: 24px;
-    color: #444;
-    font-size: 0.95rem;
-    text-align: center;
-    font-weight: 500;
+  .menu-card h2 {
+    margin: 0 0 10px;
+    color: var(--primary-color);
+    font-size: 1.18rem;
+    letter-spacing: -0.03em;
   }
 
-  .cta-strip {
-    padding: 20px 24px;
-    margin-bottom: 32px;
+  .menu-card p {
+    margin: 0;
+    color: var(--sub-text);
+    font-size: 0.94rem;
+    word-break: keep-all;
+  }
+
+  .menu-action {
+    margin-top: 18px;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 850;
+  }
+
+  .info-strip {
+    padding: 18px 20px;
+    margin-bottom: 26px;
     background: var(--primary-color);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.92);
     border: none;
+    word-break: keep-all;
   }
 
-  .cta-strip strong {
-    color: #ffffff;
-    font-weight: 600;
-  }
+  .section-panel { display: none; }
+  .section-panel.active { display: block; animation: fadeIn 0.35s ease; }
 
-  .auditor-card {
-    padding: 40px 32px 32px;
-    border-top: 4px solid var(--primary-color); /* 진단 영역 강조 */
-  }
-
-  .auditor-head {
+  .panel-head {
     text-align: center;
     margin-bottom: 24px;
   }
 
-  .auditor-label {
+  .panel-label {
     font-size: 0.8rem;
     color: var(--accent-color);
     letter-spacing: 0.15em;
-    font-weight: 600;
+    font-weight: 850;
     margin-bottom: 8px;
   }
 
-  .auditor-main-title {
-    font-size: 1.25rem;
-    font-weight: 700;
+  .panel-title {
+    margin: 0 0 8px;
+    color: var(--primary-color);
+    font-size: 1.52rem;
+    letter-spacing: -0.04em;
+    line-height: 1.35;
+  }
+
+  .panel-desc {
     margin: 0;
+    color: var(--sub-text);
+    font-size: 0.98rem;
+    word-break: keep-all;
+  }
+
+  .checklist-card { padding: 34px 30px; margin-bottom: 48px; border-top: 4px solid var(--primary-color); }
+
+  .checklist-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    background: rgba(248, 249, 250, 0.92);
+    backdrop-filter: blur(10px);
+    padding: 10px 0 14px;
+    margin-bottom: 16px;
+  }
+
+  .score-pill {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 10px 14px;
+    box-shadow: var(--shadow-sm);
+    color: var(--primary-color);
+    font-weight: 850;
+    white-space: nowrap;
+  }
+
+  .check-group {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 14px;
+    background: #fff;
+  }
+
+  .check-group h3 {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
     color: var(--primary-color);
     letter-spacing: -0.02em;
   }
 
-  .progress-wrap {
-    margin-bottom: 32px;
+  .check-group p { margin: 0 0 12px; color: var(--sub-text); font-size: 0.9rem; }
+
+  .check-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 14px;
   }
 
-  .progress-top {
+  .check-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    color: var(--sub-text);
-    font-weight: 600;
-    margin-bottom: 10px;
-    letter-spacing: 0.05em;
-  }
-
-  .progress-bar {
-    height: 6px; /* 두께를 얇게 하여 섬세함 강조 */
-    background: #e9ecef;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--primary-color);
-    border-radius: 4px;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .summary-box {
-    display: none;
-    background: var(--primary-soft);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin-bottom: 24px;
-  }
-
-  .summary-title {
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--primary-color);
-    letter-spacing: -0.01em;
-  }
-
-  .summary-list {
-    display: flex;
-    flex-wrap: wrap;
+    align-items: flex-start;
     gap: 8px;
+    font-size: 0.92rem;
+    color: #333;
+    word-break: keep-all;
   }
 
-  .summary-chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 12px;
-    border-radius: 4px;
-    background: #ffffff;
-    border: 1px solid var(--border-color);
-    font-size: 0.85rem;
-    color: #444;
-    font-weight: 500;
+  .check-item input {
+    width: 17px;
+    height: 17px;
+    margin-top: 3px;
+    accent-color: var(--primary-color);
+    flex: 0 0 auto;
   }
 
-  .result-box {
-    display: none;
-    border-radius: 8px;
+  .risk-title {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-color);
+    color: #7a5a3a;
+    font-weight: 850;
+    font-size: 0.94rem;
+  }
+
+  .risk-item span::before { content: "⚠ "; }
+
+  .check-result {
+    margin-top: 22px;
+    border-radius: 12px;
     padding: 20px;
-    margin-bottom: 24px;
+    border: 1px solid var(--warn-border);
+    background: var(--warn-bg);
+    color: #5c4e2b;
     white-space: pre-wrap;
-    font-size: 0.98rem;
-    line-height: 1.7;
   }
 
-  .result-box.success {
+  .check-result.safe {
     background: var(--success-bg);
-    border: 1px solid var(--success-border);
+    border-color: var(--success-border);
     color: #2b4535;
   }
 
-  .result-box.warn {
-    background: var(--warn-bg);
-    border: 1px solid var(--warn-border);
-    color: #5c4e2b;
+  .check-result.danger {
+    background: var(--danger-bg);
+    border-color: var(--danger-border);
+    color: #62352f;
   }
 
-  .result-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: -0.02em;
+  .lead-box {
+    margin-top: 22px;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #f0e9df;
+    background: #fdfcfb;
   }
 
-  #question-text {
-    font-size: 1.4rem;
-    font-weight: 700;
-    line-height: 1.45;
-    text-align: center;
-    margin: 0 0 28px;
-    word-break: keep-all;
-    white-space: pre-wrap;
-    color: #111;
-    letter-spacing: -0.02em;
-  }
+  .lead-box h3 { margin: 0 0 8px; color: var(--primary-color); }
+  .lead-box p { margin: 0 0 16px; color: var(--sub-text); font-size: 0.94rem; }
 
-  .options-grid {
-    display: flex;
-    flex-direction: column;
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
-  }
-
-  .option-btn {
-    width: 100%;
-    text-align: left;
-    background: #ffffff;
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    padding: 18px 20px;
-    font-size: 1.05rem;
-    font-weight: 500;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    word-break: keep-all;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .option-btn:hover {
-    border-color: var(--primary-color);
-    background: #ffffff;
-    box-shadow: 0 4px 12px rgba(35, 49, 66, 0.08);
-    transform: translateY(-2px);
-  }
-
-  .option-btn.primary {
-    background: var(--primary-color);
-    color: #ffffff;
-    border-color: var(--primary-color);
-    font-weight: 600;
-    text-align: center;
-    justify-content: center;
-  }
-
-  .option-btn.primary:hover {
-    background: var(--primary-dark);
-    border-color: var(--primary-dark);
-    transform: translateY(-2px);
-  }
-
-  .sub-guide {
-    margin-top: 24px;
-    text-align: center;
-    color: var(--sub-text);
-    font-size: 0.9rem;
-  }
-
-  .input-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
   }
 
   .input-field,
   .textarea-field,
   .select-field {
     width: 100%;
-    padding: 16px;
+    padding: 15px;
     font-size: 1rem;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 9px;
     outline: none;
     transition: all 0.2s ease;
-    font-family: inherit;
     background: #fafafa;
   }
+
+  .textarea-field { resize: vertical; min-height: 110px; }
 
   .input-field:focus,
   .textarea-field:focus,
@@ -431,354 +372,213 @@
     box-shadow: 0 0 0 3px rgba(35, 49, 66, 0.1);
   }
 
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
-
   .consent-box {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 16px;
-    border-radius: 8px;
+    padding: 14px;
+    border-radius: 9px;
     background: #f9fafb;
     border: 1px solid var(--border-color);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--sub-text);
     line-height: 1.5;
+    margin-top: 12px;
   }
 
-  .consent-box input { 
-    margin-top: 2px;
-    width: 16px;
-    height: 16px;
-    accent-color: var(--primary-color);
-  }
+  .consent-box input { margin-top: 2px; width: 16px; height: 16px; accent-color: var(--primary-color); }
 
-  .mini-note {
-    font-size: 0.85rem;
-    color: var(--sub-text);
-    margin-top: 8px;
-    text-align: center;
-  }
-
-  .restart-btn {
-    margin-top: 24px;
-    background: transparent;
-    border: none;
-    color: var(--sub-text);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: color 0.2s ease;
-  }
-
-  .restart-btn:hover { color: var(--primary-color); }
-
-  .fade-in { animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-
-
-  /* 고객 소통창구 */
-  .board-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    padding: 32px;
-    margin: 32px 0 48px;
-    border-top: 4px solid var(--accent-color);
-  }
-
-  .board-head {
-    text-align: center;
-    margin-bottom: 24px;
-  }
-
-  .board-label {
-    font-size: 0.8rem;
-    color: var(--accent-color);
-    letter-spacing: 0.15em;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .board-title {
-    margin: 0 0 8px;
-    font-size: 1.35rem;
-    color: var(--primary-color);
-    letter-spacing: -0.03em;
-  }
-
-  .board-desc {
-    margin: 0;
-    color: var(--sub-text);
-    font-size: 0.95rem;
-    word-break: keep-all;
-  }
-
-  .board-notice {
-    background: #fdfcfb;
-    border: 1px solid #f0e9df;
-    color: #4a453f;
-    border-radius: 8px;
-    padding: 14px 16px;
-    font-size: 0.88rem;
-    margin-bottom: 18px;
-  }
-
-  .board-form {
-    display: grid;
-    gap: 14px;
-    margin-bottom: 26px;
-  }
-
-  .board-form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .board-actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
+  .main-btn,
   .board-btn {
     border: 1px solid var(--primary-color);
     background: var(--primary-color);
     color: #fff;
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-family: inherit;
-    font-weight: 700;
+    border-radius: 9px;
+    padding: 13px 17px;
+    font-weight: 850;
     cursor: pointer;
     transition: all 0.2s ease;
   }
 
-  .board-btn:hover {
-    background: var(--primary-dark);
-    transform: translateY(-1px);
-  }
+  .main-btn:hover,
+  .board-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .main-btn.ghost,
+  .board-btn.ghost { background: #fff; color: var(--primary-color); }
+  .main-btn.ghost:hover,
+  .board-btn.ghost:hover { background: var(--primary-soft); }
 
-  .board-btn.ghost {
-    background: #fff;
-    color: var(--primary-color);
-  }
+  .button-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
+  .mini-note { font-size: 0.85rem; color: var(--sub-text); margin-top: 8px; }
 
-  .board-btn.ghost:hover {
-    background: var(--primary-soft);
-  }
+  .auditor-card { padding: 40px 32px 32px; margin-bottom: 48px; border-top: 4px solid var(--primary-color); }
+  .auditor-head { text-align: center; margin-bottom: 24px; }
+  .auditor-label { font-size: 0.8rem; color: var(--accent-color); letter-spacing: 0.15em; font-weight: 850; margin-bottom: 8px; }
+  .auditor-main-title { font-size: 1.25rem; font-weight: 800; margin: 0; color: var(--primary-color); letter-spacing: -0.02em; }
 
-  .board-status {
-    font-size: 0.86rem;
-    color: var(--sub-text);
-  }
+  .progress-wrap { margin-bottom: 32px; }
+  .progress-top { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--sub-text); font-weight: 800; margin-bottom: 10px; letter-spacing: 0.05em; }
+  .progress-bar { height: 6px; background: #e9ecef; border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; width: 0%; background: var(--primary-color); border-radius: 4px; transition: width 0.35s ease; }
 
-  .board-list {
-    display: grid;
-    gap: 14px;
-  }
+  .summary-box { display: none; background: var(--primary-soft); border: 1px solid var(--border-color); border-radius: 9px; padding: 16px 18px; margin-bottom: 24px; }
+  .summary-title { font-size: 0.85rem; font-weight: 850; margin-bottom: 12px; color: var(--primary-color); }
+  .summary-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .summary-chip { display: inline-flex; align-items: center; padding: 6px 11px; border-radius: 999px; background: #ffffff; border: 1px solid var(--border-color); font-size: 0.85rem; color: #444; font-weight: 700; }
 
-  .board-empty {
-    text-align: center;
-    color: var(--sub-text);
-    background: #fafafa;
-    border: 1px dashed var(--border-color);
-    border-radius: 8px;
-    padding: 24px 16px;
-    font-size: 0.95rem;
-  }
+  .result-box { display: none; border-radius: 9px; padding: 20px; margin-bottom: 24px; white-space: pre-wrap; font-size: 0.98rem; line-height: 1.7; }
+  .result-box.success { background: var(--success-bg); border: 1px solid var(--success-border); color: #2b4535; }
+  .result-box.warn { background: var(--warn-bg); border: 1px solid var(--warn-border); color: #5c4e2b; }
+  .result-title { font-size: 1.1rem; font-weight: 850; margin-bottom: 10px; letter-spacing: -0.02em; }
 
-  .board-item {
-    border: 1px solid var(--border-color);
-    background: #fff;
-    border-radius: 10px;
-    padding: 18px;
-    box-shadow: var(--shadow-sm);
-  }
+  #question-text { font-size: 1.38rem; font-weight: 850; line-height: 1.45; text-align: center; margin: 0 0 28px; word-break: keep-all; white-space: pre-wrap; color: #111; letter-spacing: -0.03em; }
+  .options-grid { display: flex; flex-direction: column; gap: 12px; }
+  .option-btn { width: 100%; text-align: left; background: #fff; border: 1px solid var(--border-color); color: var(--text-color); padding: 18px 20px; font-size: 1.05rem; font-weight: 650; border-radius: 9px; cursor: pointer; transition: all 0.2s ease; word-break: keep-all; box-shadow: var(--shadow-sm); }
+  .option-btn:hover { border-color: var(--primary-color); box-shadow: 0 4px 12px rgba(35, 49, 66, 0.08); transform: translateY(-2px); }
+  .option-btn.primary { background: var(--primary-color); color: #fff; border-color: var(--primary-color); font-weight: 850; text-align: center; }
+  .option-btn.primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+  .sub-guide { margin-top: 24px; text-align: center; color: var(--sub-text); font-size: 0.9rem; }
+  .input-wrap { display: flex; flex-direction: column; gap: 16px; }
+  .restart-btn { margin-top: 24px; background: transparent; border: none; color: var(--sub-text); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; font-size: 0.9rem; }
+  .restart-btn:hover { color: var(--primary-color); }
 
-  .board-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 10px;
-    color: var(--sub-text);
-    font-size: 0.84rem;
-  }
+  .board-card { padding: 34px 30px; margin-bottom: 48px; border-top: 4px solid var(--accent-color); }
+  .board-head { text-align: center; margin-bottom: 24px; }
+  .board-label { font-size: 0.8rem; color: var(--accent-color); letter-spacing: 0.15em; font-weight: 850; margin-bottom: 8px; }
+  .board-title { margin: 0 0 8px; font-size: 1.35rem; color: var(--primary-color); letter-spacing: -0.03em; }
+  .board-desc { margin: 0; color: var(--sub-text); font-size: 0.95rem; word-break: keep-all; }
+  .board-notice { background: #fdfcfb; border: 1px solid #f0e9df; color: #4a453f; border-radius: 9px; padding: 14px 16px; font-size: 0.88rem; margin-bottom: 18px; }
+  .board-form { display: grid; gap: 14px; margin-bottom: 26px; }
+  .board-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .board-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .board-status { font-size: 0.86rem; color: var(--sub-text); }
+  .board-list { display: grid; gap: 14px; }
+  .board-empty { text-align: center; color: var(--sub-text); background: #fafafa; border: 1px dashed var(--border-color); border-radius: 9px; padding: 24px 16px; font-size: 0.95rem; }
+  .board-item { border: 1px solid var(--border-color); background: #fff; border-radius: 11px; padding: 18px; box-shadow: var(--shadow-sm); }
+  .board-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; color: var(--sub-text); font-size: 0.84rem; }
+  .board-nickname { color: var(--primary-color); font-weight: 850; font-size: 0.95rem; }
+  .board-area { background: var(--primary-soft); border: 1px solid var(--border-color); border-radius: 999px; padding: 3px 8px; }
+  .board-message { white-space: pre-wrap; word-break: keep-all; color: #333; font-size: 0.96rem; line-height: 1.65; }
+  .board-reply { margin-top: 14px; padding: 14px; border-radius: 9px; background: var(--success-bg); border: 1px solid var(--success-border); color: #2b4535; font-size: 0.92rem; white-space: pre-wrap; }
+  .board-reply strong { display: block; margin-bottom: 6px; color: var(--primary-color); }
+  .board-tools { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .board-mini-btn { border: 1px solid var(--border-color); background: #fafafa; color: var(--sub-text); border-radius: 7px; padding: 7px 10px; font-size: 0.82rem; cursor: pointer; }
+  .board-mini-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
 
-  .board-nickname {
-    color: var(--primary-color);
-    font-weight: 800;
-    font-size: 0.95rem;
-  }
+  .fade-in { animation: fadeIn 0.35s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  .board-area {
-    background: var(--primary-soft);
-    border: 1px solid var(--border-color);
-    border-radius: 999px;
-    padding: 3px 8px;
-  }
-
-  .board-message {
-    white-space: pre-wrap;
-    word-break: keep-all;
-    color: #333;
-    font-size: 0.96rem;
-    line-height: 1.65;
-  }
-
-  .board-reply {
-    margin-top: 14px;
-    padding: 14px;
-    border-radius: 8px;
-    background: var(--success-bg);
-    border: 1px solid var(--success-border);
-    color: #2b4535;
-    font-size: 0.92rem;
-    white-space: pre-wrap;
-  }
-
-  .board-reply strong {
-    display: block;
-    margin-bottom: 6px;
-    color: var(--primary-color);
-  }
-
-  .board-tools {
-    margin-top: 14px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .board-mini-btn {
-    border: 1px solid var(--border-color);
-    background: #fafafa;
-    color: var(--sub-text);
-    border-radius: 6px;
-    padding: 7px 10px;
-    font-family: inherit;
-    font-size: 0.82rem;
-    cursor: pointer;
-  }
-
-  .board-mini-btn:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-  }
-
-  @media (max-width: 720px) {
+  @media (max-width: 760px) {
     body { padding: 16px; }
-    .grid-2, .grid-3, .form-grid, .hero-points, .board-form-row { grid-template-columns: 1fr; }
-    .hero-title { font-size: 1.7rem; }
-    #question-text { font-size: 1.25rem; margin-bottom: 20px; }
-    .auditor-card { padding: 32px 20px 24px; }
-    .hero-card { padding: 32px 20px; }
-    .board-card { padding: 28px 20px; }
+    .top-mini { flex-direction: column; align-items: stretch; }
+    .menu-grid, .form-grid, .check-list, .board-form-row { grid-template-columns: 1fr; }
+    .hero-card { padding: 34px 22px; }
+    .checklist-card, .auditor-card, .board-card { padding: 28px 20px; }
+    .menu-card { min-height: auto; }
+    #question-text { font-size: 1.22rem; }
+    .checklist-toolbar { grid-template-columns: 1fr; position: static; }
   }
 </style>
 </head>
 <body>
 <div class="page">
-
-  <section class="hero-card">
-    <div class="eyebrow">건축사 뚱뚜루 | SPACE AUDITOR</div>
-    <h1 class="hero-title">예쁜 집을 설계하기 전에,<br>공사 전에 새는 돈부터 먼저 잡습니다.</h1>
-    <p class="hero-desc">
-      스페이스 오디터는 가장 싼 공사를 찾아주는 서비스가 아닙니다.<br>
-      대신 도면, 견적, 법적 리스크를 먼저 점검해 <strong>억울하게 비싸지는 공사</strong>를 미리 막는 건축 사전진단 서비스입니다.
-    </p>
-    <div class="hero-note">
-      설계 계약 전, 시공사 미팅 전, 철거 시작 전.<br>
-      <strong>내 프로젝트가 지금 안전한 상태인지</strong> 먼저 확인해 보세요.
-    </div>
-    <div class="hero-points">
-      <div class="hero-point">돈이 새는 구멍 진단</div>
-      <div class="hero-point">위반건축물·법적 리스크 점검</div>
-      <div class="hero-point">도면·견적·매수 전 사전판단</div>
-    </div>
-  </section>
-
-  <section class="grid-3">
-    <div class="service-card">
-      <h3>1분 셀프 진단</h3>
-      <ul>
-        <li>지금 내 건물 상황의 위험 신호 체크</li>
-        <li>위반건축물·매수 전·도면/견적 검토 분기</li>
-        <li>다음 단계가 무엇인지 빠르게 확인</li>
-      </ul>
-    </div>
-    <div class="service-card">
-      <h3>사전 진단 리포트</h3>
-      <ul>
-        <li>왜 가능한지 / 왜 어려운지 1차 설명</li>
-        <li>가장 위험한 돈의 구멍 3가지 정리</li>
-        <li>지금 확보해야 할 도면·자료 안내</li>
-      </ul>
-    </div>
-    <div class="service-card">
-      <h3>도면·견적 오디트</h3>
-      <ul>
-        <li>추가금 위험, 누락, 과다 산정 체크</li>
-        <li>현장 재시공 가능성 높은 포인트 정리</li>
-        <li>예산 마지노선 기준 잡기</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="grid-2">
-    <div class="info-card">
-      <h3>스페이스 오디터가 먼저 묻는 질문</h3>
-      <ul>
-        <li>지금 가장 찜찜하고 불안한 부분이 어디인가요?</li>
-        <li>절대 넘으면 안 되는 예산 마지노선은 얼마인가요?</li>
-        <li>현재 확보한 도면, 견적, 사진, 서류는 어디까지인가요?</li>
-      </ul>
-      <div class="badge-line">
-        <span class="badge">건축주 편</span>
-        <span class="badge">사전 판단</span>
-        <span class="badge">리스크 정리</span>
-      </div>
-    </div>
-    <div class="info-card">
-      <h3>이 페이지에서 확인 가능한 것</h3>
-      <ul>
-        <li>특정건축물 특례법 대상 여부 1차 분기</li>
-        <li>일반 위반건축물 별도 검토 필요성</li>
-        <li>매수 전 / 리모델링 전 / 도면·견적 오디트 연결</li>
-        <li>선택 경로와 함께 구글시트 자동 접수</li>
-      </ul>
-      <div class="badge-line">
-        <span class="badge">토너먼트형 진단</span>
-        <span class="badge">구글시트 저장</span>
-        <span class="badge">유료 PDF 연결</span>
-      </div>
-    </div>
-  </section>
-
-  <div class="trust-card">
-    공사비는 대개 <strong>공사가 시작된 뒤 문제가 터졌을 때</strong> 가장 크게 샙니다.<br>
-    스페이스 오디터는 그 전에 도면, 견적, 위반 상태, 자료 수준을 먼저 정리해 주는 <strong>건축 전 사전판단용 입구</strong>입니다.
+  <div class="top-mini">
+    <div>건축사 뚱뚜루 | Space Auditor</div>
+    <button class="home-link" type="button" onclick="showPanel('home-panel')">처음 화면으로</button>
   </div>
 
-  <div class="cta-strip">
-    <strong>무턱대고 계약하기 전에</strong> 먼저 확인하세요.<br>
-    이 토너먼트는 끝까지 다 가지 않아도 됩니다. 지금 단계에서 필요한 정보만 가져가셔도 괜찮습니다.
-  </div>
+  <section class="section-panel active" id="home-panel">
+    <section class="hero-card">
+      <div class="eyebrow">SPACE AUDITOR</div>
+      <h1 class="hero-title">건축 시작 전,<br>내 돈 새는 구멍부터 봅니다.</h1>
+      <p class="hero-desc">
+        설계 전에. 시공 전에. 계약 전에. 매수 전에.<br>
+        스페이스 오디터는 도면, 견적, 위반 가능성, 예산 리스크를 먼저 정리하는 건축 전 사전판단 입구입니다.
+      </p>
+      <div class="hero-note">
+        지금은 긴 설명보다 <strong>내 상황에 맞는 첫 번째 문</strong>만 고르면 됩니다. 가볍게 체크하거나, 깊게 진단하거나, 질문을 남겨보세요.
+      </div>
+    </section>
 
-  <section class="auditor-card fade-in" id="quiz-box">
+    <section class="menu-grid" aria-label="스페이스 오디터 메뉴">
+      <article class="menu-card" onclick="openChecklist()">
+        <div>
+          <div class="menu-number">01</div>
+          <h2>체크리스트</h2>
+          <p>내 집, 내 땅, 내 건물의 위험 신호를 먼저 표시해 봅니다. 무료 자가점검용 입구입니다.</p>
+        </div>
+        <div class="menu-action">체크리스트 시작하기 →</div>
+      </article>
+
+      <article class="menu-card" onclick="openTournament()">
+        <div>
+          <div class="menu-number">02</div>
+          <h2>진단 토너먼트</h2>
+          <p>위반건축물, 매수 전, 리모델링 전, 도면·견적 오디트를 분기형 질문으로 확인합니다.</p>
+        </div>
+        <div class="menu-action">토너먼트 진단하기 →</div>
+      </article>
+
+      <article class="menu-card" onclick="openBoard()">
+        <div>
+          <div class="menu-number">03</div>
+          <h2>소통창</h2>
+          <p>회원가입 없이 닉네임으로 사전 질문을 남깁니다. 공개 글이므로 개인정보는 쓰지 마세요.</p>
+        </div>
+        <div class="menu-action">질문 남기기 →</div>
+      </article>
+    </section>
+
+    <div class="info-strip">
+      무료 체크리스트는 답을 다 주는 문서가 아니라, “내 상황은 전문가 판단이 필요하구나”를 스스로 알아차리게 하는 작은 경보등입니다.
+    </div>
+  </section>
+
+  <section class="section-panel checklist-card" id="checklist-panel">
+    <div class="panel-head">
+      <div class="panel-label">SPACE AUDITOR CHECKLIST</div>
+      <h2 class="panel-title">건축 시작 전, 내 돈 지키는 사전점검표</h2>
+      <p class="panel-desc">
+        체크한 내용은 내 기기에만 표시됩니다. 마지막에 원하실 때만 이름·이메일을 남겨 접수할 수 있습니다.
+      </p>
+    </div>
+
+    <div class="checklist-toolbar">
+      <div class="score-pill" id="check-score">체크 0개 · 위험 신호 0개</div>
+      <button class="main-btn ghost" type="button" onclick="resetChecklist()">체크 초기화</button>
+    </div>
+
+    <div id="checklist-groups"></div>
+
+    <div class="check-result safe" id="check-result">
+      아직 체크된 위험 신호가 없습니다. 항목을 눌러 현재 상태를 표시해 보세요.
+    </div>
+
+    <div class="lead-box" id="checklist-cta">
+      <h3>체크리스트 결과를 뚱뚜루에게 남기시겠어요?</h3>
+      <p>
+        무료 체크리스트는 자가점검용입니다. 내 땅의 건축 가능 여부, 위반건축물 여부, 공사비 리스크, 리모델링 가능성, 계약 전 판단은 자료 검토가 필요한 유료 스페이스 오디터로 진행됩니다.
+      </p>
+      <div class="form-grid">
+        <input type="text" id="check-name" class="input-field" placeholder="이름 또는 닉네임" />
+        <input type="email" id="check-email" class="input-field" placeholder="이메일 주소" />
+        <input type="tel" id="check-phone" class="input-field" placeholder="선택: 연락처" />
+        <input type="text" id="check-address" class="input-field" placeholder="선택: 주소/지역/건물명" />
+      </div>
+      <textarea id="check-fear" class="textarea-field" rows="4" placeholder="가장 불안한 점을 적어주세요. 예: 계약 전인데 위반건축물인지 모르겠어요. 견적서가 너무 짧아서 찜찜해요."></textarea>
+      <textarea id="check-memo" class="textarea-field" rows="3" placeholder="추가 메모: 예산, 일정, 매물 링크, 받은 자료 등을 적어주세요."></textarea>
+      <label class="consent-box">
+        <input type="checkbox" id="check-consent" />
+        <span>개인정보 수집·이용에 동의합니다. 남겨주신 이름, 이메일, 연락처, 메모는 스페이스 오디터 상담 안내 목적으로만 사용됩니다.</span>
+      </label>
+      <div class="button-row">
+        <button class="main-btn" type="button" id="check-submit-btn" onclick="submitChecklistLead()">체크리스트 결과 남기기</button>
+        <button class="main-btn ghost" type="button" onclick="openTournament()">토너먼트로 더 진단하기</button>
+        <span class="mini-note" id="check-submit-status">구글시트 저장과 GA 이벤트 전송을 유지했습니다.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-panel auditor-card" id="quiz-box">
     <div class="auditor-head">
       <div class="auditor-label">SPACE AUDITOR TOURNAMENT</div>
       <p class="auditor-main-title">내 프로젝트의 현재 위치를 먼저 진단합니다.</p>
@@ -811,7 +611,7 @@
     <button class="restart-btn" id="restart-btn" style="display:none;" onclick="startAuditor()">처음부터 다시하기</button>
   </section>
 
-  <section class="board-card" id="community-board">
+  <section class="section-panel board-card" id="community-board">
     <div class="board-head">
       <div class="board-label">SPACE AUDITOR TALK</div>
       <h2 class="board-title">뚱뚜루에게 남기는 사전 질문</h2>
@@ -821,7 +621,7 @@
     </div>
 
     <div class="board-notice">
-      공개 소통창구입니다. 주소는 <strong>구/동 정도</strong>만 적어주세요. 상담이 필요한 이름·전화번호·정확한 주소는 위 진단 접수 폼으로 남겨주세요.
+      공개 소통창구입니다. 주소는 <strong>구/동 정도</strong>만 적어주세요. 상담이 필요한 이름·전화번호·정확한 주소는 체크리스트 또는 토너먼트 접수 폼으로 남겨주세요.
       글을 지우려면 작성할 때 입력한 <strong>삭제비밀번호</strong>가 필요합니다.
     </div>
 
@@ -834,9 +634,7 @@
       <input type="password" id="board-delete-code" class="input-field" maxlength="30" placeholder="삭제비밀번호: 나중에 본인 글 삭제할 때 사용" />
       <label class="consent-box">
         <input type="checkbox" id="board-consent" />
-        <span>
-          이 글이 공개 소통창구에 노출되는 것에 동의합니다. 정확한 주소, 연락처, 이름 등 민감한 내용은 적지 않겠습니다.
-        </span>
+        <span>이 글이 공개 소통창구에 노출되는 것에 동의합니다. 정확한 주소, 연락처, 이름 등 민감한 내용은 적지 않겠습니다.</span>
       </label>
       <div class="board-actions">
         <button class="board-btn" type="button" onclick="submitBoardMessage()">질문 남기기</button>
@@ -849,7 +647,6 @@
       <div class="board-empty">아직 글을 불러오지 못했습니다.</div>
     </div>
   </section>
-
 </div>
 
 <script>
@@ -2113,8 +1910,249 @@
   }
 
 
-  startAuditor();
-  loadBoardMessages();
+
+
+  const checklistGroups = [
+    {
+      title: "0. 나는 지금 어떤 상태인가요?",
+      desc: "3개 이상 체크했다면 사전 판단이 필요한 상태일 수 있습니다.",
+      items: [
+        "땅을 사기 전이다", "땅은 있는데 건물을 지으려 한다", "낡은 집/건물을 사려 한다", "낡은 집/건물을 리모델링하려 한다", "시공사 견적을 받았는데 찜찜하다", "위반건축물인지 걱정된다", "건축물대장과 실제 건물이 다른 것 같다", "부동산, 건축사, 시공사 사이에서 계속 핑퐁당하고 있다", "설계비를 쓰기 전에 가능성을 먼저 알고 싶다", "공사비가 얼마나 커질지 무섭다"
+      ],
+      risks: []
+    },
+    {
+      title: "1. 토지·대지 기본 체크",
+      desc: "땅이 있다고 바로 지을 수 있는 것은 아닙니다. 도로, 용도지역, 건폐율, 용적률부터 봅니다.",
+      items: ["토지이용계획확인원을 확인했다", "지목을 확인했다", "용도지역을 확인했다", "건폐율을 확인했다", "용적률을 확인했다", "도로에 제대로 접해 있는지 확인했다", "도로 폭을 확인했다", "맹지 여부를 확인했다", "대지 경계가 실제 현황과 맞는지 확인했다", "주차 계획이 가능한지 생각해봤다"],
+      risks: ["아마 될 거예요라는 말만 들었다", "정확한 법규 확인 없이 계약을 앞두고 있다", "도로가 좁거나 애매하다", "땅 모양이 비정형이다", "주차가 어려워 보인다"]
+    },
+    {
+      title: "2. 기존 건물 체크",
+      desc: "낡은 건물은 겉모습과 실제 조건이 다를 수 있습니다.",
+      items: ["건축물대장을 확인했다", "등기부등본을 확인했다", "실제 건물 층수와 대장상 층수가 같은지 확인했다", "실제 용도와 대장상 용도가 같은지 확인했다", "면적이 실제와 대장상 크게 다르지 않은지 확인했다", "옥탑, 베란다, 창고, 계단실, 주차장 변경 여부를 봤다", "누수 흔적을 확인했다", "균열, 처짐, 기울어짐을 확인했다", "단열, 창호, 결로 상태를 확인했다"],
+      risks: ["건축물대장과 실제 건물이 다르다", "주차장에 방이나 창고가 생겼다", "옥상에 허가 여부가 불분명한 구조물이 있다", "베란다나 발코니가 실내화되어 있다", "1층 필로티나 주차 공간이 다른 용도로 쓰인다", "중개인이 원래 다 그래요라고 말했다"]
+    },
+    {
+      title: "3. 위반건축물 의심 체크",
+      desc: "위반건축물은 매수, 대출, 리모델링, 인허가에 영향을 줄 수 있습니다.",
+      items: ["건축물대장에 위반건축물 표시가 있는지 확인했다", "현황도와 실제 건물을 비교해봤다", "무단 증축 의심 공간이 있는지 봤다", "무단 용도변경 의심 공간이 있는지 봤다", "주차장 훼손 여부를 확인했다", "세대 수가 대장과 실제로 같은지 확인했다", "근린생활시설을 주거로 쓰는 부분이 있는지 봤다", "다가구·다세대 구분을 확인했다", "특정건축물 특례법 대상 가능성이 있는지 궁금하다"],
+      risks: ["계약 직전인데 위반 여부가 찜찜하다", "매도인이 문제 없다고만 말한다", "구청에 묻기 전에 먼저 정리하고 싶다", "리모델링하려는데 기존 위반이 걸릴까 걱정된다", "대장상 용도와 실제 사용이 다르다"]
+    },
+    {
+      title: "4. 설계 전 체크",
+      desc: "설계는 예쁜 그림보다 가능성과 방향 정리에서 시작합니다.",
+      items: ["원하는 건물의 용도를 정했다", "필요한 층수와 면적을 대략 정했다", "가족/임차인/운영 방식까지 생각해봤다", "신축, 증축, 대수선, 리모델링 중 무엇이 맞는지 고민해봤다", "법규상 가능한 규모를 확인했다", "대략적인 예산 범위를 정했다", "공사비 외 설계비, 감리비, 세금, 인허가 비용을 생각해봤다", "공사 기간 중 거주 또는 영업 중단 문제를 생각했다"],
+      risks: ["일단 도면부터 그려주세요라고 생각하고 있다", "내 예산과 원하는 규모가 맞는지 모른다", "공사비를 평당 단가로만 생각하고 있다", "건축사, 시공사, 부동산 말이 다 달라서 혼란스럽다"]
+    },
+    {
+      title: "5. 견적서 체크",
+      desc: "견적서의 문제는 비싼 금액보다 빠진 항목과 애매한 범위일 수 있습니다.",
+      items: ["견적서에 공종별 항목이 구분되어 있다", "철거공사 범위가 명확하다", "가설공사 항목이 있다", "구조보강 여부가 반영되어 있다", "창호 수량과 사양이 적혀 있다", "단열재 사양이 적혀 있다", "방수 범위와 사양이 적혀 있다", "전기 증설 여부가 반영되어 있다", "폐기물 처리비가 포함되어 있다", "부가세 포함 여부가 적혀 있다", "변경 공사 시 정산 기준이 있다"],
+      risks: ["일식 항목이 너무 많다", "자재 사양이 없다", "수량이 없다", "단가가 없다", "별도 공사가 많다", "견적서가 너무 짧다", "구두 설명이 대부분이다", "싸긴 싼데 왜 싼지 모르겠다"]
+    },
+    {
+      title: "6. 예산 체크",
+      desc: "건축비는 공사비만이 아닙니다. 전체 예산의 그릇을 먼저 봐야 합니다.",
+      items: ["총 예산을 정했다", "토지비와 공사비를 나눠 생각했다", "설계비를 따로 생각했다", "감리비를 따로 생각했다", "인허가 비용을 생각했다", "세금과 각종 부담금을 생각했다", "철거비를 생각했다", "측량비를 생각했다", "구조검토 비용 가능성을 생각했다", "예비비를 최소 10~15% 잡았다", "대출 가능성과 자기자본을 구분했다"],
+      risks: ["공사비만 있으면 되겠지라고 생각한다", "예비비가 없다", "대출이 될지 아직 모른다", "설계비와 감리비를 공사비 안에 뭉뚱그려 생각한다", "공사비가 오르면 멈출 수밖에 없다"]
+    },
+    {
+      title: "7. 계약 전 체크",
+      desc: "계약은 감정이 아니라 문서와 범위로 해야 합니다.",
+      items: ["계약 전 도면을 충분히 확인했다", "계약 전 견적 범위를 확인했다", "계약 금액에 포함/제외 항목을 확인했다", "공사 기간을 확인했다", "지체상금 또는 지연 책임 조건을 확인했다", "변경 공사 처리 방식을 확인했다", "기성금 지급 기준을 확인했다", "하자보수 조건을 확인했다", "구두 약속을 문서로 남겼다"],
+      risks: ["이 정도는 현장에서 알아서 해요라는 말을 들었다", "일단 계약하고 조정하시죠라는 말을 들었다", "다 포함입니다라는 말만 들었다", "나중에 정산하면 됩니다라는 말만 들었다", "다른 데도 다 이렇게 합니다라는 말을 들었다"]
+    },
+    {
+      title: "8. 스페이스 오디터 신청 전 준비자료",
+      desc: "다 없어도 됩니다. 있는 것부터 보내주시면 판단이 선명해집니다.",
+      items: ["주소", "매물 링크", "현장 사진", "건축물대장", "등기부등본", "토지이용계획확인원", "기존 도면", "직접 그린 평면도", "받은 견적서", "부동산 설명 자료", "원하는 공사 내용", "예상 예산", "결정해야 하는 날짜", "가장 걱정되는 점"],
+      risks: []
+    }
+  ];
+
+  function showPanel(panelId) {
+    document.querySelectorAll(".section-panel").forEach(panel => panel.classList.remove("active"));
+    const target = document.getElementById(panelId);
+    if (target) target.classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function openChecklist() {
+    showPanel("checklist-panel");
+    trackAuditor("auditor_checklist_open");
+  }
+
+  function openTournament() {
+    showPanel("quiz-box");
+    startAuditor();
+  }
+
+  function openBoard() {
+    showPanel("community-board");
+    loadBoardMessages();
+    trackAuditor("auditor_board_open");
+  }
+
+  function makeCheckbox(label, isRisk) {
+    const id = "check_" + Math.random().toString(36).slice(2);
+    return `
+      <label class="check-item ${isRisk ? "risk-item" : ""}" for="${id}">
+        <input type="checkbox" id="${id}" class="space-check" data-risk="${isRisk ? "true" : "false"}" data-label="${escapeHtml(label)}" onchange="updateChecklistScore()" />
+        <span>${escapeHtml(label)}</span>
+      </label>
+    `;
+  }
+
+  function renderChecklist() {
+    const wrap = document.getElementById("checklist-groups");
+    if (!wrap) return;
+    wrap.innerHTML = checklistGroups.map(group => `
+      <section class="check-group">
+        <h3>${escapeHtml(group.title)}</h3>
+        <p>${escapeHtml(group.desc)}</p>
+        <div class="check-list">
+          ${group.items.map(item => makeCheckbox(item, false)).join("")}
+        </div>
+        ${group.risks.length ? `
+          <div class="risk-title">위험 신호</div>
+          <div class="check-list">
+            ${group.risks.map(item => makeCheckbox(item, true)).join("")}
+          </div>
+        ` : ""}
+      </section>
+    `).join("");
+    updateChecklistScore();
+  }
+
+  function getChecklistState() {
+    const checked = Array.from(document.querySelectorAll(".space-check:checked"));
+    const riskChecked = checked.filter(item => item.dataset.risk === "true");
+    return {
+      total: checked.length,
+      risk: riskChecked.length,
+      labels: checked.map(item => item.dataset.label || ""),
+      riskLabels: riskChecked.map(item => item.dataset.label || "")
+    };
+  }
+
+  function updateChecklistScore() {
+    const state = getChecklistState();
+    const scoreEl = document.getElementById("check-score");
+    const resultEl = document.getElementById("check-result");
+    if (!scoreEl || !resultEl) return;
+
+    scoreEl.innerText = `체크 ${state.total}개 · 위험 신호 ${state.risk}개`;
+
+    let title = "아직은 정보 수집 단계";
+    let body = "위험 신호가 0~2개라면 아직은 정보를 모으는 단계입니다. 그래도 계약, 매수, 공사 일정이 가까우면 자료를 먼저 정리해두세요.";
+    let className = "check-result safe";
+
+    if (state.risk >= 10) {
+      title = "계약·매수·공사 전 반드시 정리 필요";
+      body = "위험 신호가 10개 이상입니다. 지금은 속도를 내기보다 멈춰서 자료, 도면, 견적, 위반 가능성을 먼저 정리하는 편이 안전합니다.";
+      className = "check-result danger";
+    } else if (state.risk >= 6) {
+      title = "유료 스페이스 오디터 검토 권장";
+      body = "위험 신호가 6~9개입니다. 무료 체크리스트만으로 끝내기 어렵고, 자료 확인을 바탕으로 한 사전 판단이 필요할 가능성이 큽니다.";
+      className = "check-result danger";
+    } else if (state.risk >= 3) {
+      title = "사전 판단 권장";
+      body = "위험 신호가 3~5개입니다. 아직 공사나 계약 전이라면 지금 정리하는 것이 나중의 추가금과 분쟁을 줄이는 데 도움이 됩니다.";
+      className = "check-result";
+    }
+
+    resultEl.className = className;
+    resultEl.innerText = `${title}\n\n${body}\n\n건축이 불안한 이유는 대부분 세 가지입니다. 되는지 모르고, 얼마나 들지 모르고, 어떤 순서로 해야 할지 모르기 때문입니다.`;
+  }
+
+  function resetChecklist() {
+    document.querySelectorAll(".space-check").forEach(item => item.checked = false);
+    updateChecklistScore();
+    trackAuditor("auditor_checklist_reset");
+  }
+
+  async function submitChecklistLead() {
+    const name = document.getElementById("check-name").value.trim();
+    const email = document.getElementById("check-email").value.trim();
+    const phone = document.getElementById("check-phone").value.trim();
+    const address = document.getElementById("check-address").value.trim();
+    const fear = document.getElementById("check-fear").value.trim();
+    const memo = document.getElementById("check-memo").value.trim();
+    const consent = document.getElementById("check-consent").checked;
+    const btn = document.getElementById("check-submit-btn");
+    const status = document.getElementById("check-submit-status");
+    const state = getChecklistState();
+
+    if (!name) { alert("이름 또는 닉네임을 입력해주세요."); return; }
+    if (!email) { alert("이메일 주소를 입력해주세요."); return; }
+    if (!consent) { alert("개인정보 수집·이용 동의가 필요합니다."); return; }
+
+    const resultStatus = state.risk >= 10 ? "반드시 정리 필요" : state.risk >= 6 ? "유료 검토 권장" : state.risk >= 3 ? "사전 판단 권장" : "정보 수집 단계";
+    const memoText = [
+      `이메일: ${email}`,
+      phone ? `연락처: ${phone}` : "",
+      address ? `주소/지역/건물명: ${address}` : "",
+      `체크 개수: ${state.total}개`,
+      `위험 신호: ${state.risk}개`,
+      fear ? `가장 불안한 점: ${fear}` : "",
+      memo ? `추가 메모: ${memo}` : "",
+      state.riskLabels.length ? `체크된 위험 신호:\n- ${state.riskLabels.join("\n- ")}` : "",
+      state.labels.length ? `전체 체크 항목:\n- ${state.labels.join("\n- ")}` : ""
+    ].filter(Boolean).join("\n\n");
+
+    btn.innerText = "전송 중...";
+    btn.disabled = true;
+    status.innerText = "구글시트로 저장 중입니다...";
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({
+          source: "체크리스트",
+          name,
+          email,
+          phone,
+          memo: memoText,
+          consent: "예",
+          report_opt: "예",
+          pay_opt: state.risk >= 3 ? "예" : "아니오",
+          result_status: resultStatus,
+          result_message: `체크리스트 결과: ${resultStatus} / 위험 신호 ${state.risk}개`,
+          service_type: "스페이스 오디터 체크리스트",
+          route_text: "첫 화면 > 체크리스트 > 결과 남기기",
+          answers_json: JSON.stringify({
+            total_checked: state.total,
+            risk_count: state.risk,
+            checked_items: state.labels,
+            risk_items: state.riskLabels
+          }),
+          submitted_at: new Date().toISOString()
+        })
+      });
+
+      trackAuditor("auditor_checklist_submit", {
+        risk_count: state.risk,
+        total_checked: state.total,
+        result_status: resultStatus,
+        has_phone: phone ? "예" : "아니오",
+        has_address: address ? "예" : "아니오"
+      });
+
+      alert(`${name}님, 체크리스트 결과가 정상적으로 접수되었습니다.`);
+      status.innerText = "접수 완료";
+      btn.innerText = "접수 완료";
+    } catch (error) {
+      alert("접수 중 오류가 발생했습니다. 다시 시도해주세요.");
+      status.innerText = "접수 실패";
+      btn.innerText = "체크리스트 결과 남기기";
+      btn.disabled = false;
+    }
+  }
+
+  renderChecklist();
+  showPanel("home-panel");
 </script>
 </body>
 </html>
