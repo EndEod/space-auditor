@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<!-- Google tag (gtag.js) / Space Auditor -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8GREDF8L7"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -123,6 +122,26 @@
     word-break: keep-all;
   }
 
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-top: 24px;
+    box-shadow: var(--shadow-sm);
+    background: #000;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
   .hero-note {
     margin-top: 20px;
     padding: 16px 18px;
@@ -134,18 +153,50 @@
     font-weight: 650;
   }
 
-  .menu-grid {
+  .primary-action-card {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 34px 24px;
+    border-radius: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 12px 28px rgba(35, 49, 66, 0.15);
+    margin-bottom: 16px;
+  }
+  
+  .primary-action-card:hover {
+    transform: translateY(-4px);
+    background: var(--primary-dark);
+  }
+  
+  .primary-action-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.45rem;
+    color: #fff;
+    letter-spacing: -0.03em;
+    word-break: keep-all;
+  }
+  
+  .primary-action-card p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+  }
+
+  .secondary-actions {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
-    margin: 20px 0 24px;
+    margin-bottom: 24px;
   }
 
   .menu-card {
     padding: 24px;
     cursor: pointer;
     transition: all 0.22s ease;
-    min-height: 215px;
+    min-height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -185,13 +236,6 @@
     word-break: keep-all;
   }
 
-  .menu-action {
-    margin-top: 18px;
-    color: var(--primary-color);
-    font-size: 0.9rem;
-    font-weight: 850;
-  }
-
   .info-strip {
     padding: 18px 20px;
     margin-bottom: 26px;
@@ -204,33 +248,10 @@
   .section-panel { display: none; }
   .section-panel.active { display: block; animation: fadeIn 0.35s ease; }
 
-  .panel-head {
-    text-align: center;
-    margin-bottom: 24px;
-  }
-
-  .panel-label {
-    font-size: 0.8rem;
-    color: var(--accent-color);
-    letter-spacing: 0.15em;
-    font-weight: 850;
-    margin-bottom: 8px;
-  }
-
-  .panel-title {
-    margin: 0 0 8px;
-    color: var(--primary-color);
-    font-size: 1.52rem;
-    letter-spacing: -0.04em;
-    line-height: 1.35;
-  }
-
-  .panel-desc {
-    margin: 0;
-    color: var(--sub-text);
-    font-size: 0.98rem;
-    word-break: keep-all;
-  }
+  .panel-head { text-align: center; margin-bottom: 24px; }
+  .panel-label { font-size: 0.8rem; color: var(--accent-color); letter-spacing: 0.15em; font-weight: 850; margin-bottom: 8px; }
+  .panel-title { margin: 0 0 8px; color: var(--primary-color); font-size: 1.52rem; letter-spacing: -0.04em; line-height: 1.35; }
+  .panel-desc { margin: 0; color: var(--sub-text); font-size: 0.98rem; word-break: keep-all; }
 
   .checklist-card { padding: 34px 30px; margin-bottom: 48px; border-top: 4px solid var(--primary-color); }
 
@@ -267,13 +288,7 @@
     background: #fff;
   }
 
-  .check-group h3 {
-    margin: 0 0 6px;
-    font-size: 1.05rem;
-    color: var(--primary-color);
-    letter-spacing: -0.02em;
-  }
-
+  .check-group h3 { margin: 0 0 6px; font-size: 1.05rem; color: var(--primary-color); letter-spacing: -0.02em; }
   .check-group p { margin: 0 0 12px; color: var(--sub-text); font-size: 0.9rem; }
 
   .check-list {
@@ -320,17 +335,8 @@
     white-space: pre-wrap;
   }
 
-  .check-result.safe {
-    background: var(--success-bg);
-    border-color: var(--success-border);
-    color: #2b4535;
-  }
-
-  .check-result.danger {
-    background: var(--danger-bg);
-    border-color: var(--danger-border);
-    color: #62352f;
-  }
+  .check-result.safe { background: var(--success-bg); border-color: var(--success-border); color: #2b4535; }
+  .check-result.danger { background: var(--danger-bg); border-color: var(--danger-border); color: #62352f; }
 
   .lead-box {
     margin-top: 22px;
@@ -464,8 +470,6 @@
   .board-mini-btn { border: 1px solid var(--border-color); background: #fafafa; color: var(--sub-text); border-radius: 7px; padding: 7px 10px; font-size: 0.82rem; cursor: pointer; }
   .board-mini-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
 
-
-
   .contact-footer {
     margin: 28px 0 10px;
     padding: 26px 24px;
@@ -573,7 +577,7 @@
   @media (max-width: 760px) {
     body { padding: 16px; }
     .top-mini { flex-direction: column; align-items: stretch; }
-    .menu-grid, .form-grid, .check-list, .board-form-row { grid-template-columns: 1fr; }
+    .secondary-actions, .form-grid, .check-list, .board-form-row { grid-template-columns: 1fr; }
     .hero-card { padding: 34px 22px; }
     .checklist-card, .auditor-card, .board-card { padding: 28px 20px; }
     .menu-card { min-height: auto; }
@@ -595,43 +599,45 @@
   <section class="section-panel active" id="home-panel">
     <section class="hero-card">
       <div class="eyebrow">SPACE AUDITOR</div>
-      <h1 class="hero-title">건축 시작 전,<br>내 돈 새는 구멍부터 봅니다.</h1>
+      <h1 class="hero-title">설계사가 다 알아서 한다는 말,<br>진짜 믿어도 될까요?</h1>
       <p class="hero-desc">
-        설계 전에. 시공 전에. 계약 전에. 매수 전에.<br>
-        스페이스 오디터는 도면, 견적, 위반 가능성, 예산 리스크를 먼저 정리하는 건축 전 사전판단 입구입니다.
+        까막눈이라 불안한 예비 건축주를 위해, 도면 뒤에 숨은 위험과 비용 리스크를 스페이스 오디터가 대신 번역해 드립니다.
       </p>
+      
+      <div class="video-container">
+        <iframe src="https://drive.google.com/file/d/1sWVNqf33Mz_ivkAng8wyvEcMG-XpCqfN/preview" allow="autoplay"></iframe>
+      </div>
+
       <div class="hero-note">
         지금은 긴 설명보다 <strong>내 상황에 맞는 첫 번째 문</strong>만 고르면 됩니다. 가볍게 체크하거나, 깊게 진단하거나, 질문을 남겨보세요.
       </div>
     </section>
 
-    <section class="menu-grid" aria-label="스페이스 오디터 메뉴">
-      <article class="menu-card" onclick="openChecklist()">
-        <div>
-          <div class="menu-number">01</div>
-          <h2>체크리스트</h2>
-          <p>내 집, 내 땅, 내 건물의 위험 신호를 먼저 표시해 봅니다. 무료 자가점검용 입구입니다.</p>
-        </div>
-        <div class="menu-action">체크리스트 시작하기 →</div>
-      </article>
+    <section aria-label="스페이스 오디터 메뉴">
+      <div class="primary-action-card" onclick="openChecklist()">
+        <h2>내 도면/견적서, 지금 안전한 상태일까?</h2>
+        <p>무료 1분 자가점검 시작하기 →</p>
+      </div>
 
-      <article class="menu-card" onclick="openTournament()">
-        <div>
-          <div class="menu-number">02</div>
-          <h2>진단 토너먼트</h2>
-          <p>위반건축물, 매수 전, 리모델링 전, 도면·견적 오디트를 분기형 질문으로 확인합니다.</p>
-        </div>
-        <div class="menu-action">토너먼트 진단하기 →</div>
-      </article>
+      <div class="secondary-actions">
+        <article class="menu-card" onclick="openTournament()">
+          <div>
+            <div class="menu-number">02</div>
+            <h2>진단 토너먼트</h2>
+            <p>위반건축물, 매수 전, 리모델링 전, 도면·견적 오디트를 분기형 질문으로 확인합니다.</p>
+          </div>
+          <div class="menu-action">토너먼트 진단하기 →</div>
+        </article>
 
-      <article class="menu-card" onclick="openBoard()">
-        <div>
-          <div class="menu-number">03</div>
-          <h2>소통창</h2>
-          <p>회원가입 없이 닉네임으로 사전 질문을 남깁니다. 공개 글이므로 개인정보는 쓰지 마세요.</p>
-        </div>
-        <div class="menu-action">질문 남기기 →</div>
-      </article>
+        <article class="menu-card" onclick="openBoard()">
+          <div>
+            <div class="menu-number">03</div>
+            <h2>소통창</h2>
+            <p>회원가입 없이 닉네임으로 사전 질문을 남깁니다. 공개 글이므로 개인정보는 쓰지 마세요.</p>
+          </div>
+          <div class="menu-action">질문 남기기 →</div>
+        </article>
+      </div>
     </section>
 
     <div class="info-strip">
@@ -754,7 +760,6 @@
     </div>
   </section>
 
-
   <footer class="contact-footer" aria-label="여기건축사사무소 연락처">
     <div class="contact-footer-inner">
       <div>
@@ -808,26 +813,10 @@
       step: 1,
       question: "지금 무엇을 먼저 점검하고 싶으신가요?",
       options: [
-        {
-          text: "위반건축물 가능성 / 특정건축물 특례법 검토",
-          next: "violation_main",
-          record: { key: "검토유형", value: "위반건축물/양성화 검토" }
-        },
-        {
-          text: "매수 전 사전판단",
-          next: "prepurchase_type",
-          record: { key: "검토유형", value: "매수 전 사전판단" }
-        },
-        {
-          text: "리모델링 전 사전판단",
-          next: "remodel_type",
-          record: { key: "검토유형", value: "리모델링 전 사전판단" }
-        },
-        {
-          text: "도면·견적 오디트",
-          next: "audit_materials",
-          record: { key: "검토유형", value: "도면·견적 오디트" }
-        }
+        { text: "위반건축물 가능성 / 특정건축물 특례법 검토", next: "violation_main", record: { key: "검토유형", value: "위반건축물/양성화 검토" } },
+        { text: "매수 전 사전판단", next: "prepurchase_type", record: { key: "검토유형", value: "매수 전 사전판단" } },
+        { text: "리모델링 전 사전판단", next: "remodel_type", record: { key: "검토유형", value: "리모델링 전 사전판단" } },
+        { text: "도면·견적 오디트", next: "audit_materials", record: { key: "검토유형", value: "도면·견적 오디트" } }
       ]
     },
 
@@ -835,42 +824,9 @@
       step: 2,
       question: "매수 전 어떤 건물을 보고 계신가요?",
       options: [
-        {
-          text: "주택",
-          next: "prepurchase_result",
-          record: { key: "건물유형", value: "주택" },
-          action: () => {
-            setResult(
-              "사전판단",
-              "매수 전 주택 사전판단 요청",
-              "매수 전 사전판단"
-            );
-          }
-        },
-        {
-          text: "비주택",
-          next: "prepurchase_result",
-          record: { key: "건물유형", value: "비주택" },
-          action: () => {
-            setResult(
-              "사전판단",
-              "매수 전 비주택 사전판단 요청",
-              "매수 전 사전판단"
-            );
-          }
-        },
-        {
-          text: "주택+근생이 섞인 건물",
-          next: "prepurchase_result",
-          record: { key: "건물유형", value: "주택+근생 혼합" },
-          action: () => {
-            setResult(
-              "사전판단",
-              "매수 전 혼합용도 건물 사전판단 요청",
-              "매수 전 사전판단"
-            );
-          }
-        }
+        { text: "주택", next: "prepurchase_result", record: { key: "건물유형", value: "주택" }, action: () => { setResult("사전판단", "매수 전 주택 사전판단 요청", "매수 전 사전판단"); } },
+        { text: "비주택", next: "prepurchase_result", record: { key: "건물유형", value: "비주택" }, action: () => { setResult("사전판단", "매수 전 비주택 사전판단 요청", "매수 전 사전판단"); } },
+        { text: "주택+근생이 섞인 건물", next: "prepurchase_result", record: { key: "건물유형", value: "주택+근생 혼합" }, action: () => { setResult("사전판단", "매수 전 혼합용도 건물 사전판단 요청", "매수 전 사전판단"); } }
       ]
     },
 
@@ -881,26 +837,9 @@
       resultTitle: "매수 전 사전판단 권장",
       resultText: "겉모습이 괜찮아 보여도 위반 상태, 공사 가능성, 예상보다 커질 비용 구간은 따로 존재할 수 있습니다.\n계약 전 자료를 먼저 검토하는 편이 안전합니다.",
       options: [
-        {
-          text: "유료 PDF 사전판단 안내 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상담 요청",
-          next: "input_form",
-          action: () => {
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 사전판단 안내 받고 연락처 남기기", next: "input_form", action: () => { surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상담 요청", next: "input_form", action: () => { surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -908,28 +847,9 @@
       step: 2,
       question: "리모델링 전 현재 가장 가깝게 느끼는 상황은 무엇인가요?",
       options: [
-        {
-          text: "이 건물, 지금 공사해도 되는지부터 불안하다",
-          next: "remodel_result",
-          record: { key: "리모델링고민", value: "공사 가능 여부" },
-          action: () => {
-            setResult(
-              "사전판단",
-              "리모델링 전 공사 가능 여부 사전판단 요청",
-              "리모델링 전 사전판단"
-            );
-          }
-        },
-        {
-          text: "위반건축물이나 법적 지뢰가 걱정된다",
-          next: "violation_main",
-          record: { key: "리모델링고민", value: "법적 리스크" }
-        },
-        {
-          text: "견적이 커질까 봐 두렵다",
-          next: "audit_materials",
-          record: { key: "리모델링고민", value: "견적 리스크" }
-        }
+        { text: "이 건물, 지금 공사해도 되는지부터 불안하다", next: "remodel_result", record: { key: "리모델링고민", value: "공사 가능 여부" }, action: () => { setResult("사전판단", "리모델링 전 공사 가능 여부 사전판단 요청", "리모델링 전 사전판단"); } },
+        { text: "위반건축물이나 법적 지뢰가 걱정된다", next: "violation_main", record: { key: "리모델링고민", value: "법적 리스크" } },
+        { text: "견적이 커질까 봐 두렵다", next: "audit_materials", record: { key: "리모델링고민", value: "견적 리스크" } }
       ]
     },
 
@@ -940,26 +860,9 @@
       resultTitle: "리모델링 전 사전판단 권장",
       resultText: "철거나 공사 시작 전에 법적 제한 요소, 구조적 위험, 예산 폭주 구간을 먼저 보는 편이 안전합니다.",
       options: [
-        {
-          text: "유료 PDF 사전판단 안내 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상담 요청",
-          next: "input_form",
-          action: () => {
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 사전판단 안내 받고 연락처 남기기", next: "input_form", action: () => { surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상담 요청", next: "input_form", action: () => { surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -967,26 +870,10 @@
       step: 2,
       question: "현재 어느 자료까지 확보하고 계신가요?",
       options: [
-        {
-          text: "도면도 있고, 견적서도 있다",
-          next: "audit_result_full",
-          record: { key: "자료수준", value: "도면+견적 확보" }
-        },
-        {
-          text: "도면만 있다",
-          next: "audit_result_drawing",
-          record: { key: "자료수준", value: "도면만 확보" }
-        },
-        {
-          text: "견적서만 있다",
-          next: "audit_result_quote",
-          record: { key: "자료수준", value: "견적만 확보" }
-        },
-        {
-          text: "아직 자료는 부족하고 먼저 방향부터 알고 싶다",
-          next: "audit_result_light",
-          record: { key: "자료수준", value: "자료 부족" }
-        }
+        { text: "도면도 있고, 견적서도 있다", next: "audit_result_full", record: { key: "자료수준", value: "도면+견적 확보" } },
+        { text: "도면만 있다", next: "audit_result_drawing", record: { key: "자료수준", value: "도면만 확보" } },
+        { text: "견적서만 있다", next: "audit_result_quote", record: { key: "자료수준", value: "견적만 확보" } },
+        { text: "아직 자료는 부족하고 먼저 방향부터 알고 싶다", next: "audit_result_light", record: { key: "자료수준", value: "자료 부족" } }
       ]
     },
 
@@ -997,28 +884,9 @@
       resultTitle: "도면+견적 통합 오디트 추천",
       resultText: "추가금 위험, 누락, 과다 산정, 재시공 가능성을 함께 보기에 좋은 상태입니다.\n지금은 계약 전에 한 번 정리하기 가장 좋은 구간입니다.",
       options: [
-        {
-          text: "유료 PDF 오디트 안내 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("오디트", "도면+견적 통합 오디트 요청", "도면+견적 통합 오디트");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("오디트", "도면+견적 통합 오디트 상담 요청", "도면+견적 통합 오디트");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 오디트 안내 받고 연락처 남기기", next: "input_form", action: () => { setResult("오디트", "도면+견적 통합 오디트 요청", "도면+견적 통합 오디트"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상담 요청", next: "input_form", action: () => { setResult("오디트", "도면+견적 통합 오디트 상담 요청", "도면+견적 통합 오디트"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1029,28 +897,9 @@
       resultTitle: "도면 오디트 추천",
       resultText: "현장에서 안 맞을 수 있는 부분, 죽은 공간, 재시공 가능성이 높은 포인트를 먼저 정리해 두는 편이 좋습니다.",
       options: [
-        {
-          text: "유료 PDF 오디트 안내 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("오디트", "도면 오디트 요청", "도면 오디트");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("오디트", "도면 오디트 상담 요청", "도면 오디트");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 오디트 안내 받고 연락처 남기기", next: "input_form", action: () => { setResult("오디트", "도면 오디트 요청", "도면 오디트"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상담 요청", next: "input_form", action: () => { setResult("오디트", "도면 오디트 상담 요청", "도면 오디트"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1061,28 +910,9 @@
       resultTitle: "견적 오디트 추천",
       resultText: "가격이 너무 싸거나 너무 애매한 견적서는 나중에 추가금 파티로 이어질 수 있습니다.\n지금은 숨은 항목을 먼저 읽어볼 시점입니다.",
       options: [
-        {
-          text: "유료 PDF 오디트 안내 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("오디트", "견적 오디트 요청", "견적 오디트");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("오디트", "견적 오디트 상담 요청", "견적 오디트");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 오디트 안내 받고 연락처 남기기", next: "input_form", action: () => { setResult("오디트", "견적 오디트 요청", "견적 오디트"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상담 요청", next: "input_form", action: () => { setResult("오디트", "견적 오디트 상담 요청", "견적 오디트"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1093,28 +923,9 @@
       resultTitle: "사전 진단 리포트 추천",
       resultText: "무엇을 먼저 준비해야 하는지, 도면·견적 없이도 지금 볼 수 있는 위험이 무엇인지 먼저 정리할 수 있습니다.",
       options: [
-        {
-          text: "유료 PDF 사전진단 안내 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("사전진단", "자료 부족 상태 사전진단 요청", "사전 진단 1차 리포트");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("사전진단", "자료 부족 상태 상담 요청", "사전 진단 1차 리포트");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 사전진단 안내 받고 연락처 남기기", next: "input_form", action: () => { setResult("사전진단", "자료 부족 상태 사전진단 요청", "사전 진단 1차 리포트"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상담 요청", next: "input_form", action: () => { setResult("사전진단", "자료 부족 상태 상담 요청", "사전 진단 1차 리포트"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1122,16 +933,8 @@
       step: 2,
       question: "위반건축물 중 어디에 해당하시나요?",
       options: [
-        {
-          text: "특정건축물 정리에 관한 특별조치법 대상 검토 (소규모주택)",
-          next: "house_category",
-          record: { key: "위반유형", value: "특정건축물 특례법 대상 검토" }
-        },
-        {
-          text: "그 외 일반 위반건축물",
-          next: "violation_other_use",
-          record: { key: "위반유형", value: "일반 위반건축물" }
-        }
+        { text: "특정건축물 정리에 관한 특별조치법 대상 검토 (소규모주택)", next: "house_category", record: { key: "위반유형", value: "특정건축물 특례법 대상 검토" } },
+        { text: "그 외 일반 위반건축물", next: "violation_other_use", record: { key: "위반유형", value: "일반 위반건축물" } }
       ]
     },
 
@@ -1139,16 +942,8 @@
       step: 3,
       question: "일반 위반건축물의 주된 용도를 선택해주세요.",
       options: [
-        {
-          text: "주택",
-          next: "result_violation_other_house",
-          record: { key: "용도", value: "주택" }
-        },
-        {
-          text: "비주택",
-          next: "result_violation_other_nonhouse",
-          record: { key: "용도", value: "비주택" }
-        }
+        { text: "주택", next: "result_violation_other_house", record: { key: "용도", value: "주택" } },
+        { text: "비주택", next: "result_violation_other_nonhouse", record: { key: "용도", value: "비주택" } }
       ]
     },
 
@@ -1156,21 +951,9 @@
       step: 3,
       question: "대상 주택의 종류를 선택해주세요.",
       options: [
-        {
-          text: "공동주택 (다세대, 연립, 아파트 등)",
-          next: "multi_family",
-          record: { key: "주택종류", value: "공동주택" }
-        },
-        {
-          text: "단독주택 (단독, 다가구)",
-          next: "single_family_type",
-          record: { key: "주택종류", value: "단독주택 계열" }
-        },
-        {
-          text: "근생주택",
-          next: "result_geunsaeng",
-          record: { key: "주택종류", value: "근생주택" }
-        }
+        { text: "공동주택 (다세대, 연립, 아파트 등)", next: "multi_family", record: { key: "주택종류", value: "공동주택" } },
+        { text: "단독주택 (단독, 다가구)", next: "single_family_type", record: { key: "주택종류", value: "단독주택 계열" } },
+        { text: "근생주택", next: "result_geunsaeng", record: { key: "주택종류", value: "근생주택" } }
       ]
     },
 
@@ -1178,16 +961,8 @@
       step: 4,
       question: "공동주택의 면적은 어떻게 되나요?",
       options: [
-        {
-          text: "85㎡ 미만",
-          next: "result_multi_ok",
-          record: { key: "면적조건", value: "85㎡ 미만" }
-        },
-        {
-          text: "85㎡ 이상",
-          next: "result_multi_no",
-          record: { key: "면적조건", value: "85㎡ 이상" }
-        }
+        { text: "85㎡ 미만", next: "result_multi_ok", record: { key: "면적조건", value: "85㎡ 미만" } },
+        { text: "85㎡ 이상", next: "result_multi_no", record: { key: "면적조건", value: "85㎡ 이상" } }
       ]
     },
 
@@ -1195,16 +970,8 @@
       step: 4,
       question: "단독주택의 세부 유형을 선택해주세요.",
       options: [
-        {
-          text: "단독주택",
-          next: "single_size",
-          record: { key: "세부유형", value: "단독주택" }
-        },
-        {
-          text: "다가구주택",
-          next: "dagagu_size",
-          record: { key: "세부유형", value: "다가구주택" }
-        }
+        { text: "단독주택", next: "single_size", record: { key: "세부유형", value: "단독주택" } },
+        { text: "다가구주택", next: "dagagu_size", record: { key: "세부유형", value: "다가구주택" } }
       ]
     },
 
@@ -1212,16 +979,8 @@
       step: 5,
       question: "단독주택의 면적은 어떻게 되나요?",
       options: [
-        {
-          text: "165㎡ 이하",
-          next: "result_single_ok",
-          record: { key: "면적조건", value: "165㎡ 이하" }
-        },
-        {
-          text: "165㎡ 초과",
-          next: "result_single_no",
-          record: { key: "면적조건", value: "165㎡ 초과" }
-        }
+        { text: "165㎡ 이하", next: "result_single_ok", record: { key: "면적조건", value: "165㎡ 이하" } },
+        { text: "165㎡ 초과", next: "result_single_no", record: { key: "면적조건", value: "165㎡ 초과" } }
       ]
     },
 
@@ -1229,21 +988,9 @@
       step: 5,
       question: "다가구주택의 면적은 어떻게 되나요?",
       options: [
-        {
-          text: "330㎡ 이하",
-          next: "result_dagagu_ok_small",
-          record: { key: "면적조건", value: "330㎡ 이하" }
-        },
-        {
-          text: "330㎡ 초과 ~ 660㎡ 이하",
-          next: "result_dagagu_ok_mid",
-          record: { key: "면적조건", value: "330㎡ 초과 ~ 660㎡ 이하" }
-        },
-        {
-          text: "660㎡ 초과",
-          next: "result_single_no",
-          record: { key: "면적조건", value: "660㎡ 초과" }
-        }
+        { text: "330㎡ 이하", next: "result_dagagu_ok_small", record: { key: "면적조건", value: "330㎡ 이하" } },
+        { text: "330㎡ 초과 ~ 660㎡ 이하", next: "result_dagagu_ok_mid", record: { key: "면적조건", value: "330㎡ 초과 ~ 660㎡ 이하" } },
+        { text: "660㎡ 초과", next: "result_single_no", record: { key: "면적조건", value: "660㎡ 초과" } }
       ]
     },
 
@@ -1254,28 +1001,9 @@
       resultTitle: "개별 검토 권장",
       resultText: "일반 위반건축물은 발생 시점, 증축 형태, 용도 변화, 기존 도면 여부에 따라 결론이 크게 달라질 수 있습니다.\n자동 분기보다 개별 사전 판단이 맞습니다.",
       options: [
-        {
-          text: "유료 PDF 사전판단 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("개별검토", "일반 위반건축물(주택) 사전판단 요청", "일반 위반건축물 주택 PDF");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상세 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("개별검토", "일반 위반건축물(주택) 상담 요청", "일반 위반건축물 주택 상담");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 사전판단 받고 연락처 남기기", next: "input_form", action: () => { setResult("개별검토", "일반 위반건축물(주택) 사전판단 요청", "일반 위반건축물 주택 PDF"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상세 상담 요청", next: "input_form", action: () => { setResult("개별검토", "일반 위반건축물(주택) 상담 요청", "일반 위반건축물 주택 상담"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1286,28 +1014,9 @@
       resultTitle: "개별 검토 권장",
       resultText: "비주택 위반건축물은 용도와 규모, 구조, 현황 상태에 따라 판단 포인트가 많이 달라집니다.\n개별 자료 검토 후 방향을 잡는 편이 안전합니다.",
       options: [
-        {
-          text: "유료 PDF 사전판단 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("개별검토", "일반 위반건축물(비주택) 사전판단 요청", "일반 위반건축물 비주택 PDF");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상세 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("개별검토", "일반 위반건축물(비주택) 상담 요청", "일반 위반건축물 비주택 상담");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 사전판단 받고 연락처 남기기", next: "input_form", action: () => { setResult("개별검토", "일반 위반건축물(비주택) 사전판단 요청", "일반 위반건축물 비주택 PDF"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상세 상담 요청", next: "input_form", action: () => { setResult("개별검토", "일반 위반건축물(비주택) 상담 요청", "일반 위반건축물 비주택 상담"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1318,28 +1027,9 @@
       resultTitle: "별도 검토 대상",
       resultText: "근생주택은 주택과 비주택 요소가 함께 얽히는 경우가 많아 단순 자동 분기보다 자료 확인이 먼저 필요합니다.",
       options: [
-        {
-          text: "유료 PDF 사전판단 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("별도검토", "근생주택 사전판단 요청", "근생주택 PDF");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("별도검토", "근생주택 상담 요청", "근생주택 상담");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 사전판단 받고 연락처 남기기", next: "input_form", action: () => { setResult("별도검토", "근생주택 사전판단 요청", "근생주택 PDF"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상담 요청", next: "input_form", action: () => { setResult("별도검토", "근생주택 상담 요청", "근생주택 상담"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1350,28 +1040,9 @@
       resultTitle: "대상 검토 가능",
       resultText: "공동주택 85㎡ 미만 조건으로 1차 자동 분기상 검토 가능성이 있습니다.\n정확한 결론은 실제 현황, 도면, 위반 형태를 함께 확인해야 합니다.",
       options: [
-        {
-          text: "유료 PDF 리포트 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("검토가능", "공동주택 85㎡ 미만, 특례법 대상 검토 가능성", "특정건축물 특례법 PDF");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상세 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("검토가능", "공동주택 85㎡ 미만, 특례법 대상 검토 가능성", "특정건축물 특례법 상담");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 리포트 받고 연락처 남기기", next: "input_form", action: () => { setResult("검토가능", "공동주택 85㎡ 미만, 특례법 대상 검토 가능성", "특정건축물 특례법 PDF"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상세 상담 요청", next: "input_form", action: () => { setResult("검토가능", "공동주택 85㎡ 미만, 특례법 대상 검토 가능성", "특정건축물 특례법 상담"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1382,28 +1053,9 @@
       resultTitle: "자동 대상 아님",
       resultText: "자동 분기 기준에서는 대상에서 벗어나지만, 실제 검토 포인트가 남아 있을 수 있습니다.\n자료를 보면 별도 방향을 잡을 수 있습니다.",
       options: [
-        {
-          text: "유료 PDF 사전판단 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("자동대상아님", "공동주택 85㎡ 이상, 별도 검토 요청", "공동주택 별도검토 PDF");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("자동대상아님", "공동주택 85㎡ 이상, 별도 상담 요청", "공동주택 별도검토 상담");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 사전판단 받고 연락처 남기기", next: "input_form", action: () => { setResult("자동대상아님", "공동주택 85㎡ 이상, 별도 검토 요청", "공동주택 별도검토 PDF"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상담 요청", next: "input_form", action: () => { setResult("자동대상아님", "공동주택 85㎡ 이상, 별도 상담 요청", "공동주택 별도검토 상담"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1414,28 +1066,9 @@
       resultTitle: "대상 검토 가능",
       resultText: "단독주택 165㎡ 이하 조건으로 1차 자동 분기상 검토 가능성이 있습니다.\n실제 현황과 위반 형태 확인이 최종 판단의 핵심입니다.",
       options: [
-        {
-          text: "유료 PDF 리포트 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("검토가능", "단독주택 165㎡ 이하, 특례법 대상 검토 가능성", "단독주택 특례법 PDF");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상세 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("검토가능", "단독주택 165㎡ 이하, 특례법 대상 검토 가능성", "단독주택 특례법 상담");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 리포트 받고 연락처 남기기", next: "input_form", action: () => { setResult("검토가능", "단독주택 165㎡ 이하, 특례법 대상 검토 가능성", "단독주택 특례법 PDF"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상세 상담 요청", next: "input_form", action: () => { setResult("검토가능", "단독주택 165㎡ 이하, 특례법 대상 검토 가능성", "단독주택 특례법 상담"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1446,28 +1079,9 @@
       resultTitle: "자동 대상 아님",
       resultText: "면적 조건상 자동 분기 대상에서는 벗어났습니다.\n하지만 실제 판단은 현황 자료와 위반 내용에 따라 달라질 수 있어 개별 검토가 필요할 수 있습니다.",
       options: [
-        {
-          text: "유료 PDF 사전판단 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("자동대상아님", "면적 조건으로 자동 대상 아님, 별도 검토 요청", "별도검토 PDF");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("자동대상아님", "면적 조건으로 자동 대상 아님, 별도 상담 요청", "별도검토 상담");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 사전판단 받고 연락처 남기기", next: "input_form", action: () => { setResult("자동대상아님", "면적 조건으로 자동 대상 아님, 별도 검토 요청", "별도검토 PDF"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상담 요청", next: "input_form", action: () => { setResult("자동대상아님", "면적 조건으로 자동 대상 아님, 별도 상담 요청", "별도검토 상담"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1478,28 +1092,9 @@
       resultTitle: "대상 검토 가능",
       resultText: "다가구주택 330㎡ 이하 조건으로 1차 자동 분기상 검토 가능성이 있습니다.\n실제 판단은 도면과 현황 확인이 함께 필요합니다.",
       options: [
-        {
-          text: "유료 PDF 리포트 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("검토가능", "다가구주택 330㎡ 이하, 특례법 대상 검토 가능성", "다가구주택 특례법 PDF");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상세 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("검토가능", "다가구주택 330㎡ 이하, 특례법 대상 검토 가능성", "다가구주택 특례법 상담");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 리포트 받고 연락처 남기기", next: "input_form", action: () => { setResult("검토가능", "다가구주택 330㎡ 이하, 특례법 대상 검토 가능성", "다가구주택 특례법 PDF"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상세 상담 요청", next: "input_form", action: () => { setResult("검토가능", "다가구주택 330㎡ 이하, 특례법 대상 검토 가능성", "다가구주택 특례법 상담"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1510,28 +1105,9 @@
       resultTitle: "대상 검토 가능",
       resultText: "다가구주택 330㎡ 초과 ~ 660㎡ 이하 조건으로 1차 자동 분기상 검토 가능성이 있습니다.\n정확한 결론은 실제 위반 형태와 현황 자료 확인이 필요합니다.",
       options: [
-        {
-          text: "유료 PDF 리포트 받고 연락처 남기기",
-          next: "input_form",
-          action: () => {
-            setResult("검토가능", "다가구주택 330㎡ 초과 ~ 660㎡ 이하, 특례법 대상 검토 가능성", "다가구주택 특례법 PDF");
-            surveyData.report_opt = "예";
-            surveyData.pay_opt = "예";
-          }
-        },
-        {
-          text: "연락처만 남기고 상세 상담 요청",
-          next: "input_form",
-          action: () => {
-            setResult("검토가능", "다가구주택 330㎡ 초과 ~ 660㎡ 이하, 특례법 대상 검토 가능성", "다가구주택 특례법 상담");
-            surveyData.report_opt = "아니오";
-            surveyData.pay_opt = "아니오";
-          }
-        },
-        {
-          text: "아니오, 여기까지 볼게요",
-          next: "end_bye"
-        }
+        { text: "유료 PDF 리포트 받고 연락처 남기기", next: "input_form", action: () => { setResult("검토가능", "다가구주택 330㎡ 초과 ~ 660㎡ 이하, 특례법 대상 검토 가능성", "다가구주택 특례법 PDF"); surveyData.report_opt = "예"; surveyData.pay_opt = "예"; } },
+        { text: "연락처만 남기고 상세 상담 요청", next: "input_form", action: () => { setResult("검토가능", "다가구주택 330㎡ 초과 ~ 660㎡ 이하, 특례법 대상 검토 가능성", "다가구주택 특례법 상담"); surveyData.report_opt = "아니오"; surveyData.pay_opt = "아니오"; } },
+        { text: "아니오, 여기까지 볼게요", next: "end_bye" }
       ]
     },
 
@@ -1830,8 +1406,6 @@
     renderNode("start");
   }
 
-
-
   /* 고객 소통창구: GitHub Pages + Google Apps Script + Google Sheet 방식 */
   function escapeHtml(value) {
     return String(value || "")
@@ -2051,9 +1625,6 @@
 
     setTimeout(loadBoardMessages, 900);
   }
-
-
-
 
   const checklistGroups = [
     {
