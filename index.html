@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Space Auditor 통합본: 동영상 첫 화면 + 체크리스트 + 진단 토너먼트 + 소통창 + 구글시트/GA4 유지 -->
+<!-- Space Auditor 통합본: 스타트 맵 오디트 예시 영상 + 체크리스트 + 진단 토너먼트 + 소통창 + 구글시트/GA4 유지 -->
 <html lang="ko">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8GREDF8L7"></script>
@@ -141,6 +141,28 @@
     width: 100%;
     height: 100%;
     border: 0;
+  }
+
+  .video-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    font-size: 0.84rem;
+    font-weight: 850;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .video-caption {
+    margin: 12px 0 0;
+    color: var(--sub-text);
+    font-size: 0.92rem;
+    word-break: keep-all;
   }
 
   .hero-note {
@@ -607,13 +629,23 @@
         프로젝트가 꼬이지 않도록 돕는 시스템 오디터입니다.
       </p>
       
+      <div class="video-label">스타트 맵 오디트 5페이지 예시 영상</div>
+      <p class="video-caption">
+        실제 보고서가 어떻게 정리되는지 먼저 보세요. 가능성, 리스크, 대략 비용, 전체 일정 흐름을 한 장면씩 확인할 수 있습니다.
+      </p>
       <div class="video-container">
-        <iframe src="https://drive.google.com/file/d/1sWVNqf33Mz_ivkAng8wyvEcMG-XpCqfN/preview" allow="autoplay"></iframe>
+        <iframe
+          src="https://drive.google.com/file/d/1ubrhe9SSsiYLvO3D2qf6H8v0m5E9QyNj/preview"
+          allow="autoplay; encrypted-media; fullscreen"
+          allowfullscreen
+          loading="lazy"
+          title="스페이스 오디터 스타트 맵 오디트 예시 영상">
+        </iframe>
       </div>
 
       <div class="hero-note">
         사전 판단 레포트는<br>
-        <strong>건축주가 처음 손에 쥐는 프로젝트의 지도</strong>입니다.
+        <strong>건축주가 처음 손에 쥐는 프로젝트의 지도</strong>입니다.<br>아래 체크리스트와 진단 토너먼트로 내 상황을 먼저 가볍게 확인해보세요.
       </div>
     </section>
 
