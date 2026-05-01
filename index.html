@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Space Auditor 통합본: 스타트 맵 오디트 예시 영상 + 체크리스트 + 진단 토너먼트 + 소통창 + 구글시트/GA4 유지 -->
+<!-- Space Auditor 통합본: 유튜브 홍보 영상 + 스타트 맵 오디트 예시 이미지 + 체크리스트 + 진단 토너먼트 + 소통창 + 구글시트/GA4 유지 -->
 <html lang="ko">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8GREDF8L7"></script>
@@ -165,6 +165,52 @@
     word-break: keep-all;
   }
 
+  .video-container.hero-video {
+    background: #0f1720;
+  }
+
+  .hero-video-links {
+    margin-top: 12px;
+    font-size: 0.92rem;
+  }
+
+  .hero-video-links a {
+    color: var(--primary-color);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .hero-video-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .example-gif-card {
+    margin: 18px 0 0;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .example-gif-card img {
+    display: block;
+    width: 100%;
+    max-height: 620px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #111;
+  }
+
+  .example-gif-card figcaption {
+    margin-top: 10px;
+    color: var(--sub-text);
+    font-size: 0.86rem;
+    line-height: 1.55;
+    word-break: keep-all;
+  }
+
   .hero-note {
     margin-top: 20px;
     padding: 16px 18px;
@@ -174,6 +220,78 @@
     color: #4a453f;
     font-size: 0.95rem;
     font-weight: 650;
+  }
+
+  .pain-points {
+    margin-top: 18px;
+    padding: 22px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+  }
+
+  .pain-kicker {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    color: var(--accent-color);
+  }
+
+  .pain-title {
+    margin: 0 0 10px;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
+    word-break: keep-all;
+  }
+
+  .pain-desc {
+    margin: 0;
+    color: var(--sub-text);
+    font-size: 0.95rem;
+    word-break: keep-all;
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .pain-card {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #edf0f3;
+    background: var(--primary-soft);
+  }
+
+  .pain-card strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--primary-color);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+
+  .pain-card span {
+    display: block;
+    color: var(--sub-text);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    word-break: keep-all;
+  }
+
+  .pain-bottom {
+    margin-top: 14px;
+    color: #4a453f;
+    font-size: 0.92rem;
+    font-weight: 700;
+    word-break: keep-all;
   }
 
   .primary-action-card {
@@ -603,6 +721,8 @@
     .secondary-actions, .form-grid, .check-list, .board-form-row { grid-template-columns: 1fr; }
     .hero-card { padding: 34px 22px; }
     .checklist-card, .auditor-card, .board-card { padding: 28px 20px; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .example-gif-card img { max-height: 520px; }
     .menu-card { min-height: auto; }
     #question-text { font-size: 1.22rem; }
     .checklist-toolbar { grid-template-columns: 1fr; position: static; }
@@ -629,24 +749,65 @@
         프로젝트가 꼬이지 않도록 돕는 시스템 오디터입니다.
       </p>
       
-      <div class="video-label">스타트 맵 오디트 5페이지 예시 영상</div>
+      <div class="video-label">스페이스 오디터 홍보 영상</div>
       <p class="video-caption">
-        실제 보고서가 어떻게 정리되는지 먼저 보세요. 가능성, 리스크, 대략 비용, 전체 일정 흐름을 한 장면씩 확인할 수 있습니다.
+        소리는 꺼진 상태로 자동 재생됩니다. 공사 전에 어떤 리스크를 먼저 봐야 하는지 짧게 확인해보세요.
       </p>
-      <div class="video-container">
+      <div class="video-container hero-video">
         <iframe
-          src="https://drive.google.com/file/d/1ubrhe9SSsiYLvO3D2qf6H8v0m5E9QyNj/preview"
-          allow="autoplay; encrypted-media; fullscreen"
+          src="https://www.youtube.com/embed/cyYGDFqHWSQ?autoplay=1&mute=1&playsinline=1&loop=1&playlist=cyYGDFqHWSQ&controls=1&rel=0&modestbranding=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
-          loading="lazy"
-          title="스페이스 오디터 스타트 맵 오디트 예시 영상">
+          loading="eager"
+          title="스페이스 오디터 홍보 영상">
         </iframe>
       </div>
+      <div class="hero-video-links">
+        <a href="https://youtu.be/cyYGDFqHWSQ" target="_blank" rel="noopener" onclick="trackAuditor('auditor_youtube_open')">유튜브에서 크게 보기 ↗</a>
+      </div>
+
+      <div class="video-label">스타트 맵 오디트 예시 미리보기</div>
+      <p class="video-caption">
+        보고서가 어떤 흐름으로 정리되는지 예시 화면으로 먼저 확인해보세요. 가능성, 리스크, 대략 비용, 전체 일정 흐름을 한 장면씩 볼 수 있습니다.
+      </p>
+      <figure class="example-gif-card">
+        <img src="start-map-audit-preview-final.gif" alt="스페이스 오디터 스타트 맵 오디트 예시 화면" loading="lazy" />
+        <figcaption>
+          ※ 예시는 설명용 샘플입니다. 실제 검토 결과는 건축물대장, 도면, 현장 상황, 관계기관 협의 결과에 따라 달라질 수 있습니다.
+        </figcaption>
+      </figure>
 
       <div class="hero-note">
         사전 판단 레포트는<br>
-        <strong>건축주가 처음 손에 쥐는 프로젝트의 지도</strong>입니다.<br>아래 체크리스트와 진단 토너먼트로 내 상황을 먼저 가볍게 확인해보세요.
+        <strong>건축주가 처음 손에 쥐는 프로젝트의 지도</strong>입니다.<br>
+        아래 체크리스트와 진단 토너먼트로 내 상황을 먼저 가볍게 확인해보세요.
       </div>
+
+      <section class="pain-points" aria-label="건축주 공감 포인트">
+        <div class="pain-kicker">혹시 이런 고민이 있으신가요?</div>
+        <h2 class="pain-title">“아, 이거 내 얘기잖아.”<br>건축주가 실제로 막막해지는 순간을 먼저 정리합니다.</h2>
+        <p class="pain-desc">스페이스 오디터는 추상적인 설명보다, 건축주가 실제로 불안해하는 장면에서 출발합니다.</p>
+        <div class="pain-grid">
+          <article class="pain-card">
+            <strong>매수 전인데, 이 건물이 정말 되는 건지 모르겠어요.</strong>
+            <span>용도변경 가능성, 위반 여부, 매수 전 확인 포인트부터 알고 싶은 상태입니다.</span>
+          </article>
+          <article class="pain-card">
+            <strong>견적서는 받았는데, 어디까지 포함된 건지 모르겠어요.</strong>
+            <span>범위가 흐리면 추가금과 분쟁으로 이어질 수 있어 먼저 구조를 보고 싶은 상태입니다.</span>
+          </article>
+          <article class="pain-card">
+            <strong>설계, 인허가, 시공… 뭘 먼저 해야 할지 너무 헷갈려요.</strong>
+            <span>순서가 안 보이면 일정도 꼬이고 예산도 흔들리기 쉬워 전체 지도가 필요한 상태입니다.</span>
+          </article>
+          <article class="pain-card">
+            <strong>공사 시작하면 괜히 싸움 나고 돈 더 들까 봐 불안해요.</strong>
+            <span>문제는 시작 전에 숨어 있을 수 있어, 리스크를 먼저 점검하고 싶은 상태입니다.</span>
+          </article>
+        </div>
+        <div class="pain-bottom">이 중 하나라도 내 얘기 같다면, 스페이스 오디터가 필요한 시작 단계일 수 있습니다.</div>
+      </section>
     </section>
 
     <section aria-label="스페이스 오디터 메뉴">
@@ -796,10 +957,10 @@
     </div>
   </section>
 
-  <footer class="contact-footer" aria-label="YUGY Design Group 연락처">
+  <footer class="contact-footer" aria-label="Yugy Design Group 연락처">
     <div class="contact-footer-inner">
       <div>
-        <div class="contact-kicker">YUGY DESIGN GROUP</div>
+        <div class="contact-kicker">Yugy Design Group</div>
         <h3>(주)여기건축사사무소</h3>
         <p>
           건축 시작 전, 도면·견적·위반 가능성·예산 리스크를 먼저 봅니다.
