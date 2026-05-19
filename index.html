@@ -2029,6 +2029,88 @@
     }
   }
 
+  function getLeadButton(actionName) {
+    return document.querySelector(`button[onclick="${actionName}()"]`);
+  }
+
+  function showLeadStatus(button, message, type = "loading") {
+    if (!button) return null;
+
+    let status = button.nextElementSibling;
+    if (!status || !status.classList || !status.classList.contains("lead-submit-status")) {
+      status = document.createElement("div");
+      status.className = "lead-submit-status";
+      status.style.marginTop = "10px";
+      status.style.padding = "12px 14px";
+      status.style.borderRadius = "14px";
+      status.style.fontWeight = "800";
+      status.style.fontSize = "0.92rem";
+      status.style.lineHeight = "1.55";
+      status.style.wordBreak = "keep-all";
+      button.insertAdjacentElement("afterend", status);
+    }
+
+    if (type === "error") {
+      status.style.background = "#fff1ee";
+      status.style.border = "1px solid #efc9c0";
+      status.style.color = "#be3b2f";
+    } else if (type === "success") {
+      status.style.background = "#f3fbf6";
+      status.style.border = "1px solid #c8e5d1";
+      status.style.color = "#16824a";
+    } else {
+      status.style.background = "#fff9e8";
+      status.style.border = "1px solid #eadbaf";
+      status.style.color = "#82684d";
+    }
+
+    status.innerText = message;
+    return status;
+  }
+
+  function startLeadLoading(actionName, loadingText) {
+    const button = getLeadButton(actionName);
+    if (!button) return null;
+    if (button.dataset.loading === "true") return button;
+
+    button.dataset.loading = "true";
+    button.dataset.originalText = button.innerText;
+    button.disabled = true;
+    button.style.opacity = "0.72";
+    button.style.cursor = "wait";
+    button.innerText = loadingText;
+    showLeadStatus(
+      button,
+      "접수 내용을 보내는 중입니다. 약 5초 정도 걸릴 수 있어요. 창을 닫지 말고 잠시만 기다려주세요.",
+      "loading"
+    );
+
+    return button;
+  }
+
+  function finishLeadLoading(button, message, type = "success") {
+    if (!button) return;
+
+    button.disabled = false;
+    button.style.opacity = "";
+    button.style.cursor = "";
+    button.innerText = button.dataset.originalText || button.innerText;
+    button.dataset.loading = "false";
+
+    if (message) {
+      showLeadStatus(button, message, type);
+    }
+  }
+
+  function clearLeadStatus(button) {
+    if (!button) return;
+
+    const status = button.nextElementSibling;
+    if (status && status.classList && status.classList.contains("lead-submit-status")) {
+      status.remove();
+    }
+  }
+
   async function sendLead(payload) {
     const enriched = {
       timestamp: new Date().toISOString(),
@@ -2036,18 +2118,35 @@
       ...payload
     };
 
+    const bodyText = JSON.stringify(enriched);
+
     trackAuditor("lead_submit_try", {
       lead_type: enriched.type || "unknown",
       product_name: enriched.product || ""
     });
 
     try {
+      if (navigator.sendBeacon) {
+        const blob = new Blob([bodyText], { type: "text/plain;charset=utf-8" });
+        const queued = navigator.sendBeacon(SCRIPT_URL, blob);
+
+        if (queued) {
+          trackAuditor("lead_submit_success", {
+            lead_type: enriched.type || "unknown",
+            product_name: enriched.product || ""
+          });
+          return true;
+        }
+      }
+
       await fetch(SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
+        keepalive: true,
         headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(enriched)
+        body: bodyText
       });
+
       trackAuditor("lead_submit_success", {
         lead_type: enriched.type || "unknown",
         product_name: enriched.product || ""
@@ -2064,6 +2163,9 @@
   }
 
   async function submitContactLead() {
+    const currentButton = getLeadButton("submitContactLead");
+    if (currentButton && currentButton.dataset.loading === "true") return;
+
     const product = document.getElementById("contact-product").value;
     const name = document.getElementById("contact-name").value.trim();
     const phone = document.getElementById("contact-phone").value.trim();
@@ -2087,7 +2189,9 @@
       return;
     }
 
-    await sendLead({
+    const button = startLeadLoading("submitContactLead", "접수 중입니다... 잠시만 기다려주세요");
+
+    const sent = await sendLead({
       type: "contact",
       product,
       name,
@@ -2097,6 +2201,13 @@
       message
     });
 
+    if (!sent) {
+      finishLeadLoading(button, "전송이 원활하지 않습니다. 잠시 후 다시 시도하거나 네이버 톡톡으로 문의해주세요.", "error");
+      alert("전송이 원활하지 않습니다. 잠시 후 다시 시도하거나 네이버 톡톡으로 문의해주세요.");
+      return;
+    }
+
+    finishLeadLoading(button, "접수되었습니다. 확인 후 연락드리겠습니다.", "success");
     alert("상담 문의가 접수되었습니다. 확인 후 연락드리겠습니다.");
     document.getElementById("contact-product").value = "";
     document.getElementById("contact-name").value = "";
@@ -2105,6 +2216,7 @@
     document.getElementById("contact-location").value = "";
     document.getElementById("contact-message").value = "";
     document.getElementById("contact-consent").checked = false;
+    clearLeadStatus(button);
     showPanel("home-panel");
   }
 
@@ -2329,6 +2441,9 @@
   }
 
   async function submitQuizLead() {
+    const currentButton = getLeadButton("submitQuizLead");
+    if (currentButton && currentButton.dataset.loading === "true") return;
+
     const name = document.getElementById("quiz-name").value.trim();
     const phone = document.getElementById("quiz-phone").value.trim();
     const email = document.getElementById("quiz-email").value.trim();
@@ -2345,7 +2460,9 @@
       return;
     }
 
-    await sendLead({
+    const button = startLeadLoading("submitQuizLead", "진단 결과 접수 중입니다... 잠시만 기다려주세요");
+
+    const sent = await sendLead({
       type: "quiz",
       product: currentResult || surveyData["추천결과"] || "진단 토너먼트",
       name,
@@ -2355,7 +2472,15 @@
       surveyData
     });
 
+    if (!sent) {
+      finishLeadLoading(button, "전송이 원활하지 않습니다. 잠시 후 다시 시도하거나 네이버 톡톡으로 문의해주세요.", "error");
+      alert("전송이 원활하지 않습니다. 잠시 후 다시 시도하거나 네이버 톡톡으로 문의해주세요.");
+      return;
+    }
+
+    finishLeadLoading(button, "진단 결과와 상담 신청이 접수되었습니다.", "success");
     alert("진단 결과와 상담 신청이 접수되었습니다.");
+    clearLeadStatus(button);
     showPanel("home-panel");
   }
 
@@ -2440,6 +2565,9 @@
   }
 
   async function submitChecklistLead() {
+    const currentButton = getLeadButton("submitChecklistLead");
+    if (currentButton && currentButton.dataset.loading === "true") return;
+
     const name = document.getElementById("check-name").value.trim();
     const phone = document.getElementById("check-phone").value.trim();
     const email = document.getElementById("check-email").value.trim();
@@ -2458,7 +2586,9 @@
       return;
     }
 
-    await sendLead({
+    const button = startLeadLoading("submitChecklistLead", "체크리스트 접수 중입니다... 잠시만 기다려주세요");
+
+    const sent = await sendLead({
       type: "checklist",
       product: "체크리스트 상담",
       name,
@@ -2469,8 +2599,16 @@
       checkedItems
     });
 
+    if (!sent) {
+      finishLeadLoading(button, "전송이 원활하지 않습니다. 잠시 후 다시 시도하거나 네이버 톡톡으로 문의해주세요.", "error");
+      alert("전송이 원활하지 않습니다. 잠시 후 다시 시도하거나 네이버 톡톡으로 문의해주세요.");
+      return;
+    }
+
     trackAuditor("auditor_checklist_submit", { risk_count: riskCount });
+    finishLeadLoading(button, "체크리스트 결과와 상담 신청이 접수되었습니다.", "success");
     alert("체크리스트 결과와 상담 신청이 접수되었습니다.");
+    clearLeadStatus(button);
     showPanel("home-panel");
   }
 
