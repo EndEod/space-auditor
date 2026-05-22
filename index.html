@@ -1175,6 +1175,7 @@
       <button type="button" onclick="scrollToSection('personal-section')">개인형</button>
       <button type="button" onclick="scrollToSection('business-section')">사업형</button>
       <button type="button" onclick="scrollToSection('public-section')">공공형</button>
+      <button type="button" onclick="scrollToSection('green-remodeling-section')">그린리모델링 사전판단</button>
       <button type="button" onclick="scrollToSection('living-regeneration-section')">거주형 도시재생</button>
       <button type="button" onclick="scrollToSection('class-section')">클래스</button>
       <button type="button" onclick="scrollToSection('drawing-section')">도면소생술</button>
@@ -1403,6 +1404,106 @@
           </div>
           <button class="btn accent full" onclick="showPanel('contact-panel')">문의하기</button>
         </article>
+      </div>
+    </section>
+
+    <section class="section" id="green-remodeling-section">
+      <div class="wide-card">
+        <div class="two-col">
+          <div>
+            <div class="eyebrow">GREEN REMODELING PRE-AUDIT</div>
+            <h2 class="section-title">그린리모델링 사전판단</h2>
+            <p class="section-desc">
+              민간건축물 그린리모델링 컨설팅 지원사업은 좋은 출발점입니다.
+              다만 신청 전후에 내 건물이 실제로 어떤 공사를 해야 하는지,
+              도면·에너지·비용·허가·일정이 어떻게 연결되는지는 별도로 정리해야 합니다.
+              스페이스 오디터는 그 사이의 빈칸을 먼저 읽습니다.
+            </p>
+
+            <div class="notice-strip">
+              지원사업은 문을 열어주는 제도이고,
+              그린리모델링 사전판단은 내 건물에서 실제로 움직일 수 있는 순서를 그리는 지도입니다.
+            </div>
+
+            <div class="cta-row">
+              <button class="btn green" onclick="showPanel('contact-panel'); setProduct('그린리모델링 사전판단')">그린리모델링 사전판단 문의</button>
+              <button class="btn ghost" onclick="scrollToSection('personal-section')">개인형 오디트와 비교</button>
+              <button class="btn ghost" onclick="scrollToSection('public-section')">공공형 오디트와 비교</button>
+            </div>
+          </div>
+
+          <div class="map-card">
+            <div class="mini-report">
+              <h3>사전판단에서 먼저 보는 5가지</h3>
+              <div class="mini-list">
+                <div>건축물대장과 실제 현황이 맞는지 확인</div>
+                <div>도면이 없거나 오래된 경우 현황 정리 필요성 판단</div>
+                <div>창호·단열·설비 등 에너지 개선 후보 정리</div>
+                <div>대수선·용도·허가·신고 등 행정 리스크 확인</div>
+                <div>공사비, 지원사업, 일정의 우선순위 정리</div>
+              </div>
+            </div>
+
+            <div class="mini-flow">
+              <div>현황</div>
+              <div>에너지</div>
+              <div>실행</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="regen-two">
+          <div class="regen-mini-card">
+            <h3>신청 전에 필요한 판단</h3>
+            <p>
+              우리 건물이 지원사업 대상에 가까운지, 어떤 자료를 먼저 준비해야 하는지,
+              공사를 한다면 창호·단열·설비 중 어디부터 보는 것이 좋은지 정리합니다.
+              무작정 견적을 받기 전에 프로젝트의 기준선을 세우는 단계입니다.
+            </p>
+          </div>
+
+          <div class="regen-mini-card">
+            <h3>신청 후에 필요한 판단</h3>
+            <p>
+              컨설팅 결과를 실제 공사, 설계, 견적, 대출, 일정으로 옮기려면
+              현황도면과 에너지 개선 방향, 공사 범위, 비용 흐름을 함께 봐야 합니다.
+              스페이스 오디터는 이 실행 순서를 리포트 형태로 정리합니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="regen-steps" aria-label="그린리모델링 사전판단 진행 흐름">
+          <div class="regen-step">
+            <b>1</b>
+            <strong>기초자료 확인</strong>
+            <span>건축물대장, 기존 도면, 사진, 면적, 사용승인일, 용도와 현황을 먼저 모읍니다.</span>
+          </div>
+          <div class="regen-step">
+            <b>2</b>
+            <strong>현황 리스크 체크</strong>
+            <span>대장과 실제 사용이 다른 부분, 위반 가능성, 허가·신고가 필요한 범위를 살핍니다.</span>
+          </div>
+          <div class="regen-step">
+            <b>3</b>
+            <strong>에너지 개선 후보</strong>
+            <span>창호, 단열, 조명, 설비, 공용부 개선 등 효과가 클 수 있는 항목을 선별합니다.</span>
+          </div>
+          <div class="regen-step">
+            <b>4</b>
+            <strong>비용·일정 지도</strong>
+            <span>견적을 받기 전에 공사 범위, 우선순위, 예상 절차, 필요한 자료를 정리합니다.</span>
+          </div>
+          <div class="regen-step">
+            <b>5</b>
+            <strong>실행 연결</strong>
+            <span>오디트 결과를 설계, 견적, 지원사업 신청 검토, 그린리모델링 실행 상담으로 연결합니다.</span>
+          </div>
+        </div>
+
+        <div class="notice-strip">
+          ※ 그린리모델링 사전판단은 지원사업 선정, 대출 승인, 이자지원, 공사비 절감액, 인허가 결과를 보장하지 않습니다.
+          건축물의 현황, 법규, 예산, 신용조건, 공고 기준에 따라 결과가 달라질 수 있습니다.
+        </div>
       </div>
     </section>
 
@@ -1852,6 +1953,7 @@
           <option value="프로 오디트">개인형: 프로 오디트</option>
           <option value="사업형 스페이스 오디터">사업형 스페이스 오디터</option>
           <option value="공공형 스페이스 오디터">공공형 스페이스 오디터</option>
+          <option value="그린리모델링 사전판단">그린리모델링 사전판단</option>
           <option value="거주형 도시재생 오디트">거주형 도시재생 오디트</option>
           <option value="스페이스 오디터 클래스">스페이스 오디터 클래스</option>
           <option value="기타 상담">기타 상담</option>
