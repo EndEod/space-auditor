@@ -1065,6 +1065,287 @@
   .floating-cta .talk { background: var(--green); }
   .floating-cta .apply { background: var(--primary); }
 
+
+
+  /* ===== 5분 위반건축물 셀프 체크리스트 추가 영역 ===== */
+  .quick-check-section {
+    padding: 24px 0 10px;
+  }
+
+  .quick-check-card {
+    border: 1px solid rgba(35, 49, 66, 0.14);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top right, rgba(190, 59, 47, 0.10), transparent 34%),
+      radial-gradient(circle at bottom left, rgba(164, 140, 113, 0.18), transparent 32%),
+      #ffffff;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .quick-check-grid {
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 24px;
+    align-items: stretch;
+    padding: 30px;
+  }
+
+  .quick-check-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .quick-kicker {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #eadbaf;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    font-weight: 920;
+    letter-spacing: 0.08em;
+  }
+
+  .quick-check-copy h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.6vw, 3.15rem);
+    line-height: 1.12;
+    letter-spacing: -0.06em;
+    color: var(--primary-dark);
+    word-break: keep-all;
+  }
+
+  .quick-check-copy h2 span {
+    color: var(--danger);
+  }
+
+  .quick-check-copy p {
+    margin: 0;
+    color: var(--sub);
+    font-size: 1rem;
+    word-break: keep-all;
+  }
+
+  .quick-brand-stack {
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.74);
+  }
+
+  .quick-brand-stack strong {
+    color: var(--primary);
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+
+  .quick-check-box {
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+  }
+
+  .quick-score-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .quick-score-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    background: var(--primary-soft);
+    border: 1px solid var(--border);
+    color: var(--primary);
+    padding: 9px 12px;
+    font-weight: 920;
+    font-size: 0.88rem;
+  }
+
+  .quick-time-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border-radius: 999px;
+    background: #fff1ee;
+    border: 1px solid #efc9c0;
+    color: var(--danger);
+    padding: 9px 12px;
+    font-weight: 920;
+    font-size: 0.86rem;
+  }
+
+  .quick-check-list {
+    display: grid;
+    gap: 9px;
+    margin: 12px 0 14px;
+  }
+
+  .quick-check-item {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    gap: 10px;
+    align-items: start;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #fff;
+    padding: 12px 12px;
+  }
+
+  .quick-check-item:hover {
+    border-color: rgba(35, 49, 66, 0.38);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .quick-check-item input {
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+  }
+
+  .quick-check-item span {
+    color: var(--text);
+    font-weight: 760;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+
+  .quick-risk-badge {
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 0.72rem;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .quick-risk-badge.red {
+    color: var(--danger);
+    background: #fff1ee;
+    border: 1px solid #efc9c0;
+  }
+
+  .quick-risk-badge.yellow {
+    color: var(--orange);
+    background: #fff9e8;
+    border: 1px solid #eadbaf;
+  }
+
+  .quick-check-result {
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    white-space: pre-wrap;
+    font-weight: 780;
+    line-height: 1.6;
+    margin-top: 12px;
+  }
+
+  .quick-check-result.green {
+    background: #f3fbf6;
+    border-color: #c8e5d1;
+    color: #145d37;
+  }
+
+  .quick-check-result.yellow {
+    background: #fff9e8;
+    border-color: #eadbaf;
+    color: #7d4b00;
+  }
+
+  .quick-check-result.red {
+    background: #fff1ee;
+    border-color: #efc9c0;
+    color: #86291f;
+  }
+
+  .quick-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .quick-action-row .btn {
+    min-height: 44px;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+  }
+
+  .quick-prep-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .quick-prep-list div {
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px;
+    color: var(--primary);
+    font-weight: 850;
+    text-align: center;
+    font-size: 0.88rem;
+  }
+
+  .quick-small-note {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 0.84rem;
+    word-break: keep-all;
+  }
+
+  @media (max-width: 900px) {
+    .quick-check-grid {
+      grid-template-columns: 1fr;
+      padding: 22px;
+    }
+
+    .quick-prep-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .quick-check-section {
+      padding-top: 16px;
+    }
+
+    .quick-check-grid {
+      padding: 18px;
+    }
+
+    .quick-check-item {
+      grid-template-columns: 24px 1fr;
+    }
+
+    .quick-risk-badge {
+      grid-column: 2;
+      width: fit-content;
+    }
+
+    .quick-action-row .btn {
+      width: 100%;
+    }
+  }
+
   @media (max-width: 900px) {
     .hero-grid, .two-col, .media-grid, .footer-grid, .regen-grid, .regen-two {
       grid-template-columns: 1fr;
@@ -1186,6 +1467,138 @@
 
 <main class="page">
   <section class="section-panel active" id="home-panel">
+
+
+    <!-- ===== 추가: 첫 화면 5분 위반건축물 셀프 체크리스트 ===== -->
+    <section class="quick-check-section" id="five-minute-checklist" aria-labelledby="five-minute-checklist-title">
+      <div class="quick-check-card">
+        <div class="quick-check-grid">
+          <div class="quick-check-copy">
+            <div>
+              <div class="quick-kicker">FREE 5 MIN CHECK</div>
+              <h2 id="five-minute-checklist-title">
+                우리 집,<br>
+                <span>위반건축물일까?</span>
+              </h2>
+              <p>
+                어려운 법 단어는 몰라도 됩니다. 집의 생활기록부인 건축물대장과
+                눈앞의 진짜 집을 비교하며, 빨간불과 노란불만 빠르게 찾아보세요.
+                하나라도 찜찜하면 계약금, 철거, 인테리어 공사를 잠깐 멈추는 것이 안전합니다.
+              </p>
+            </div>
+
+            <div class="quick-brand-stack" aria-label="스페이스 오디터 핵심 문구">
+              <strong>도면소생술 | 건축사 뚱뚜루가 만든 셀프 도면 만들기 도구</strong>
+              <strong>스페이스 오디터 | 공사 전 건축·리모델링 사전진단 서비스</strong>
+              <strong>건축사 뚱뚜루 | 도면소생술·스페이스 오디터·그린리모델링</strong>
+            </div>
+
+            <div class="quick-prep-list" aria-label="진단 준비물">
+              <div>건축물대장 1장</div>
+              <div>현장 사진 8장</div>
+              <div>하고 싶은 공사 1줄</div>
+            </div>
+          </div>
+
+          <form class="quick-check-box" id="five-minute-checklist-form" onsubmit="return false;">
+            <div class="quick-score-row">
+              <div class="quick-score-pill" id="five-min-score">체크 0개 · 빨간불 0개 · 노란불 0개</div>
+              <div class="quick-time-pill">⏱ 5분 셀프 진단</div>
+            </div>
+
+            <div class="quick-check-list" aria-label="위반건축물 의심 신호 체크 항목">
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="red" data-label="건축물대장에 위반건축물 표시가 있다" onchange="updateFiveMinChecklist()">
+                <span>건축물대장 첫 장에 <b>위반건축물</b> 표시가 있다.</span>
+                <em class="quick-risk-badge red">빨간불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="yellow" data-label="건축물대장 층수와 실제 층수가 다르다" onchange="updateFiveMinChecklist()">
+                <span>대장에 적힌 층수와 눈앞의 실제 층수가 다르다.</span>
+                <em class="quick-risk-badge yellow">노란불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="red" data-label="옥상에 방, 창고, 컨테이너가 있다" onchange="updateFiveMinChecklist()">
+                <span>옥상에 작은 집처럼 생긴 방, 창고, 컨테이너가 있다.</span>
+                <em class="quick-risk-badge red">빨간불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="red" data-label="베란다나 발코니가 새시, 지붕, 벽으로 방처럼 막혀 있다" onchange="updateFiveMinChecklist()">
+                <span>베란다나 발코니가 새시, 플라스틱 지붕, 판넬 벽으로 방처럼 막혀 있다.</span>
+                <em class="quick-risk-badge red">빨간불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="red" data-label="1층 주차장이 방, 상가, 창고로 바뀌었다" onchange="updateFiveMinChecklist()">
+                <span>1층 주차장 자리에 벽, 유리문, 상가, 방, 창고가 생겼다.</span>
+                <em class="quick-risk-badge red">빨간불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="red" data-label="지하 창고나 상가에 침대, 싱크대, 화장실이 있어 사람이 산다" onchange="updateFiveMinChecklist()">
+                <span>지하 창고나 상가에 침대, 싱크대, 화장실이 있어 사람이 사는 것 같다.</span>
+                <em class="quick-risk-badge red">빨간불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="red" data-label="문패, 초인종, 우편함, 계량기 수가 대장 세대 수보다 많다" onchange="updateFiveMinChecklist()">
+                <span>문패, 초인종, 우편함, 계량기 수가 대장에 적힌 세대 수보다 많다.</span>
+                <em class="quick-risk-badge red">빨간불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="yellow" data-label="계단, 복도, 옥상 출입구가 짐이나 벽으로 막혀 있다" onchange="updateFiveMinChecklist()">
+                <span>계단, 복도, 옥상 출입구가 짐, 가벽, 철문으로 막혀 있다.</span>
+                <em class="quick-risk-badge yellow">노란불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="red" data-label="건물 뒤나 옆에 판넬방, 천막방, 조립식방이 붙어 있다" onchange="updateFiveMinChecklist()">
+                <span>건물 뒤쪽이나 옆쪽에 판넬방, 천막방, 조립식 방이 붙어 있다.</span>
+                <em class="quick-risk-badge red">빨간불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="yellow" data-label="마당이나 조경 자리가 데크, 창고, 주차장으로 바뀌었다" onchange="updateFiveMinChecklist()">
+                <span>마당이나 조경 자리처럼 보이는 곳이 데크, 창고, 주차장으로 바뀌었다.</span>
+                <em class="quick-risk-badge yellow">노란불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="yellow" data-label="상가는 숙소처럼, 주택은 카페나 사무실처럼 쓰고 있다" onchange="updateFiveMinChecklist()">
+                <span>상가는 숙소처럼, 주택은 카페나 사무실처럼 쓰고 있다.</span>
+                <em class="quick-risk-badge yellow">노란불</em>
+              </label>
+
+              <label class="quick-check-item">
+                <input type="checkbox" class="five-min-check" data-level="yellow" data-label="다락, 옥탑, 창고가 난방과 싱크대가 있는 방처럼 꾸며졌다" onchange="updateFiveMinChecklist()">
+                <span>다락, 옥탑, 창고가 난방과 싱크대가 있는 방처럼 꾸며져 있다.</span>
+                <em class="quick-risk-badge yellow">노란불</em>
+              </label>
+            </div>
+
+            <div class="quick-check-result green" id="five-min-result" aria-live="polite">
+              아직 체크된 위험 신호가 없습니다. 항목을 누르면 결과가 바로 바뀝니다.
+            </div>
+
+            <div class="quick-action-row">
+              <button type="button" class="btn ghost" onclick="resetFiveMinChecklist()">초기화</button>
+              <button type="button" class="btn accent" onclick="copyFiveMinChecklist()">결과 복사</button>
+              <button type="button" class="btn primary" onclick="goFiveMinContact()">이 결과로 상담하기</button>
+            </div>
+
+            <p class="quick-small-note">
+              이 체크는 법적 확정 판정이 아니라 공사 전 멈춤 신호입니다.
+              최종 판단은 건축물대장, 현장 사진, 도면, 관계기관 확인을 함께 봐야 합니다.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- ===== 추가 끝 ===== -->
     <section class="hero">
       <div class="hero-card">
         <div class="hero-grid">
@@ -2805,6 +3218,123 @@
       .replaceAll("'", "&#039;");
   }
 
+
+
+  function collectFiveMinChecklist() {
+    const checked = Array.from(document.querySelectorAll(".five-min-check:checked"));
+    const red = checked.filter(item => item.dataset.level === "red");
+    const yellow = checked.filter(item => item.dataset.level === "yellow");
+
+    let level = "green";
+    let headline = "🟢 초록불: 지금 체크된 큰 위험 신호는 없습니다.";
+    let detail = "그래도 안전 확정은 아닙니다. 계약, 철거, 공사 전에는 건축물대장과 실제 현황을 함께 확인하세요.";
+
+    if (red.length > 0) {
+      level = "red";
+      headline = `🔴 빨간불: 빨간 신호 ${red.length}개가 보입니다.`;
+      detail = "계약금 송금, 철거, 인테리어 착공을 잠깐 멈추고 건축물대장, 현장 사진, 공사 범위를 먼저 확인하세요.";
+    } else if (yellow.length >= 2) {
+      level = "yellow";
+      headline = `🟡 노란불: 애매한 신호 ${yellow.length}개가 보입니다.`;
+      detail = "당장 위반이라고 단정할 수는 없지만, 서류와 실제 모습이 어긋났을 가능성이 있습니다. 사진 8장과 대장을 모아 확인하세요.";
+    } else if (yellow.length === 1) {
+      level = "yellow";
+      headline = "🟡 노란불: 애매한 신호 1개가 보입니다.";
+      detail = "작은 어긋남처럼 보여도 공사 범위, 견적, 지원사업 검토에서 문제가 될 수 있습니다.";
+    }
+
+    const selectedLines = checked.map((item, index) => {
+      const label = item.dataset.level === "red" ? "빨간불" : "노란불";
+      return `${index + 1}. [${label}] ${item.dataset.label}`;
+    });
+
+    const text = [
+      "[스페이스 오디터 5분 셀프 체크 결과]",
+      `체크 ${checked.length}개 / 빨간불 ${red.length}개 / 노란불 ${yellow.length}개`,
+      headline,
+      detail,
+      "",
+      "선택한 항목:",
+      selectedLines.length ? selectedLines.join("\n") : "선택한 항목 없음",
+      "",
+      "준비물: 건축물대장 1장, 현장 사진 8장, 하고 싶은 공사 내용 1줄",
+      "도면소생술 | 건축사 뚱뚜루가 만든 셀프 도면 만들기 도구",
+      "스페이스 오디터 | 공사 전 건축·리모델링 사전진단 서비스",
+      "건축사 뚱뚜루 | 도면소생술·스페이스 오디터·그린리모델링"
+    ].join("\n");
+
+    return { checked, red, yellow, level, headline, detail, text };
+  }
+
+  function updateFiveMinChecklist() {
+    const score = document.getElementById("five-min-score");
+    const result = document.getElementById("five-min-result");
+    if (!score || !result) return;
+
+    const summary = collectFiveMinChecklist();
+    score.innerText = `체크 ${summary.checked.length}개 · 빨간불 ${summary.red.length}개 · 노란불 ${summary.yellow.length}개`;
+    result.className = `quick-check-result ${summary.level}`;
+    result.innerText = `${summary.headline}\n${summary.detail}`;
+  }
+
+  function resetFiveMinChecklist() {
+    document.querySelectorAll(".five-min-check").forEach(check => {
+      check.checked = false;
+    });
+    updateFiveMinChecklist();
+    if (typeof trackAuditor === "function") {
+      trackAuditor("five_min_check_reset");
+    }
+  }
+
+  async function copyFiveMinChecklist() {
+    const summary = collectFiveMinChecklist();
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(summary.text);
+      } else {
+        const temp = document.createElement("textarea");
+        temp.value = summary.text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        temp.remove();
+      }
+      alert("5분 체크 결과를 복사했습니다. 상담 메시지나 메모장에 붙여넣을 수 있습니다.");
+      if (typeof trackAuditor === "function") {
+        trackAuditor("five_min_check_copy", {
+          red_count: summary.red.length,
+          yellow_count: summary.yellow.length
+        });
+      }
+    } catch (error) {
+      alert("복사가 되지 않았습니다. 화면의 체크 결과를 직접 캡처하거나 상담하기 버튼을 눌러주세요.");
+    }
+  }
+
+  function goFiveMinContact() {
+    const summary = collectFiveMinChecklist();
+    showPanel("contact-panel");
+    setProduct("라이트 오디트");
+
+    setTimeout(() => {
+      const message = document.getElementById("contact-message");
+      if (message) {
+        message.value = summary.text + "\n\n[상담 요청]\n위 항목이 실제로 위반 리스크인지, 계약 또는 공사 전에 무엇을 먼저 확인해야 하는지 알고 싶습니다.";
+        message.focus();
+      }
+    }, 80);
+
+    if (typeof trackAuditor === "function") {
+      trackAuditor("five_min_check_contact", {
+        red_count: summary.red.length,
+        yellow_count: summary.yellow.length
+      });
+    }
+  }
+
+  updateFiveMinChecklist();
   renderChecklist();
 </script>
 </body>
